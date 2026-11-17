@@ -1,6 +1,7 @@
 import { ArrowRight, Lightbulb, Play, Briefcase, Handshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionLabel } from "./SectionLabel";
+import { Skyline } from "./Decor";
 import classroom from "@/assets/about-class.jpg";
 
 const stats = [
@@ -11,12 +12,13 @@ const stats = [
 
 export function About() {
   return (
-    <section id="tentang" className="relative overflow-hidden py-6">
+    <section id="tentang" className="relative overflow-hidden bg-section-tint py-10">
+      <Skyline className="absolute bottom-0 right-0 hidden h-28 w-[55%] text-navy/[0.05] lg:block" />
       {/* left green blades */}
       <div className="pointer-events-none absolute -left-10 top-0 h-20 w-24 -skew-x-[35deg] bg-lime" />
       <div className="pointer-events-none absolute -left-16 top-24 hidden h-44 w-28 -skew-x-[35deg] bg-forest md:block" />
 
-      <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 lg:grid-cols-[1.25fr_1fr_0.55fr] lg:px-12">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 lg:grid-cols-[1.25fr_1fr_0.55fr] lg:px-12">
         <div className="relative">
           <div className="absolute -bottom-3 -left-3 h-2/3 w-2/3 -skew-x-[20deg] rounded-2xl bg-forest" />
           <div className="relative overflow-hidden rounded-2xl clip-slant-both">
@@ -47,7 +49,9 @@ export function About() {
         <ul className="flex gap-6 border-border lg:flex-col lg:border-l lg:pl-8">
           {stats.map(({ icon: Icon, value, label }) => (
             <li key={label} className="flex items-start gap-3">
-              <Icon className="mt-1 size-7 text-lime" strokeWidth={2.2} />
+              <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-lime/15">
+                <Icon className="size-5 fill-lime/30 text-forest" strokeWidth={2} />
+              </span>
               <div>
                 <p className="text-xl font-extrabold text-navy">{value}</p>
                 <p className="text-[0.7rem] text-ink">{label}</p>

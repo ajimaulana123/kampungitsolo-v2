@@ -1,4 +1,4 @@
-import { ArrowRight, BadgeCheck, Lightbulb, Users } from "lucide-react";
+import { ArrowRight, Award, HandHeart, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionLabel } from "./SectionLabel";
 import seminar from "@/assets/impact-seminar.jpg";
@@ -9,8 +9,8 @@ import classroom from "@/assets/about-class.jpg";
 
 const points = [
   { icon: Users, a: "Pendidikan", b: "untuk Semua" },
-  { icon: Lightbulb, a: "Inovasi untuk", b: "Masyarakat" },
-  { icon: BadgeCheck, a: "Kolaborasi", b: "untuk Negeri" },
+  { icon: HandHeart, a: "Inovasi untuk", b: "Masyarakat" },
+  { icon: Award, a: "Kolaborasi", b: "untuk Negeri" },
 ];
 
 function Photo({ src, alt, w, h }: { src: string; alt: string; w: number; h: number }) {
@@ -20,7 +20,7 @@ function Photo({ src, alt, w, h }: { src: string; alt: string; w: number; h: num
 export function Impact() {
   return (
     <section id="dampak" className="py-16">
-      <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 lg:grid-cols-[0.95fr_1.35fr_0.5fr] lg:px-12">
+      <div className="mx-auto grid max-w-7xl items-center gap-6 px-6 lg:grid-cols-[0.85fr_1.45fr_0.62fr] lg:px-12">
         <div>
           <SectionLabel lead="Dampak" rest="& Kolaborasi" />
           <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-navy lg:text-[2rem]">
@@ -37,7 +37,7 @@ export function Impact() {
           </Button>
         </div>
 
-        <div className="relative">
+        <div className="relative lg:ml-4">
           <div className="pointer-events-none absolute -bottom-2 -left-10 hidden h-24 w-12 bg-dots lg:block" />
           <div className="grid h-[300px] grid-cols-[1fr_1fr_0.9fr] grid-rows-2 gap-2">
             <Photo src={seminar} alt="Seminar teknologi" w={992} h={672} />
@@ -50,11 +50,13 @@ export function Impact() {
           </div>
         </div>
 
-        <ul className="flex flex-col gap-6 rounded-2xl bg-surface p-6 shadow-soft">
+        <ul className="flex flex-col gap-6 rounded-2xl border border-border bg-card p-6 shadow-card">
           {points.map(({ icon: Icon, a, b }) => (
             <li key={a} className="flex items-center gap-4">
-              <Icon className="size-7 shrink-0 text-forest" strokeWidth={1.6} />
-              <p className="text-[0.78rem] leading-snug text-navy">
+              <span className="grid size-11 shrink-0 place-items-center rounded-full bg-lime/15">
+                <Icon className="size-6 text-forest" strokeWidth={1.7} />
+              </span>
+              <p className="text-[0.78rem] font-semibold leading-snug text-navy">
                 {a}
                 <br />
                 {b}

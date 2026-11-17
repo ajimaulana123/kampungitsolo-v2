@@ -1,6 +1,7 @@
 import { ArrowRight, CircleCheck, Play, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionLabel } from "./SectionLabel";
+import { LeafSwoosh } from "./Decor";
 import workshop from "@/assets/program-workshop.jpg";
 
 const programs = [
@@ -14,11 +15,11 @@ const programs = [
 
 export function Program() {
   return (
-    <section id="program" className="relative overflow-hidden py-6">
-      <div className="pointer-events-none absolute -bottom-4 right-0 h-24 w-40 -skew-x-[40deg] bg-gradient-swoosh" />
+    <section id="program" className="relative overflow-hidden bg-section-tint py-10">
       <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.25fr]">
         <div className="relative">
-          <div className="overflow-hidden rounded-r-2xl clip-slant-right">
+          <div className="absolute -right-2 top-6 hidden h-[85%] w-10 -skew-x-[14deg] rounded-xl bg-lime/40 lg:block" />
+          <div className="relative overflow-hidden rounded-r-2xl clip-slant-right">
             <img src={workshop} alt="Peserta program belajar bersama" loading="lazy" width={1280} height={768} className="aspect-[16/9] w-full object-cover" />
           </div>
           <button aria-label="Putar video" className="absolute bottom-8 left-12 grid size-12 place-items-center rounded-full bg-lime text-lime-foreground shadow-card transition-transform hover:scale-105">
@@ -51,8 +52,9 @@ export function Program() {
             </Button>
           </div>
 
-          <blockquote className="relative self-center rounded-2xl bg-surface p-6 shadow-soft">
-            <Quote className="size-6 fill-forest text-forest" />
+          <blockquote className="relative self-center overflow-hidden rounded-2xl border border-border bg-card p-6 pb-14 shadow-card">
+            <LeafSwoosh className="absolute -bottom-px -right-px h-20 w-36" />
+            <Quote className="size-7 rotate-180 fill-forest text-forest" />
             <p className="mt-4 text-[0.95rem] font-medium leading-relaxed text-navy">
               “Kampung IT Solo adalah bukti nyata bahwa teknologi bisa memberdayakan masyarakat.”
             </p>

@@ -1,6 +1,7 @@
 import { ArrowRight, Play, TrendingUp, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "./Navbar";
+import { LeafSwoosh } from "./Decor";
 import building from "@/assets/hero-building.jpg";
 import a1 from "@/assets/avatar-1.jpg";
 import a2 from "@/assets/avatar-2.jpg";
@@ -10,6 +11,9 @@ import a4 from "@/assets/avatar-4.jpg";
 export function Hero() {
   return (
     <div id="beranda" className="relative overflow-hidden">
+      {/* Soft diagonal light bands behind the hero */}
+      <div className="pointer-events-none absolute inset-0 bg-streaks opacity-80" />
+
       {/* Building photo, bleeding under the navbar and fading into the page */}
       <div className="pointer-events-none absolute right-0 top-0 hidden h-full w-[60%] md:block">
         <img
@@ -22,11 +26,10 @@ export function Hero() {
         <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-background to-transparent" />
       </div>
 
-      {/* Green swooshes */}
-      <div className="pointer-events-none absolute -bottom-6 right-0 hidden h-40 w-[34%] md:block">
-        <div className="absolute bottom-6 right-0 h-16 w-full origin-bottom-right -skew-x-[40deg] bg-gradient-swoosh opacity-90" />
-        <div className="absolute bottom-0 right-0 h-8 w-2/3 origin-bottom-right -skew-x-[40deg] bg-forest" />
-      </div>
+
+      {/* Green leaf swooshes */}
+      <LeafSwoosh className="absolute -bottom-1 right-0 hidden h-36 w-[42%] md:block" />
+      <LeafSwoosh flip className="absolute -bottom-2 left-0 h-14 w-40 opacity-90" />
 
       <Navbar />
 
@@ -88,7 +91,9 @@ export function Hero() {
 
         {/* Stat card */}
         <div className="relative z-10 mt-6 flex w-fit items-center gap-4 rounded-2xl bg-card px-5 py-4 shadow-card md:absolute md:bottom-10 md:right-8 md:mt-0 lg:right-12">
-          <Users className="size-8 text-forest" />
+          <span className="grid size-11 place-items-center rounded-xl bg-lime/15">
+            <Users className="size-6 fill-forest text-forest" />
+          </span>
           <div>
             <p className="text-xl font-extrabold text-navy">10K+</p>
             <p className="text-[0.68rem] text-ink">Masyarakat Teredukasi</p>
