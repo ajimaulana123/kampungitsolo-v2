@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight, ChevronDown, Menu, Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "./Logo";
@@ -15,9 +15,24 @@ const links = [
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   return (
-    <header className="relative z-30">
-      <div className="mx-auto flex h-20 max-w-[112rem] items-center justify-between px-6 lg:px-12">
+    <>
+    <div className="h-20" aria-hidden="true" />
+    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled ? "px-3 pt-3 sm:px-6" : ""}`}>
+      <div
+        className={`mx-auto flex items-center justify-between transition-all duration-500 ease-out ${
+          scrolled
+            ? "h-16 max-w-6xl rounded-full border border-border/70 bg-background/85 px-4 shadow-card backdrop-blur-md lg:px-6"
+            : "h-20 max-w-[112rem] px-6 lg:px-12"
+        }`}
+      >
         <Logo />
         <nav className="hidden items-center gap-7 lg:flex">
           {links.map((l) => (
@@ -50,7 +65,7 @@ export function Navbar() {
         </button>
       </div>
       {open && (
-        <div className="absolute inset-x-0 top-20 border-y border-border bg-background px-6 py-4 shadow-card lg:hidden">
+        <div className={`absolute inset-x-0 border-y ${scrolled ? "top-[5.25rem] mx-3 rounded-2xl border-x sm:mx-6" : "top-20"}`} >
           {links.map((l) => (
             <a key={l.label} href={l.href} onClick={() => setOpen(false)} className="block py-2 text-sm font-semibold text-navy">
               {l.label}
@@ -62,5 +77,6 @@ export function Navbar() {
         </div>
       )}
     </header>
+    </>
   );
 }
