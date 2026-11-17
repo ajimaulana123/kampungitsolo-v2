@@ -14,18 +14,35 @@ export function Hero() {
       {/* Soft diagonal light bands behind the hero */}
       <div className="pointer-events-none absolute inset-0 bg-streaks opacity-80" />
 
-      {/* Building photo, bleeding under the navbar and fading into the page */}
-      <div className="pointer-events-none absolute right-0 top-0 hidden h-full w-[60%] md:block">
-        <img
-          src={building}
-          alt="Gedung Kampung IT Solo"
-          width={1280}
-          height={960}
-          className="mask-fade-left mask-fade-bottom h-full w-full object-cover object-[60%_center]"
-        />
-        <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-background to-transparent" />
+      {/* Building photo: curved notch under the nav links, slanted left edge */}
+      <div className="pointer-events-none absolute right-0 top-0 hidden h-full w-[62%] md:block">
+        <svg width="0" height="0" className="absolute" aria-hidden="true">
+          <defs>
+            <clipPath id="hero-photo-clip" clipPathUnits="objectBoundingBox">
+              <path d="M0.6,0 L1,0 L1,1 L0,1 L0.31,0.215 C0.33,0.165 0.355,0.14 0.405,0.14 L0.525,0.14 C0.555,0.14 0.57,0.125 0.578,0.095 L0.588,0.035 C0.592,0.012 0.595,0 0.6,0 Z" />
+            </clipPath>
+          </defs>
+        </svg>
+        <div className="absolute inset-0 [clip-path:url(#hero-photo-clip)]">
+          <img
+            src={building}
+            alt="Gedung Kampung IT Solo"
+            width={1280}
+            height={960}
+            className="mask-fade-bottom h-full w-full object-cover object-[30%_center]"
+          />
+          {/* Soft light band along the slanted edge */}
+          <svg
+            viewBox="0 0 1 1"
+            preserveAspectRatio="none"
+            className="absolute inset-0 h-full w-full fill-background"
+            aria-hidden="true"
+          >
+            <path d="M0,1 L0.31,0.215 C0.33,0.165 0.355,0.14 0.405,0.14 L0.42,0.14 L0.07,1 Z" opacity="0.6" />
+            <path d="M0.07,1 L0.42,0.14 L0.45,0.14 L0.11,1 Z" opacity="0.2" />
+          </svg>
+        </div>
       </div>
-
 
       {/* Green leaf swooshes */}
       <LeafSwoosh className="absolute -bottom-1 right-0 hidden h-36 w-[42%] md:block" />
