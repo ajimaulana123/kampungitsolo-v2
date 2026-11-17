@@ -28,3 +28,7 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- Landing page sections live in `src/components/landing/` and are composed in `src/routes/index.tsx` — keeps each section easy to edit independently.
+- Brand colors (navy, lime, forest, surface) and decorative utilities are tokens in `src/styles.css`; buttons use the pill variants in `src/components/ui/button.tsx` — keeps styling consistent without ad hoc colors.

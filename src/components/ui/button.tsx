@@ -16,12 +16,20 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        forest:
+          "rounded-full bg-forest text-forest-foreground font-bold shadow-soft hover:brightness-110",
+        navy: "rounded-full bg-navy text-navy-foreground font-bold shadow-soft hover:brightness-125",
+        lime: "rounded-full bg-lime text-lime-foreground font-bold shadow-soft hover:brightness-105",
+        outlinePill:
+          "rounded-full border border-border bg-background text-navy font-bold hover:bg-surface",
       },
       size: {
         default: "h-9 px-4 py-2",
         sm: "h-8 rounded-md px-3 text-xs",
         lg: "h-10 rounded-md px-8",
         icon: "h-9 w-9",
+        pill: "h-11 px-6 text-[0.8rem]",
+        pillSm: "h-9 px-5 text-xs",
       },
     },
     defaultVariants: {
