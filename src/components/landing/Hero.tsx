@@ -50,8 +50,8 @@ export function Hero() {
 
       <Navbar />
 
-      <section className="relative z-10 mx-auto max-w-7xl px-6 pb-20 pt-6 lg:px-12 lg:pb-28">
-        <div className="max-w-xl animate-rise">
+      <section className="relative z-10 mx-auto max-w-[100rem] px-6 pb-20 pt-6 lg:px-12 lg:pb-28">
+        <div className="max-w-xl animate-rise xl:max-w-2xl">
           <span className="inline-flex items-center gap-2 rounded-full bg-surface px-3 py-1.5 text-[0.7rem] font-bold text-navy">
             <span className="size-2 rounded-full bg-lime" />
             Digital Innovation Village
