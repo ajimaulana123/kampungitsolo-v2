@@ -17,7 +17,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   return (
     <header className="relative z-30">
-      <div className="mx-auto flex h-20 max-w-[100rem] items-center justify-between px-6 lg:px-12">
+      <div className="mx-auto flex h-20 max-w-[112rem] items-center justify-between px-6 lg:px-12">
         <Logo />
         <nav className="hidden items-center gap-7 lg:flex">
           {links.map((l) => (
