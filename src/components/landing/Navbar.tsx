@@ -65,7 +65,7 @@ export function Navbar() {
         </button>
       </div>
       {open && (
-        <div className={`absolute inset-x-0 border-y ${scrolled ? "top-[5.25rem] mx-3 rounded-2xl border-x sm:mx-6" : "top-20"}`} >
+        <div className={`absolute inset-x-0 border-y bg-background px-6 pb-5 pt-2 shadow-card ${scrolled ? "top-[5.25rem] mx-3 rounded-2xl border-x sm:mx-6" : "top-20"}`} >
           {links.map((l) => (
             <a key={l.label} href={l.href} onClick={() => setOpen(false)} className="block py-2 text-sm font-semibold text-navy">
               {l.label}

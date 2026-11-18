@@ -13,7 +13,7 @@ const stats = [
 export function About() {
   return (
     <section id="tentang" className="relative overflow-hidden bg-section-tint py-10">
-      <Skyline className="absolute bottom-0 right-0 hidden h-28 w-[55%] text-navy/[0.05] lg:block" />
+      <Skyline className="mask-fade-left absolute bottom-0 right-0 hidden h-[88%] w-[56%] text-sky opacity-[0.09] lg:block" />
       {/* left green blades */}
       <div className="pointer-events-none absolute -left-10 top-0 h-20 w-24 -skew-x-[35deg] bg-lime" />
       <div className="pointer-events-none absolute -left-16 top-24 hidden h-44 w-28 -skew-x-[35deg] bg-forest md:block" />
