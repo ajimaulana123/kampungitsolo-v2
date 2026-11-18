@@ -1,27 +1,20 @@
 import { useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, BookOpenText, GraduationCap, ShieldCheck, Zap } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionLabel } from "./SectionLabel";
 
-import type { LucideProps } from "lucide-react";
-
-/** Monitor with a </> code mark, drawn in Lucide style. */
-function MonitorCode({ className, strokeWidth = 2 }: LucideProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
-      <rect x="2" y="3" width="20" height="14" rx="2" />
-      <path d="M8 21h8M12 17v4" />
-      <path d="m9 8-2 2 2 2M15 8l2 2-2 2M13 7l-2 6" fill="none" />
-    </svg>
-  );
-}
+import academy from "@/assets/about-class.jpg";
+import library from "@/assets/impact-seminar.jpg";
+import system from "@/assets/impact-team.jpg";
+import energy from "@/assets/impact-city.jpg";
+import safety from "@/assets/impact-umkm.jpg";
 
 const items = [
-  { icon: GraduationCap, title: "Elfan AI Academy", desc: "Pusat pelatihan AI & teknologi", tone: "text-forest fill-forest/10" },
-  { icon: BookOpenText, title: "Bookless Library", desc: "Perpustakaan digital masa kini", tone: "text-sky fill-sky/10" },
-  { icon: MonitorCode, title: "Elfan System", desc: "Solusi sistem berbasis teknologi", tone: "text-sky fill-sky/10" },
-  { icon: Zap, title: "Smart Energy", desc: "Energi cerdas untuk masa depan", tone: "text-lime fill-lime" },
-  { icon: ShieldCheck, title: "Smart Safety", desc: "Keamanan cerdas untuk masyarakat", tone: "text-background fill-forest" },
+  { img: academy, title: "Elfan AI Academy", desc: "Pusat pelatihan AI & teknologi" },
+  { img: library, title: "Bookless Library", desc: "Perpustakaan digital masa kini" },
+  { img: system, title: "Elfan System", desc: "Solusi sistem berbasis teknologi" },
+  { img: energy, title: "Smart Energy", desc: "Energi cerdas untuk masa depan" },
+  { img: safety, title: "Smart Safety", desc: "Keamanan cerdas untuk masyarakat" },
 ];
 
 export function Ecosystem() {
@@ -70,7 +63,7 @@ function EcoCarousel() {
         ref={track}
         className="relative flex snap-x snap-mandatory gap-4 overflow-x-auto px-1 pb-4 pt-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
-        {items.map(({ icon: Icon, title, desc, tone }, i) => {
+        {items.map(({ img, title, desc }, i) => {
           const on = i === active;
           return (
             <button
@@ -78,19 +71,18 @@ function EcoCarousel() {
               type="button"
               onClick={() => go(i)}
               aria-pressed={on}
-              className={`group flex w-40 shrink-0 snap-center flex-col items-center rounded-2xl px-4 py-6 text-center transition-all duration-300 hover:-translate-y-1 ${
-                on
-                  ? "bg-gradient-featured text-forest-foreground shadow-card ring-4 ring-forest/10"
-                  : "border border-border bg-card text-navy shadow-soft"
+              className={`group relative flex h-56 w-44 shrink-0 snap-center flex-col justify-end overflow-hidden rounded-2xl p-4 text-left text-forest-foreground shadow-card transition-all duration-300 hover:-translate-y-1 ${
+                on ? "ring-4 ring-lime/70" : "ring-1 ring-border"
               }`}
             >
-              <span className={`grid size-12 place-items-center rounded-xl ${on ? "bg-forest-foreground/15" : "bg-surface"}`}>
-                <Icon className={`size-7 ${on ? "text-forest-foreground fill-forest-foreground/20" : tone}`} strokeWidth={1.8} />
-              </span>
-              <h3 className="mt-3 text-sm font-bold leading-tight">{title}</h3>
-              <p className={`mt-3 text-[0.7rem] leading-snug ${on ? "opacity-85" : "text-ink"}`}>{desc}</p>
-              <span className={`mt-auto grid size-6 place-items-center self-start rounded-full pt-0 ${on ? "bg-lime text-lime-foreground" : "border border-muted-foreground/40 text-muted-foreground group-hover:border-forest group-hover:text-forest"}`} style={{ marginTop: "1.25rem" }}>
-                <ArrowRight className="size-3" />
+              <img src={img} alt="" loading="lazy" className="absolute inset-0 size-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              <span className={`absolute inset-0 transition-opacity duration-300 ${on ? "bg-gradient-to-t from-forest via-forest/70 to-forest/10" : "bg-gradient-to-t from-navy via-navy/60 to-navy/5"}`} />
+              <span className="relative">
+                <h3 className="text-sm font-bold leading-tight">{title}</h3>
+                <p className="mt-1.5 text-[0.7rem] leading-snug opacity-85">{desc}</p>
+                <span className={`mt-3 grid size-6 place-items-center rounded-full ${on ? "bg-lime text-lime-foreground" : "border border-forest-foreground/60"}`}>
+                  <ArrowRight className="size-3" />
+                </span>
               </span>
             </button>
           );
