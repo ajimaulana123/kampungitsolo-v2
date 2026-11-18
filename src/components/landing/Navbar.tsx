@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { ArrowRight, ChevronDown, Menu, Search, X } from "lucide-react";
+import { ArrowRight, Menu, Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "./Logo";
 
 const links = [
   { label: "Beranda", href: "#beranda", active: true },
-  { label: "Tentang", href: "#tentang", dropdown: true },
-  { label: "Ekosistem", href: "#ekosistem", dropdown: true },
-  { label: "Program", href: "#program", dropdown: true },
+  { label: "Tentang", href: "#tentang" },
+  { label: "Ekosistem", href: "#ekosistem" },
+  { label: "Program", href: "#program" },
   { label: "Dampak", href: "#dampak" },
   { label: "Berita & Artikel", href: "#berita" },
   { label: "Kolaborasi", href: "#kolaborasi" },
@@ -44,7 +44,6 @@ export function Navbar() {
               }`}
             >
               {l.label}
-              {l.dropdown && <ChevronDown className="size-3.5" />}
               {l.active && <span className="absolute -bottom-1.5 left-0 h-[3px] w-full rounded-full bg-forest" />}
             </a>
           ))}
