@@ -262,7 +262,19 @@
 .reveal-ready [data-reveal="clip"].is-revealed img {
   animation: reveal-zoom 1.4s var(--ease-out-soft) var(--reveal-delay, 0ms) backwards;
 }
+/* On-load image reveal for above-the-fold photos */
+@utility animate-clip-in {
+  animation: reveal-clip 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s backwards;
+  & img {
+    animation: reveal-zoom 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s backwards;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
+  .animate-rise,
+  .animate-clip-in,
+  .animate-clip-in img {
+    animation: none !important;
+  }
   .reveal-ready [data-reveal],
   .reveal-ready [data-reveal] > * {
     opacity: 1 !important;

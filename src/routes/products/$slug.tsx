@@ -7,6 +7,7 @@ import { Footer } from "@/components/landing/Footer";
 import { SectionLabel } from "@/components/landing/SectionLabel";
 import { LeafSwoosh } from "@/components/landing/Decor";
 import { getProduct, products } from "@/data/products";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const WHATSAPP = "https://wa.me/6281235666665";
 
@@ -46,15 +47,18 @@ function ProductDetail() {
     ...products.filter((p) => p.slug !== product.slug && p.category !== product.category),
   ].slice(0, 3);
 
+  useScrollReveal(product.slug);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar variant="detail" />
 
-      <main>
+      {/* key: replay the entrance motion when moving to another product */}
+      <main key={product.slug}>
         <section className="relative overflow-hidden bg-section-tint">
           <LeafSwoosh className="absolute -bottom-2 right-0 hidden h-28 w-[36%] md:block" />
           <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 py-12 lg:grid-cols-[1.05fr_0.95fr] lg:px-12 lg:py-16">
-            <div>
+            <div className="animate-rise">
               <p className="eyebrow">{product.category}</p>
               <h1 className="mt-3 text-4xl font-extrabold leading-[1.08] tracking-tight text-navy sm:text-5xl">
                 {product.name}
@@ -92,20 +96,22 @@ function ProductDetail() {
               </div>
             </div>
 
-            <div className="relative">
+            <div className="relative animate-rise [animation-delay:120ms]">
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute -right-2 top-8 hidden h-[78%] w-8 -skew-x-12 rounded-xl bg-lime/40 lg:block"
               />
               <div className="relative overflow-hidden rounded-2xl shadow-card">
-                <img
-                  src={product.image}
-                  alt={`Ilustrasi ${product.name}`}
-                  width={992}
-                  height={672}
-                  fetchPriority="high"
-                  className="aspect-[4/3] w-full object-cover"
-                />
+                <div className="animate-clip-in">
+                  <img
+                    src={product.image}
+                    alt={`Ilustrasi ${product.name}`}
+                    width={992}
+                    height={672}
+                    fetchPriority="high"
+                    className="aspect-[4/3] w-full object-cover"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -113,7 +119,7 @@ function ProductDetail() {
 
         <section className="py-14">
           <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.75fr_1.25fr] lg:px-12">
-            <div>
+            <div data-reveal="up">
               <SectionLabel lead="Tentang" rest="Produk" />
               <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-navy lg:text-[2rem]">
                 Apa itu
@@ -121,7 +127,7 @@ function ProductDetail() {
                 {product.name}?
               </h2>
             </div>
-            <div className="space-y-4 text-sm leading-relaxed text-ink">
+            <div data-reveal="stagger" className="space-y-4 text-sm leading-relaxed text-ink">
               {product.description.map((paragraph) => (
                 <p key={paragraph.slice(0, 40)}>{paragraph}</p>
               ))}
@@ -132,15 +138,17 @@ function ProductDetail() {
         {product.features.length > 0 && (
           <section id="fitur" className="scroll-mt-24 bg-section-tint py-14">
             <div className="mx-auto max-w-7xl px-6 lg:px-12">
-              <SectionLabel lead="Fitur" rest="Unggulan" />
-              <h2 className="mt-3 max-w-xl text-3xl font-extrabold leading-tight tracking-tight text-navy lg:text-[2rem]">
-                Yang membuat {product.name} berbeda.
-              </h2>
-              <ul className="mt-8 grid gap-4 md:grid-cols-3">
+              <div data-reveal="up">
+                <SectionLabel lead="Fitur" rest="Unggulan" />
+                <h2 className="mt-3 max-w-xl text-3xl font-extrabold leading-tight tracking-tight text-navy lg:text-[2rem]">
+                  Yang membuat {product.name} berbeda.
+                </h2>
+              </div>
+              <ul data-reveal="stagger" className="mt-8 grid gap-4 md:grid-cols-3">
                 {product.features.map(({ title, desc }, i) => (
                   <li
                     key={title}
-                    className="flex flex-col rounded-2xl border border-border bg-card p-6 shadow-soft"
+                    className="flex flex-col rounded-2xl border border-border bg-card p-6 shadow-soft transition-[translate,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-forest/40 hover:shadow-lift"
                   >
                     <span className="eyebrow">{String(i + 1).padStart(2, "0")}</span>
                     <h3 className="mt-3 text-base font-bold leading-snug text-navy">{title}</h3>
@@ -155,11 +163,13 @@ function ProductDetail() {
         {product.steps.length > 0 && (
           <section className="py-14">
             <div className="mx-auto max-w-7xl px-6 lg:px-12">
-              <SectionLabel lead="Cara" rest="Kerjanya" />
-              <h2 className="mt-3 max-w-xl text-3xl font-extrabold leading-tight tracking-tight text-navy lg:text-[2rem]">
-                Penjelasan detail.
-              </h2>
-              <ol className="mt-8 grid gap-6 md:grid-cols-3">
+              <div data-reveal="up">
+                <SectionLabel lead="Cara" rest="Kerjanya" />
+                <h2 className="mt-3 max-w-xl text-3xl font-extrabold leading-tight tracking-tight text-navy lg:text-[2rem]">
+                  Penjelasan detail.
+                </h2>
+              </div>
+              <ol data-reveal="stagger" className="mt-8 grid gap-6 md:grid-cols-3">
                 {product.steps.map(({ title, desc }, i) => (
                   <li key={title} className="border-t-2 border-lime pt-4">
                     <span className="text-sm font-extrabold text-forest">
@@ -177,7 +187,7 @@ function ProductDetail() {
         {product.specs.length > 0 && (
           <section className="bg-navy py-14 text-navy-foreground">
             <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.7fr_1.3fr] lg:px-12">
-              <div>
+              <div data-reveal="up">
                 <p className="text-[0.7rem] font-extrabold uppercase tracking-wide text-lime">
                   Spesifikasi
                 </p>
@@ -187,7 +197,7 @@ function ProductDetail() {
                   lengkap.
                 </h2>
               </div>
-              <dl className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
+              <dl data-reveal="stagger" className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
                 {product.specs.map(({ label, value }) => (
                   <div key={label} className="border-t border-navy-foreground/15 pt-3">
                     <dt className="text-[0.68rem] font-bold uppercase tracking-wide text-navy-foreground/60">
@@ -203,7 +213,10 @@ function ProductDetail() {
 
         <section className="py-14">
           <div className="mx-auto max-w-7xl px-6 lg:px-12">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div
+              data-reveal="up"
+              className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"
+            >
               <div>
                 <SectionLabel lead="Produk" rest="Lain" />
                 <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-navy lg:text-[2rem]">
@@ -219,29 +232,31 @@ function ProductDetail() {
               </Link>
             </div>
 
-            <ul className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <ul data-reveal="stagger" className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {related.map((p) => (
                 <li key={p.slug}>
                   <Link
                     to="/products/$slug"
                     params={{ slug: p.slug }}
-                    className="group flex h-full items-center gap-4 rounded-2xl border border-border bg-card p-4 shadow-soft transition-colors hover:border-forest"
+                    className="group flex h-full items-center gap-4 rounded-2xl border border-border bg-card p-4 shadow-soft transition-[translate,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-forest hover:shadow-lift"
                   >
-                    <img
-                      src={p.image}
-                      alt=""
-                      width={992}
-                      height={672}
-                      loading="lazy"
-                      className="size-16 shrink-0 rounded-xl object-cover"
-                    />
+                    <span className="size-16 shrink-0 overflow-hidden rounded-xl">
+                      <img
+                        src={p.image}
+                        alt=""
+                        width={992}
+                        height={672}
+                        loading="lazy"
+                        className="size-full object-cover transition-[scale] duration-500 ease-out group-hover:scale-110"
+                      />
+                    </span>
                     <span className="min-w-0">
                       <span className="block text-[0.82rem] font-bold text-navy">{p.name}</span>
                       <span className="mt-1 block text-[0.72rem] leading-snug text-ink">
                         {p.cardDesc}
                       </span>
                     </span>
-                    <ArrowRight className="ml-auto size-4 shrink-0 text-forest transition-transform group-hover:translate-x-0.5" />
+                    <ArrowRight className="ml-auto size-4 shrink-0 text-forest transition-transform duration-300 group-hover:translate-x-1" />
                   </Link>
                 </li>
               ))}
@@ -251,7 +266,10 @@ function ProductDetail() {
 
         <section className="pb-16">
           <div className="mx-auto max-w-7xl px-6 lg:px-12">
-            <div className="flex flex-col gap-6 rounded-3xl bg-navy p-8 text-navy-foreground shadow-card md:flex-row md:items-center lg:p-10">
+            <div
+              data-reveal="up"
+              className="flex flex-col gap-6 rounded-3xl bg-navy p-8 text-navy-foreground shadow-card md:flex-row md:items-center lg:p-10"
+            >
               <div>
                 <p className="text-[0.7rem] font-extrabold uppercase tracking-wide text-lime">
                   Tertarik dengan {product.name}?

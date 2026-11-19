@@ -5,9 +5,10 @@ import { useEffect } from "react";
  *   data-reveal            fade-up
  *   data-reveal="stagger"  fade-up each direct child in turn
  *   data-reveal="clip"     image clip/zoom reveal
+ * Pass `resetKey` (e.g. a slug) to re-scan when the page content swaps.
  * Content stays visible without JS or with prefers-reduced-motion; each element animates once.
  */
-export function useScrollReveal() {
+export function useScrollReveal(resetKey?: unknown) {
   useEffect(() => {
     if (typeof IntersectionObserver === "undefined") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -41,5 +42,5 @@ export function useScrollReveal() {
       io.disconnect();
       root.classList.remove("reveal-ready");
     };
-  }, []);
+  }, [resetKey]);
 }
