@@ -1,9 +1,9 @@
 import type React from "react";
-import { ArrowRight, Boxes, Layers, Lightbulb, MapPin, Play, Target } from "lucide-react";
+import { ArrowRight, Boxes, Layers, Lightbulb, MapPin, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AboutVideo } from "./AboutVideo";
 import { SectionLabel } from "./SectionLabel";
 import { Skyline } from "./Decor";
-import classroom from "@/assets/about-class.jpg";
 
 const facts = [
   { icon: Layers, value: "10", label: "Produk & Layanan" },
@@ -50,21 +50,8 @@ export function About() {
           <div className="pointer-events-none absolute -left-[32%] top-[42%] hidden h-[62%] w-[29%] -skew-x-12 rounded-2xl bg-gradient-blade-forest md:block" />
           <div className="relative overflow-hidden [clip-path:url(#about-photo-clip)]">
             <div data-reveal="clip">
-              <img
-                src={classroom}
-                alt="Kelas pemrograman di Kampung IT Solo"
-                loading="lazy"
-                width={1280}
-                height={768}
-                className="aspect-[16/9] w-full object-cover"
-              />
+              <AboutVideo />
             </div>
-            <button
-              aria-label="Putar video"
-              className="absolute left-1/2 top-1/2 grid size-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-background/95 text-forest shadow-card transition-transform hover:scale-105"
-            >
-              <Play className="size-5 translate-x-0.5 fill-current" />
-            </button>
           </div>
         </div>
 
@@ -86,7 +73,10 @@ export function About() {
           </Button>
         </div>
 
-        <ul data-reveal="stagger" className="flex gap-6 border-border lg:flex-col lg:border-l lg:pl-8">
+        <ul
+          data-reveal="stagger"
+          className="flex gap-6 border-border lg:flex-col lg:border-l lg:pl-8"
+        >
           {facts.map(({ icon: Icon, value, label }) => (
             <li key={label} className="flex items-start gap-3">
               <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-lime/15">
