@@ -10,6 +10,9 @@ export const getRouter = () => {
     routeTree,
     context: { queryClient },
     scrollRestoration: true,
+    // "instant" supaya pindah halaman langsung tampil di atas. Tanpa ini, CSS
+    // scroll-behavior: smooth membuat reset scroll ikut beranimasi naik dari bawah.
+    scrollRestorationBehavior: "instant",
     // Lets Query own freshness; set caching defaults on the QueryClient, not the router.
     defaultPreloadStaleTime: 0,
   });

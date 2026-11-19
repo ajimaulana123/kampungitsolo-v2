@@ -1,12 +1,14 @@
-import { ArrowRight, Play, TrendingUp, Users } from "lucide-react";
+import { Activity, ArrowRight, Building2, Layers, MapPin, Play, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "./Navbar";
 import { LeafSwoosh } from "./Decor";
 import building from "@/assets/hero-building.jpg";
-import a1 from "@/assets/avatar-1.jpg";
-import a2 from "@/assets/avatar-2.jpg";
-import a3 from "@/assets/avatar-3.jpg";
-import a4 from "@/assets/avatar-4.jpg";
+
+const facts = [
+  { icon: MapPin, label: "RT 06 / RW 21 · Solo" },
+  { icon: Building2, label: "Bin Alfan Group" },
+  { icon: Activity, label: "Aktif 24/7" },
+];
 
 export function Hero() {
   return (
@@ -29,6 +31,7 @@ export function Hero() {
             alt="Gedung Kampung IT Solo"
             width={1280}
             height={960}
+            fetchPriority="high"
             className="mask-fade-bottom h-full w-full object-cover object-[30%_center]"
           />
           {/* Soft light band along the slanted edge */}
@@ -38,7 +41,10 @@ export function Hero() {
             className="absolute inset-0 h-full w-full fill-background"
             aria-hidden="true"
           >
-            <path d="M0,1 L0.31,0.215 C0.33,0.165 0.355,0.14 0.405,0.14 L0.42,0.14 L0.07,1 Z" opacity="0.6" />
+            <path
+              d="M0,1 L0.31,0.215 C0.33,0.165 0.355,0.14 0.405,0.14 L0.42,0.14 L0.07,1 Z"
+              opacity="0.6"
+            />
             <path d="M0.07,1 L0.42,0.14 L0.45,0.14 L0.11,1 Z" opacity="0.2" />
           </svg>
         </div>
@@ -54,18 +60,19 @@ export function Hero() {
         <div className="max-w-xl animate-rise xl:max-w-2xl">
           <span className="inline-flex items-center gap-2 rounded-full bg-surface px-3 py-1.5 text-[0.7rem] font-bold text-navy">
             <span className="size-2 rounded-full bg-lime" />
-            Digital Innovation Village
+            Pusat Eduwisata IT · Laboratorium Peradaban
           </span>
           <h1 className="mt-4 text-[2.6rem] font-extrabold leading-[1.08] tracking-tight text-navy sm:text-5xl lg:text-[3.4rem]">
-            Membangun
+            Kampung IT Solo.
             <br />
-            Peradaban Digital,
+            Lab. Peradaban
             <br />
-            <span className="text-gradient-headline">Dimulai dari Kampung.</span>
+            <span className="text-gradient-headline">Berbasis IT.</span>
           </h1>
-          <p className="mt-5 max-w-md text-[0.95rem] leading-relaxed text-ink">
-            Kampung IT Solo adalah pusat edukasi, inovasi, dan pemberdayaan masyarakat berbasis
-            teknologi di Kota Solo.
+          <p className="mt-5 max-w-lg text-[0.95rem] leading-relaxed text-ink">
+            Pusat riset dan pengembangan pendidikan berbasis Adab &amp; IT di RT 06/RW 21 Surakarta
+            — bagian dari Bin Alfan Group bersama Elfan Bookless Library, Alwustho Technologies,
+            TUK, dan Alkubro.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button variant="forest" size="pill" asChild>
@@ -77,25 +84,18 @@ export function Hero() {
               <Play className="fill-current" /> Tonton Video
             </Button>
           </div>
-          <div className="mt-7 flex items-center gap-3">
-            <div className="flex -space-x-2.5">
-              {[a1, a2, a3, a4].map((src, i) => (
-                <img
-                  key={i}
-                  src={src}
-                  alt=""
-                  width={96}
-                  height={96}
-                  className="size-9 rounded-full border-2 border-background object-cover"
-                />
-              ))}
-            </div>
-            <p className="text-xs leading-snug text-ink">
-              Bersama membangun
-              <br />
-              masa depan digital
-            </p>
-          </div>
+
+          <ul className="mt-7 flex flex-wrap gap-2">
+            {facts.map(({ icon: Icon, label }) => (
+              <li
+                key={label}
+                className="inline-flex items-center gap-2 rounded-xl bg-surface px-3 py-2 text-[0.72rem] font-semibold text-ink"
+              >
+                <Icon className="size-3.5 text-forest" />
+                {label}
+              </li>
+            ))}
+          </ul>
         </div>
 
         <img
@@ -109,11 +109,11 @@ export function Hero() {
         {/* Stat card */}
         <div className="relative z-10 mt-6 flex w-fit items-center gap-4 rounded-2xl bg-card px-5 py-4 shadow-card md:absolute md:bottom-10 md:right-8 md:mt-0 lg:right-12">
           <span className="grid size-11 place-items-center rounded-xl bg-lime/15">
-            <Users className="size-6 fill-forest text-forest" />
+            <Layers className="size-6 text-forest" />
           </span>
           <div>
-            <p className="text-xl font-extrabold text-navy">10K+</p>
-            <p className="text-[0.68rem] text-ink">Masyarakat Teredukasi</p>
+            <p className="text-xl font-extrabold text-navy">10</p>
+            <p className="text-[0.68rem] text-ink">Produk &amp; Layanan</p>
           </div>
           <TrendingUp className="ml-3 size-6 text-lime" />
         </div>

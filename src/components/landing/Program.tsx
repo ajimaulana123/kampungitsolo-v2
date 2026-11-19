@@ -5,12 +5,12 @@ import { LeafSwoosh } from "./Decor";
 import workshop from "@/assets/program-workshop.jpg";
 
 const programs = [
-  "Pelatihan Coding & AI",
-  "Workshop & Seminar",
-  "Pemberdayaan UMKM",
-  "Riset & Pengembangan",
-  "Desa Digital & Literasi Teknologi",
-  "Komunitas Teknologi",
+  "Pelatihan Desa Digital",
+  "Workshop Foto & Video Produk UMKM",
+  "Kelas Coding Akhir Pekan",
+  "Literasi Media & Keamanan Digital",
+  "Bootcamp IT & Sertifikasi TUK",
+  "Implementasi 16 Modul Elfan System",
 ];
 
 export function Program() {
@@ -20,9 +20,19 @@ export function Program() {
         <div className="relative">
           <div className="absolute -right-2 top-6 hidden h-[85%] w-10 -skew-x-[14deg] rounded-xl bg-lime/40 lg:block" />
           <div className="relative overflow-hidden rounded-r-2xl clip-slant-right">
-            <img src={workshop} alt="Peserta program belajar bersama" loading="lazy" width={1280} height={768} className="aspect-[16/9] w-full object-cover" />
+            <img
+              src={workshop}
+              alt="Peserta program belajar bersama"
+              loading="lazy"
+              width={1280}
+              height={768}
+              className="aspect-[16/9] w-full object-cover"
+            />
           </div>
-          <button aria-label="Putar video" className="absolute bottom-8 left-12 grid size-12 place-items-center rounded-full bg-lime text-lime-foreground shadow-card transition-transform hover:scale-105">
+          <button
+            aria-label="Putar video"
+            className="absolute bottom-8 left-12 grid size-12 place-items-center rounded-full bg-lime text-lime-foreground shadow-card transition-transform hover:scale-105"
+          >
             <Play className="size-4 translate-x-0.5 fill-current" />
           </button>
         </div>
@@ -36,8 +46,8 @@ export function Program() {
               dan Berkolaborasi.
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-ink">
-              Kami menghadirkan berbagai program untuk meningkatkan kompetensi digital dan
-              memberdayakan masyarakat.
+              Program eduwisata IT untuk desa, UMKM, pelajar, dan komunitas — dari pelatihan
+              keterampilan digital hingga implementasi sistem.
             </p>
             <ul className="mt-5 grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
               {programs.map((p) => (
@@ -47,6 +57,11 @@ export function Program() {
                 </li>
               ))}
             </ul>
+            <p className="mt-4 max-w-lg text-[0.72rem] leading-relaxed text-muted-foreground">
+              Kelas reguler seperti kelas coding akhir pekan dan literasi digital bersifat terbuka.
+              Pendampingan desa digital, workshop UMKM, dan implementasi modul disesuaikan dengan
+              ruang lingkup.
+            </p>
             <Button variant="navy" size="pillSm" className="mt-7">
               Lihat Program Lengkap <ArrowRight />
             </Button>

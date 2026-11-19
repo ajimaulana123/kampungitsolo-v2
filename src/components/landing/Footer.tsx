@@ -1,4 +1,4 @@
-import { Globe, Instagram, Mail, MapPin } from "lucide-react";
+import { Globe, Instagram, Mail, MapPin, MessageCircle } from "lucide-react";
 import type { LucideProps } from "lucide-react";
 import { LeafSwoosh } from "./Decor";
 
@@ -23,10 +23,21 @@ function LinkedinFilled({ className }: LucideProps) {
     </svg>
   );
 }
+import { Link } from "@tanstack/react-router";
 import { Logo } from "./Logo";
 
-const nav = ["Beranda", "Tentang", "Ekosistem", "Program"];
-const info = ["Dampak", "Berita & Artikel", "Kolaborasi", "Kontak"];
+const nav = [
+  { label: "Beranda", href: "#beranda" },
+  { label: "Tentang", href: "#tentang" },
+  { label: "Ekosistem", href: "#ekosistem" },
+  { label: "Program", href: "#program" },
+];
+const info = [
+  { label: "Dampak", href: "#dampak" },
+  { label: "Jejaring", href: "#jejaring" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Reservasi", href: "#reservasi" },
+];
 const socials = [
   { icon: YoutubeFilled, label: "YouTube" },
   { icon: Instagram, label: "Instagram" },
@@ -35,24 +46,37 @@ const socials = [
   { icon: Globe, label: "Website" },
 ];
 
-export function Footer() {
+export function Footer({ variant = "landing" }: { variant?: "landing" | "detail" }) {
   return (
-    <footer id="berita" className="relative overflow-hidden pt-12">
+    <footer id="kontak" className="relative overflow-hidden pt-12">
       <LeafSwoosh className="absolute bottom-16 right-0 hidden h-40 w-48 md:block" />
-      <svg viewBox="0 0 160 60" className="pointer-events-none absolute bottom-16 right-24 hidden h-16 w-44 text-lime md:block" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden="true">
+      <svg
+        viewBox="0 0 160 60"
+        className="pointer-events-none absolute bottom-16 right-24 hidden h-16 w-44 text-lime md:block"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        aria-hidden="true"
+      >
         <path d="M0 58 L60 8 L120 58" />
         <path d="M30 58 L60 32 L90 58" opacity="0.6" />
       </svg>
       <LeafSwoosh flip className="absolute -bottom-1 left-0 h-12 w-40 opacity-70" />
       <div className="relative mx-auto grid max-w-7xl gap-10 px-6 sm:grid-cols-2 lg:grid-cols-[1.6fr_0.8fr_1fr_1.2fr] lg:px-12">
         <div>
-          <Logo />
+          <Logo href={variant === "detail" ? "/" : "#beranda"} />
           <p className="mt-4 max-w-xs text-[0.8rem] leading-relaxed text-ink">
-            Pusat edukasi, inovasi, dan pemberdayaan masyarakat berbasis teknologi.
+            Pusat Eduwisata IT & Laboratorium Peradaban Digital di RT 06/RW 21 Surakarta, bagian
+            dari Bin Alfan Group.
           </p>
           <div className="mt-6 flex gap-5 text-navy">
             {socials.map(({ icon: Icon, label }) => (
-              <a key={label} href="#" aria-label={label} className="transition-colors hover:text-forest">
+              <a
+                key={label}
+                href="#"
+                aria-label={label}
+                className="transition-colors hover:text-forest"
+              >
                 <Icon className="size-[18px]" />
               </a>
             ))}
@@ -63,19 +87,41 @@ export function Footer() {
         <div>
           <h3 className="text-sm font-bold text-navy">Kontak Kami</h3>
           <ul className="mt-4 space-y-3 text-[0.78rem] text-ink">
-            <li className="flex items-center gap-3"><MapPin className="size-4" /> Kota Surakarta, Jawa Tengah</li>
-            <li className="flex items-center gap-3"><Mail className="size-4" /> info@kampungitsolo.id</li>
-            <li className="flex items-center gap-3"><Globe className="size-4" /> www.kampungitsolo.com</li>
+            <li className="flex items-center gap-3">
+              <MapPin className="size-4" /> RT 06 / RW 21, Surakarta, Jawa Tengah
+            </li>
+            <li className="flex items-center gap-3">
+              <Mail className="size-4" />{" "}
+              <a href="mailto:kampungitsolo@gmail.com" className="hover:text-forest">
+                kampungitsolo@gmail.com
+              </a>
+            </li>
+            <li className="flex items-center gap-3">
+              <MessageCircle className="size-4" />{" "}
+              <a href="https://wa.me/6281235666665" className="hover:text-forest">
+                +62 812-3566-6665
+              </a>
+            </li>
+            <li className="flex items-center gap-3">
+              <Globe className="size-4" />{" "}
+              <a href="https://kampungitsolo.com" className="hover:text-forest">
+                www.kampungitsolo.com
+              </a>
+            </li>
           </ul>
         </div>
       </div>
       <div className="relative mx-auto mt-10 max-w-7xl px-6 lg:px-12">
         <div className="flex flex-col gap-3 border-t border-border py-6 text-[0.7rem] text-ink sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2025 Kampung IT Solo. Bersama Membangun Peradaban Digital.</p>
+          <p>© 2026 Kampung IT Solo. Bersama Membangun Peradaban Digital.</p>
           <div className="flex items-center gap-3">
-            <a href="#" className="hover:text-forest">Kebijakan Privasi</a>
+            <a href="#" className="hover:text-forest">
+              Kebijakan Privasi
+            </a>
             <span className="h-3 w-px bg-border" />
-            <a href="#" className="hover:text-forest">Syarat & Ketentuan</a>
+            <a href="#" className="hover:text-forest">
+              Syarat & Ketentuan
+            </a>
           </div>
         </div>
       </div>
@@ -83,13 +129,17 @@ export function Footer() {
   );
 }
 
-function FooterCol({ title, items }: { title: string; items: string[] }) {
+function FooterCol({ title, items }: { title: string; items: { label: string; href: string }[] }) {
   return (
     <div>
       <h3 className="text-sm font-bold text-navy">{title}</h3>
       <ul className="mt-4 space-y-2.5 text-[0.78rem] text-ink">
-        {items.map((i) => (
-          <li key={i}><a href="#" className="hover:text-forest">{i}</a></li>
+        {items.map((item) => (
+          <li key={item.label}>
+            <Link to="/" hash={item.href.slice(1)} className="hover:text-forest">
+              {item.label}
+            </Link>
+          </li>
         ))}
       </ul>
     </div>

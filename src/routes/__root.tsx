@@ -82,10 +82,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Kampung IT Solo" },
-      { name: "description", content: "Pusat edukasi, inovasi, dan pemberdayaan masyarakat berbasis teknologi di Kota Solo." },
+      {
+        name: "description",
+        content:
+          "Pusat Eduwisata IT & Laboratorium Peradaban Digital di RT 06/RW 21 Surakarta, bagian dari Bin Alfan Group.",
+      },
       { name: "author", content: "Kampung IT Solo" },
       { property: "og:title", content: "Kampung IT Solo" },
-      { property: "og:description", content: "Pusat edukasi, inovasi, dan pemberdayaan masyarakat berbasis teknologi di Kota Solo." },
+      {
+        property: "og:description",
+        content:
+          "Pusat Eduwisata IT & Laboratorium Peradaban Digital di RT 06/RW 21 Surakarta, bagian dari Bin Alfan Group.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
@@ -95,7 +103,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "icon", href: "/kampung-it-solo.png", type: "image/png" },
+      { rel: "apple-touch-icon", href: "/kampung-it-solo.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
