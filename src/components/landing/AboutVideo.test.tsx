@@ -75,11 +75,15 @@ function prefersReducedMotion() {
   }));
 }
 
-async function mountAndReady() {
-  act(() => triggerIntersection(true));
-  await waitFor(() => expect(FakePlayer.instances).toHaveLength(1));
-
+async function mountPlayer() {
+  await act(async () => triggerIntersection(true));
   const player = FakePlayer.instances[0];
+  if (!player) throw new Error("YouTube player was not created");
+  return player;
+}
+
+async function mountAndReady() {
+  const player = await mountPlayer();
   act(() => player.ready());
   return player;
 }
@@ -95,11 +99,12 @@ describe("About video", () => {
   });
 
   afterEach(() => {
+    vi.useRealTimers();
     vi.unstubAllGlobals();
     vi.restoreAllMocks();
   });
 
-  it("autoplays the profile video muted when the frame scrolls into view", async () => {
+  it("autoplays the profile video with sound when the frame scrolls into view", async () => {
     render(<AboutVideo />);
 
     expect(screen.getByRole("group", { name: /video profil/i })).toBeInTheDocument();
@@ -108,22 +113,55 @@ describe("About video", () => {
     const player = await mountAndReady();
 
     expect(player.options.videoId).toBe("PX4DT_A9UVU");
-    expect(player.mute).toHaveBeenCalled();
+    expect(player.unMute).toHaveBeenCalled();
     expect(player.playVideo).toHaveBeenCalled();
+    expect(player.mute).not.toHaveBeenCalled();
   });
 
-  it("pauses outside the viewport and lets people pause or enable sound", async () => {
+  it("falls back to muted autoplay when the browser blocks playback with sound", async () => {
+    vi.useFakeTimers();
+    render(<AboutVideo />);
+
+    const player = await mountPlayer();
+
+    // CUED: browser menolak autoplay bersuara sehingga video belum berjalan.
+    player.getPlayerState = vi.fn(() => 5);
+    act(() => player.ready());
+    act(() => vi.advanceTimersByTime(700));
+
+    expect(player.mute).toHaveBeenCalled();
+    expect(player.playVideo).toHaveBeenCalledTimes(2);
+  });
+
+  it("pauses outside the viewport and lets people pause or toggle sound", async () => {
     render(<AboutVideo />);
     const player = await mountAndReady();
 
     act(() => triggerIntersection(false));
     expect(player.pauseVideo).toHaveBeenCalled();
 
+    fireEvent.click(screen.getByRole("button", { name: /bisukan video/i }));
+    expect(player.mute).toHaveBeenCalled();
+
     fireEvent.click(screen.getByRole("button", { name: /aktifkan suara/i }));
     expect(player.unMute).toHaveBeenCalled();
 
     fireEvent.click(screen.getByRole("button", { name: /putar video profil/i }));
     expect(player.playVideo).toHaveBeenCalled();
+  });
+
+  it("offers a fullscreen button that falls back to YouTube when unsupported", async () => {
+    const open = vi.spyOn(window, "open").mockReturnValue(null);
+    render(<AboutVideo />);
+    await mountAndReady();
+
+    fireEvent.click(screen.getByRole("button", { name: /lihat video layar penuh/i }));
+
+    expect(open).toHaveBeenCalledWith(
+      "https://www.youtube.com/watch?v=PX4DT_A9UVU",
+      "_blank",
+      "noopener,noreferrer",
+    );
   });
 
   it("waits for a click when reduced motion is preferred", async () => {
@@ -134,6 +172,7 @@ describe("About video", () => {
 
     expect(player.playVideo).not.toHaveBeenCalled();
     expect(player.mute).not.toHaveBeenCalled();
+    expect(player.unMute).not.toHaveBeenCalled();
 
     fireEvent.click(screen.getByRole("button", { name: /putar video profil/i }));
     expect(player.playVideo).toHaveBeenCalled();

@@ -41,7 +41,7 @@ export function Program() {
         </div>
 
         <div className="grid gap-8 px-6 lg:grid-cols-[1.55fr_0.75fr] lg:pr-12">
-          <div data-reveal="up">
+          <div data-reveal="right">
             <SectionLabel lead="Program" rest="& Kegiatan" />
             <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-navy lg:text-[2rem]">
               Belajar, Berkarya,
@@ -71,7 +71,7 @@ export function Program() {
           </div>
 
           <blockquote
-            data-reveal="up"
+            data-reveal="pop"
             style={{ "--reveal-delay": "200ms" } as React.CSSProperties}
             className="relative self-center overflow-hidden rounded-2xl border border-border bg-card p-6 pb-14 shadow-card"
           >

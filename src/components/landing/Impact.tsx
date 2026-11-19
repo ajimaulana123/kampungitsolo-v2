@@ -74,7 +74,7 @@ export function Impact() {
   return (
     <section id="dampak" className="py-16">
       <div className="mx-auto grid max-w-7xl items-center gap-8 px-6 lg:grid-cols-[0.85fr_1.2fr] lg:px-12">
-        <div data-reveal="up">
+        <div data-reveal="left">
           <SectionLabel lead="Jejak" rest="di Lapangan" />
           <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-navy lg:text-[2rem]">
             Pekerjaan kami,

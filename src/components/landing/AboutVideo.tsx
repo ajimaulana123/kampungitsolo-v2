@@ -1,4 +1,4 @@
-import { Pause, Play, Volume2, VolumeX } from "lucide-react";
+import { Maximize, Minimize, Pause, Play, Volume2, VolumeX } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
@@ -89,6 +89,7 @@ export function AboutVideo() {
   const [ready, setReady] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
+  const [fullscreen, setFullscreen] = useState(false);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
@@ -137,6 +138,7 @@ export function AboutVideo() {
 
     let cancelled = false;
     let player: Player | null = null;
+    let autoplayFallback: number | undefined;
     const mountTarget = document.createElement("div");
     mountTarget.className = "size-full";
     host.replaceChildren(mountTarget);
@@ -167,9 +169,20 @@ export function AboutVideo() {
               setReady(true);
 
               if (!reduceMotionRef.current && inViewRef.current) {
-                event.target.mute();
-                setMuted(true);
+                // Coba autoplay dengan suara. Browser yang memblokir autoplay
+                // bersuara akan di-fallback ke autoplay senyap agar video tetap jalan.
+                event.target.unMute();
+                setMuted(false);
                 event.target.playVideo();
+
+                autoplayFallback = window.setTimeout(() => {
+                  if (cancelled) return;
+                  if (event.target.getPlayerState() !== YT.PlayerState.PLAYING) {
+                    event.target.mute();
+                    event.target.playVideo();
+                    setMuted(true);
+                  }
+                }, 700);
               }
             },
             onStateChange: (event) => {
@@ -193,6 +206,7 @@ export function AboutVideo() {
 
     return () => {
       cancelled = true;
+      if (autoplayFallback !== undefined) window.clearTimeout(autoplayFallback);
       playerRef.current = null;
       player?.destroy();
       host.replaceChildren();
@@ -213,6 +227,56 @@ export function AboutVideo() {
     playerRef.current?.pauseVideo();
   };
 
+  useEffect(() => {
+    const frame = frameRef.current;
+    if (!frame) return;
+
+    const onChange = () => {
+      const doc = document as Document & { webkitFullscreenElement?: Element };
+      setFullscreen(document.fullscreenElement === frame || doc.webkitFullscreenElement === frame);
+    };
+
+    document.addEventListener("fullscreenchange", onChange);
+    document.addEventListener("webkitfullscreenchange", onChange);
+    return () => {
+      document.removeEventListener("fullscreenchange", onChange);
+      document.removeEventListener("webkitfullscreenchange", onChange);
+    };
+  }, []);
+
+  const toggleFullscreen = async () => {
+    const frame = frameRef.current;
+    if (!frame) return;
+
+    const doc = document as Document & {
+      webkitFullscreenElement?: Element;
+      webkitExitFullscreen?: () => Promise<void> | void;
+    };
+    const active = document.fullscreenElement === frame || doc.webkitFullscreenElement === frame;
+
+    if (active) {
+      if (document.exitFullscreen) await document.exitFullscreen().catch(() => {});
+      else await Promise.resolve(doc.webkitExitFullscreen?.()).catch(() => {});
+      return;
+    }
+
+    const target = frame as HTMLElement & { webkitRequestFullscreen?: () => Promise<void> | void };
+    const request =
+      frame.requestFullscreen?.bind(frame) ?? target.webkitRequestFullscreen?.bind(frame);
+
+    if (!request) {
+      window.open(WATCH_URL, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    try {
+      await request();
+    } catch {
+      // iOS Safari tidak mengizinkan fullscreen untuk elemen non-video.
+      window.open(WATCH_URL, "_blank", "noopener,noreferrer");
+    }
+  };
+
   const toggleMute = () => {
     const player = playerRef.current;
     if (!player) return;
@@ -231,7 +295,7 @@ export function AboutVideo() {
       ref={frameRef}
       role="group"
       aria-label="Video profil Kampung IT Solo"
-      className="relative aspect-video w-full overflow-hidden bg-navy"
+      className="relative aspect-video w-full overflow-hidden bg-navy [&:fullscreen]:aspect-auto"
     >
       <img
         src={POSTER_URL}
@@ -322,6 +386,19 @@ export function AboutVideo() {
               <VolumeX className="size-3.5" aria-hidden="true" />
             ) : (
               <Volume2 className="size-3.5" aria-hidden="true" />
+            )}
+          </button>
+
+          <button
+            type="button"
+            onClick={toggleFullscreen}
+            aria-label={fullscreen ? "Keluar dari layar penuh" : "Lihat video layar penuh"}
+            className="ml-auto grid size-8 place-items-center rounded-full border border-white/20 bg-[#06141D]/70 text-white transition-colors duration-200 hover:bg-[#06141D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-navy motion-reduce:transition-none"
+          >
+            {fullscreen ? (
+              <Minimize className="size-3.5" aria-hidden="true" />
+            ) : (
+              <Maximize className="size-3.5" aria-hidden="true" />
             )}
           </button>
         </div>

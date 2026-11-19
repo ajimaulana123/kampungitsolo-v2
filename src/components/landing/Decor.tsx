@@ -21,7 +21,10 @@ export function LeafSwoosh({ className, flip }: { className?: string; flip?: boo
           <stop offset="1" stopColor="var(--lime)" stopOpacity="0.9" />
         </linearGradient>
       </defs>
-      <path d="M0 120 C 70 112, 150 70, 200 0 L 200 30 C 160 85, 100 116, 40 120 Z" fill={`url(#${id}-b)`} />
+      <path
+        d="M0 120 C 70 112, 150 70, 200 0 L 200 30 C 160 85, 100 116, 40 120 Z"
+        fill={`url(#${id}-b)`}
+      />
       <path d="M50 120 C 120 110, 175 75, 200 40 L 200 120 Z" fill={`url(#${id}-a)`} />
     </svg>
   );
@@ -38,8 +41,10 @@ export function Skyline({ className }: { className?: string }) {
     [120, 830, 850],
   ];
   const windows: [number, number][] = [];
-  for (let r = 0; r < 7; r++) for (let c = 0; c < 3; c++) windows.push([662 + c * 13, 212 + r * 19]);
-  for (let r = 0; r < 5; r++) for (let c = 0; c < 2; c++) windows.push([617 + c * 14, 255 + r * 19]);
+  for (let r = 0; r < 7; r++)
+    for (let c = 0; c < 3; c++) windows.push([662 + c * 13, 212 + r * 19]);
+  for (let r = 0; r < 5; r++)
+    for (let c = 0; c < 2; c++) windows.push([617 + c * 14, 255 + r * 19]);
   return (
     <svg
       viewBox="0 0 900 360"

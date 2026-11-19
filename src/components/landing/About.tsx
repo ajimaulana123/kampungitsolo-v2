@@ -83,7 +83,12 @@ export function About() {
                 <Icon className="size-5 text-forest" strokeWidth={2} />
               </span>
               <div>
-                <p className="text-xl font-extrabold text-navy">{value}</p>
+                <p
+                  className="text-xl font-extrabold text-navy"
+                  data-count={/^\d+$/.test(value) ? value : undefined}
+                >
+                  {value}
+                </p>
                 <p className="text-[0.7rem] text-ink">{label}</p>
               </div>
             </li>

@@ -23,10 +23,13 @@ export function Navbar({ variant = "landing" }: NavbarProps) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("beranda");
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 40);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(max > 0 ? Math.min(1, window.scrollY / max) : 0);
       if (isDetail) return;
 
       // Sorot menu terakhir yang judul section-nya sudah melewati bawah navbar.
@@ -51,6 +54,13 @@ export function Navbar({ variant = "landing" }: NavbarProps) {
   return (
     <>
       <div className="h-20" aria-hidden="true" />
+      {!isDetail && (
+        <div
+          aria-hidden="true"
+          className="fixed inset-x-0 top-0 z-[60] h-[3px] origin-left bg-gradient-brand transition-transform duration-150 ease-out"
+          style={{ transform: `scaleX(${progress})` }}
+        />
+      )}
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled ? "px-3 pt-3 sm:px-6" : ""}`}
       >

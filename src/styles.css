@@ -140,9 +140,11 @@
 
 @utility text-gradient-headline {
   background-image: var(--gradient-headline);
+  background-size: 220% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  animation: gradient-slide 6s ease-in-out infinite alternate;
 }
 
 @utility bg-gradient-brand {
@@ -222,6 +224,41 @@
   color: var(--forest);
 }
 
+/* Slow horizontal drift for gradient headline text */
+@keyframes gradient-slide {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+
+/* Soft pulse for live-status dots */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.72); }
+}
+@utility animate-pulse-dot {
+  animation: pulse-dot 1.6s ease-in-out infinite;
+}
+
+/* Gentle sway for decorative leaf blades */
+@keyframes sway {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-4px) rotate(1.4deg); }
+}
+@utility animate-sway {
+  transform-origin: center;
+  animation: sway 7s ease-in-out infinite;
+}
+
+/* Infinite marquee strip */
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+@utility animate-marquee {
+  animation: marquee 28s linear infinite;
+  &:hover { animation-play-state: paused; }
+}
+
 @keyframes rise {
   from { opacity: 0; transform: translateY(18px); }
   to { opacity: 1; transform: translateY(0); }
@@ -241,6 +278,18 @@
 @keyframes reveal-clip {
   from { opacity: 0.2; clip-path: inset(10% 8% 10% 8% round 1.25rem); }
   to { opacity: 1; clip-path: inset(0 0 0 0 round 0); }
+}
+@keyframes reveal-left {
+  from { opacity: 0; transform: translate3d(-28px, 0, 0); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes reveal-right {
+  from { opacity: 0; transform: translate3d(28px, 0, 0); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes reveal-pop {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: none; }
 }
 @keyframes reveal-zoom {
   from { transform: scale(1.12); }
@@ -262,6 +311,15 @@
 .reveal-ready [data-reveal="clip"].is-revealed img {
   animation: reveal-zoom 1.4s var(--ease-out-soft) var(--reveal-delay, 0ms) backwards;
 }
+.reveal-ready [data-reveal="left"].is-revealed {
+  animation: reveal-left 0.8s var(--ease-out-soft) var(--reveal-delay, 0ms) backwards;
+}
+.reveal-ready [data-reveal="right"].is-revealed {
+  animation: reveal-right 0.8s var(--ease-out-soft) var(--reveal-delay, 0ms) backwards;
+}
+.reveal-ready [data-reveal="pop"].is-revealed {
+  animation: reveal-pop 0.7s var(--ease-out-soft) var(--reveal-delay, 0ms) backwards;
+}
 /* On-load image reveal for above-the-fold photos */
 @utility animate-clip-in {
   animation: reveal-clip 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s backwards;
@@ -272,7 +330,11 @@
 @media (prefers-reduced-motion: reduce) {
   .animate-rise,
   .animate-clip-in,
-  .animate-clip-in img {
+  .animate-clip-in img,
+  .animate-pulse-dot,
+  .animate-sway,
+  .animate-marquee,
+  .text-gradient-headline {
     animation: none !important;
   }
   .reveal-ready [data-reveal],

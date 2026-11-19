@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -38,6 +38,7 @@ export function Ecosystem() {
 function EcoCarousel() {
   const track = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
 
   const go = (i: number) => {
     const n = (i + products.length) % products.length;
@@ -51,8 +52,22 @@ function EcoCarousel() {
       });
   };
 
+  // Slow auto-advance; pauses on hover, focus, and for reduced motion.
+  useEffect(() => {
+    if (paused) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = setInterval(() => go(active + 1), 4500);
+    return () => clearInterval(id);
+  }, [active, paused]);
+
   return (
-    <div className="min-w-0">
+    <div
+      className="min-w-0"
+      onPointerEnter={() => setPaused(true)}
+      onPointerLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
+    >
       <div
         ref={track}
         data-reveal="stagger"
