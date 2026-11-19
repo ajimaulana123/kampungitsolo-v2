@@ -9,6 +9,7 @@ import { Faq } from "@/components/landing/Faq";
 import { Reservation } from "@/components/landing/Reservation";
 import { Cta } from "@/components/landing/Cta";
 import { Footer } from "@/components/landing/Footer";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -38,6 +39,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  useScrollReveal();
   return (
     <main className="bg-background">
       <Hero />

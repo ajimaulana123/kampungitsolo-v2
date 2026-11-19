@@ -62,7 +62,9 @@ export function Footer({ variant = "landing" }: { variant?: "landing" | "detail"
         <path d="M30 58 L60 32 L90 58" opacity="0.6" />
       </svg>
       <LeafSwoosh flip className="absolute -bottom-1 left-0 h-12 w-40 opacity-70" />
-      <div className="relative mx-auto grid max-w-7xl gap-10 px-6 sm:grid-cols-2 lg:grid-cols-[1.6fr_0.8fr_1fr_1.2fr] lg:px-12">
+      <div
+        data-reveal="stagger"
+        className="relative mx-auto grid max-w-7xl gap-10 px-6 sm:grid-cols-2 lg:grid-cols-[1.6fr_0.8fr_1fr_1.2fr] lg:px-12">
         <div>
           <Logo href={variant === "detail" ? "/" : "#beranda"} />
           <p className="mt-4 max-w-xs text-[0.8rem] leading-relaxed text-ink">

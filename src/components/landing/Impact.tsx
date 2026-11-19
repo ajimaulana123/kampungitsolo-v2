@@ -1,3 +1,4 @@
+import type React from "react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionLabel } from "./SectionLabel";
@@ -38,16 +39,34 @@ const cases = [
   },
 ];
 
-function Photo({ src, alt, w, h }: { src: string; alt: string; w: number; h: number }) {
+function Photo({
+  src,
+  alt,
+  w,
+  h,
+  delay = 0,
+}: {
+  src: string;
+  alt: string;
+  w: number;
+  h: number;
+  delay?: number;
+}) {
   return (
-    <img
-      src={src}
-      alt={alt}
-      loading="lazy"
-      width={w}
-      height={h}
-      className="h-full w-full rounded-lg object-cover"
-    />
+    <div
+      data-reveal="clip"
+      style={{ "--reveal-delay": `${delay}ms` } as React.CSSProperties}
+      className="h-full w-full overflow-hidden rounded-lg"
+    >
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        width={w}
+        height={h}
+        className="h-full w-full object-cover"
+      />
+    </div>
   );
 }
 
@@ -55,7 +74,7 @@ export function Impact() {
   return (
     <section id="dampak" className="py-16">
       <div className="mx-auto grid max-w-7xl items-center gap-8 px-6 lg:grid-cols-[0.85fr_1.2fr] lg:px-12">
-        <div>
+        <div data-reveal="up">
           <SectionLabel lead="Jejak" rest="di Lapangan" />
           <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-navy lg:text-[2rem]">
             Pekerjaan kami,
@@ -75,22 +94,22 @@ export function Impact() {
           <div className="pointer-events-none absolute -bottom-2 -left-10 hidden h-24 w-12 bg-dots lg:block" />
           <div className="grid h-[300px] grid-cols-[1fr_1fr_0.9fr] grid-rows-2 gap-2">
             <Photo src={seminar} alt="Seminar teknologi" w={992} h={672} />
-            <Photo src={umkm} alt="Pendampingan UMKM" w={992} h={672} />
+            <Photo src={umkm} alt="Pendampingan UMKM" w={992} h={672} delay={120} />
             <div className="row-span-2">
-              <Photo src={city} alt="Balai Kota Surakarta" w={752} h={896} />
+              <Photo src={city} alt="Balai Kota Surakarta" w={752} h={896} delay={240} />
             </div>
-            <Photo src={team} alt="Gerakan literasi digital" w={992} h={672} />
-            <Photo src={classroom} alt="Kelas pemrograman" w={1280} h={768} />
+            <Photo src={team} alt="Gerakan literasi digital" w={992} h={672} delay={120} />
+            <Photo src={classroom} alt="Kelas pemrograman" w={1280} h={768} delay={240} />
           </div>
         </div>
       </div>
 
       <div className="mx-auto mt-10 max-w-7xl px-6 lg:px-12">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div data-reveal="stagger" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {cases.map(({ no, client, project, year, desc }) => (
             <article
               key={no}
-              className="flex flex-col rounded-2xl border border-border bg-card p-5 shadow-soft"
+              className="flex flex-col rounded-2xl border border-border bg-card p-5 shadow-soft transition-[translate,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-forest/40 hover:shadow-lift"
             >
               <div className="flex items-center justify-between">
                 <span className="eyebrow">{no}</span>

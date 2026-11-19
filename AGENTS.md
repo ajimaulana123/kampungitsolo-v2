@@ -32,3 +32,4 @@ use the editor.
 ## Project rules
 - Landing page sections live in `src/components/landing/` and are composed in `src/routes/index.tsx` — keeps each section easy to edit independently.
 - Brand colors (navy, lime, forest, surface) and decorative utilities are tokens in `src/styles.css`; buttons use the pill variants in `src/components/ui/button.tsx` — keeps styling consistent without ad hoc colors.
+- Scroll animations use `data-reveal="up|stagger|clip"` attributes, driven by `src/hooks/use-scroll-reveal.ts` (one IntersectionObserver) and CSS keyframes in `src/styles.css` — no animation library; content stays visible without JS or with reduced motion.

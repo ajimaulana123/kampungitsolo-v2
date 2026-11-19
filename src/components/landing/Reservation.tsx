@@ -46,7 +46,9 @@ export function Reservation() {
   return (
     <section id="reservasi" className="relative overflow-hidden py-16">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        <div className="grid overflow-hidden rounded-3xl border border-border bg-card shadow-card lg:grid-cols-[0.85fr_1.15fr]">
+        <div
+          data-reveal="up"
+          className="grid overflow-hidden rounded-3xl border border-border bg-card shadow-card lg:grid-cols-[0.85fr_1.15fr]">
           <div className="relative overflow-hidden bg-navy p-8 text-navy-foreground lg:p-10">
             {/* Foto gedung: memberi gambaran tempat yang akan dikunjungi */}
             <img

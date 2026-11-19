@@ -11,7 +11,7 @@ export function Ecosystem() {
       <div className="pointer-events-none absolute inset-0 bg-streaks" />
       <div className="pointer-events-none absolute right-6 top-14 hidden h-20 w-16 bg-dots opacity-70 lg:block" />
       <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 lg:grid-cols-[0.9fr_1.6fr] lg:px-12">
-        <div>
+        <div data-reveal="up">
           <SectionLabel lead="Ekosistem" rest="& Inovasi" />
           <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-navy lg:text-[2rem]">
             Ekosistem Teknologi
@@ -55,6 +55,7 @@ function EcoCarousel() {
     <div className="min-w-0">
       <div
         ref={track}
+        data-reveal="stagger"
         className="relative flex snap-x snap-mandatory gap-4 overflow-x-auto px-1 pb-4 pt-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {products.map(({ slug, image, name, cardDesc, featured }, i) => {
@@ -64,7 +65,7 @@ function EcoCarousel() {
               key={slug}
               to="/products/$slug"
               params={{ slug }}
-              className={`group relative flex h-56 w-44 shrink-0 snap-center flex-col justify-end overflow-hidden rounded-2xl p-4 text-left text-forest-foreground shadow-card transition-all duration-300 hover:-translate-y-1 ${
+              className={`group relative flex h-56 w-44 shrink-0 snap-center flex-col justify-end overflow-hidden rounded-2xl p-4 text-left text-forest-foreground shadow-card transition-[translate,box-shadow] duration-300 ease-out hover:-translate-y-1.5 hover:shadow-lift ${
                 on ? "ring-4 ring-lime/70" : "ring-1 ring-border"
               }`}
             >
@@ -74,7 +75,7 @@ function EcoCarousel() {
                 width={992}
                 height={672}
                 loading="lazy"
-                className="absolute inset-0 size-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className="absolute inset-0 size-full object-cover transition-[scale] duration-700 ease-out group-hover:scale-110"
               />
               <span
                 className={`absolute inset-0 transition-opacity duration-300 ${on ? "bg-gradient-to-t from-forest via-forest/70 to-forest/10" : "bg-gradient-to-t from-navy via-navy/60 to-navy/5"}`}
@@ -88,7 +89,7 @@ function EcoCarousel() {
                 <h3 className="text-sm font-bold leading-tight">{name}</h3>
                 <p className="mt-1.5 text-[0.7rem] leading-snug opacity-85">{cardDesc}</p>
                 <span
-                  className={`mt-3 grid size-6 place-items-center rounded-full ${on ? "bg-lime text-lime-foreground" : "border border-forest-foreground/60"}`}
+                  className={`mt-3 grid size-6 place-items-center rounded-full transition-[background-color,color,translate] duration-300 group-hover:translate-x-1 ${on ? "bg-lime text-lime-foreground" : "border border-forest-foreground/60 group-hover:border-lime group-hover:bg-lime group-hover:text-lime-foreground"}`}
                 >
                   <ArrowRight className="size-3" />
                 </span>

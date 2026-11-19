@@ -87,14 +87,17 @@ export function Navbar({ variant = "landing" }: NavbarProps) {
                       key={l.label}
                       href={l.href}
                       aria-current={isActive ? "true" : undefined}
-                      className={`relative flex items-center gap-1 py-2 text-[0.8rem] transition-colors hover:text-forest ${
+                      className={`group relative flex items-center gap-1 py-2 text-[0.8rem] transition-colors duration-300 hover:text-forest ${
                         isActive ? "font-bold text-navy" : "font-medium text-ink"
                       }`}
                     >
                       {l.label}
-                      {isActive && (
-                        <span className="absolute -bottom-1.5 left-0 h-[3px] w-full rounded-full bg-forest" />
-                      )}
+                      <span
+                        aria-hidden="true"
+                        className={`absolute -bottom-1.5 left-0 h-[3px] w-full origin-left rounded-full bg-forest transition-[scale] duration-300 ease-out ${
+                          isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                        }`}
+                      />
                     </a>
                   );
                 })}

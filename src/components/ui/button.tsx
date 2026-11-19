@@ -17,11 +17,11 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         forest:
-          "rounded-full bg-forest text-forest-foreground font-bold shadow-soft hover:brightness-110",
-        navy: "rounded-full bg-navy text-navy-foreground font-bold shadow-soft hover:brightness-125",
-        lime: "rounded-full bg-lime text-lime-foreground font-bold shadow-soft hover:brightness-105",
+          "transition-[background-color,color,box-shadow,filter,translate,scale] duration-300 ease-out hover:-translate-y-0.5 hover:shadow-card active:translate-y-0 active:scale-[0.98] [&_svg]:transition-transform [&_svg]:duration-300 [&:hover_svg:last-child]:translate-x-0.5 rounded-full bg-forest text-forest-foreground font-bold shadow-soft hover:brightness-110",
+        navy: "transition-[background-color,color,box-shadow,filter,translate,scale] duration-300 ease-out hover:-translate-y-0.5 hover:shadow-card active:translate-y-0 active:scale-[0.98] [&_svg]:transition-transform [&_svg]:duration-300 [&:hover_svg:last-child]:translate-x-0.5 rounded-full bg-navy text-navy-foreground font-bold shadow-soft hover:brightness-125",
+        lime: "transition-[background-color,color,box-shadow,filter,translate,scale] duration-300 ease-out hover:-translate-y-0.5 hover:shadow-card active:translate-y-0 active:scale-[0.98] [&_svg]:transition-transform [&_svg]:duration-300 [&:hover_svg:last-child]:translate-x-0.5 rounded-full bg-lime text-lime-foreground font-bold shadow-soft hover:brightness-105",
         outlinePill:
-          "rounded-full border border-border bg-background text-navy font-bold hover:bg-surface",
+          "transition-[background-color,color,box-shadow,filter,translate,scale] duration-300 ease-out hover:-translate-y-0.5 hover:shadow-card active:translate-y-0 active:scale-[0.98] [&_svg]:transition-transform [&_svg]:duration-300 [&:hover_svg:last-child]:translate-x-0.5 rounded-full border border-border bg-background text-navy font-bold hover:bg-surface",
       },
       size: {
         default: "h-9 px-4 py-2",

@@ -14,7 +14,10 @@ export function Cta() {
         className="absolute inset-y-0 right-0 h-full w-full object-cover opacity-70 md:w-2/3"
       />
       <div className="absolute inset-0 bg-gradient-cta" />
-      <div className="relative mx-auto flex max-w-7xl flex-col gap-6 px-6 py-10 md:flex-row md:items-center lg:px-12">
+      <div
+        data-reveal="up"
+        className="relative mx-auto flex max-w-7xl flex-col gap-6 px-6 py-10 md:flex-row md:items-center lg:px-12"
+      >
         <div className="flex items-center gap-8">
           <svg
             viewBox="0 0 40 40"

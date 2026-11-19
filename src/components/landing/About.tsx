@@ -1,3 +1,4 @@
+import type React from "react";
 import { ArrowRight, Boxes, Layers, Lightbulb, MapPin, Play, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionLabel } from "./SectionLabel";
@@ -48,14 +49,16 @@ export function About() {
           <div className="pointer-events-none absolute left-[calc(8.7%-22px)] top-0 hidden h-[55%] w-3.5 -skew-x-12 rounded-full bg-gradient-brand md:block" />
           <div className="pointer-events-none absolute -left-[32%] top-[42%] hidden h-[62%] w-[29%] -skew-x-12 rounded-2xl bg-gradient-blade-forest md:block" />
           <div className="relative overflow-hidden [clip-path:url(#about-photo-clip)]">
-            <img
-              src={classroom}
-              alt="Kelas pemrograman di Kampung IT Solo"
-              loading="lazy"
-              width={1280}
-              height={768}
-              className="aspect-[16/9] w-full object-cover"
-            />
+            <div data-reveal="clip">
+              <img
+                src={classroom}
+                alt="Kelas pemrograman di Kampung IT Solo"
+                loading="lazy"
+                width={1280}
+                height={768}
+                className="aspect-[16/9] w-full object-cover"
+              />
+            </div>
             <button
               aria-label="Putar video"
               className="absolute left-1/2 top-1/2 grid size-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-background/95 text-forest shadow-card transition-transform hover:scale-105"
@@ -65,7 +68,7 @@ export function About() {
           </div>
         </div>
 
-        <div>
+        <div data-reveal="up">
           <SectionLabel lead="Tentang" rest="Kampung IT Solo" />
           <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-navy lg:text-[2rem]">
             Dari Kampung,
@@ -83,7 +86,7 @@ export function About() {
           </Button>
         </div>
 
-        <ul className="flex gap-6 border-border lg:flex-col lg:border-l lg:pl-8">
+        <ul data-reveal="stagger" className="flex gap-6 border-border lg:flex-col lg:border-l lg:pl-8">
           {facts.map(({ icon: Icon, value, label }) => (
             <li key={label} className="flex items-start gap-3">
               <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-lime/15">
@@ -100,7 +103,7 @@ export function About() {
 
       {/* Visi, misi, dan goal */}
       <div className="relative mx-auto mt-12 grid max-w-7xl gap-5 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-12">
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-1">
+        <div data-reveal="stagger" className="grid gap-5 sm:grid-cols-2 lg:grid-cols-1">
           <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
             <span className="eyebrow flex items-center gap-2">
               <Target className="size-4" /> Visi
@@ -121,7 +124,11 @@ export function About() {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-border bg-card p-6 shadow-soft lg:p-8">
+        <div
+          data-reveal="up"
+          style={{ "--reveal-delay": "120ms" } as React.CSSProperties}
+          className="rounded-2xl border border-border bg-card p-6 shadow-soft lg:p-8"
+        >
           <span className="eyebrow">Misi</span>
           <ol className="mt-4 grid gap-5 sm:grid-cols-2">
             {missions.map(({ title, desc }, i) => (

@@ -63,7 +63,10 @@ export function Network() {
       {/* Motif daun di sudut, sama seperti Hero/Program/Footer */}
       <LeafSwoosh flip className="absolute -bottom-2 left-0 h-16 w-40 opacity-80" />
       <div className="relative mx-auto max-w-7xl px-6 lg:px-12">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div
+          data-reveal="up"
+          className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between"
+        >
           <div>
             <SectionLabel lead="Jejaring" rest="& Referensi" />
             <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-navy lg:text-[2rem]">
@@ -75,14 +78,14 @@ export function Network() {
           </p>
         </div>
 
-        <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <ul data-reveal="stagger" className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {links.map(({ name, desc, href }, i) => (
             <li key={name}>
               <a
                 href={href}
                 target="_blank"
                 rel="noreferrer"
-                className="group flex h-full items-start gap-3 rounded-2xl border border-border bg-card p-4 shadow-soft transition-colors hover:border-forest"
+                className="group flex h-full items-start gap-3 rounded-2xl border border-border bg-card p-4 shadow-soft transition-[translate,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-forest hover:shadow-lift"
               >
                 <span className="mt-0.5 text-[0.68rem] font-extrabold text-forest">
                   {String(i + 1).padStart(2, "0")}

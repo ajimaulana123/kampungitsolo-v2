@@ -1,3 +1,4 @@
+import type React from "react";
 import { SectionLabel } from "./SectionLabel";
 import {
   Accordion,
@@ -53,7 +54,7 @@ export function Faq() {
   return (
     <section id="faq" className="relative overflow-hidden py-16">
       <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.75fr_1.25fr] lg:px-12">
-        <div>
+        <div data-reveal="up">
           <SectionLabel lead="FAQ" rest="Pertanyaan Umum" />
           <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-navy lg:text-[2rem]">
             Tanya jawab
@@ -80,6 +81,8 @@ export function Faq() {
         <Accordion
           type="single"
           collapsible
+          data-reveal="up"
+          style={{ "--reveal-delay": "120ms" } as React.CSSProperties}
           className="rounded-2xl border border-border bg-card px-6 shadow-soft"
         >
           {faqs.map(({ q, a }, i) => (

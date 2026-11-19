@@ -1,3 +1,4 @@
+import type React from "react";
 import { ArrowRight, CircleCheck, Play, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionLabel } from "./SectionLabel";
@@ -20,14 +21,16 @@ export function Program() {
         <div className="relative">
           <div className="absolute -right-2 top-6 hidden h-[85%] w-10 -skew-x-[14deg] rounded-xl bg-lime/40 lg:block" />
           <div className="relative overflow-hidden rounded-r-2xl clip-slant-right">
-            <img
-              src={workshop}
-              alt="Peserta program belajar bersama"
-              loading="lazy"
-              width={1280}
-              height={768}
-              className="aspect-[16/9] w-full object-cover"
-            />
+            <div data-reveal="clip">
+              <img
+                src={workshop}
+                alt="Peserta program belajar bersama"
+                loading="lazy"
+                width={1280}
+                height={768}
+                className="aspect-[16/9] w-full object-cover"
+              />
+            </div>
           </div>
           <button
             aria-label="Putar video"
@@ -38,7 +41,7 @@ export function Program() {
         </div>
 
         <div className="grid gap-8 px-6 lg:grid-cols-[1.55fr_0.75fr] lg:pr-12">
-          <div>
+          <div data-reveal="up">
             <SectionLabel lead="Program" rest="& Kegiatan" />
             <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-navy lg:text-[2rem]">
               Belajar, Berkarya,
@@ -49,7 +52,7 @@ export function Program() {
               Program eduwisata IT untuk desa, UMKM, pelajar, dan komunitas — dari pelatihan
               keterampilan digital hingga implementasi sistem.
             </p>
-            <ul className="mt-5 grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
+            <ul data-reveal="stagger" className="mt-5 grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
               {programs.map((p) => (
                 <li key={p} className="flex items-center gap-2 text-[0.78rem] text-ink">
                   <CircleCheck className="size-4 shrink-0 fill-lime text-background" />
@@ -67,7 +70,11 @@ export function Program() {
             </Button>
           </div>
 
-          <blockquote className="relative self-center overflow-hidden rounded-2xl border border-border bg-card p-6 pb-14 shadow-card">
+          <blockquote
+            data-reveal="up"
+            style={{ "--reveal-delay": "200ms" } as React.CSSProperties}
+            className="relative self-center overflow-hidden rounded-2xl border border-border bg-card p-6 pb-14 shadow-card"
+          >
             <LeafSwoosh className="absolute -bottom-px -right-px h-20 w-36" />
             <Quote className="size-7 rotate-180 fill-forest text-forest" />
             <p className="mt-4 text-[0.95rem] font-medium leading-relaxed text-navy">
