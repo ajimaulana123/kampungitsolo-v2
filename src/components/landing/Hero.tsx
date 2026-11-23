@@ -1,18 +1,18 @@
-import { Activity, ArrowRight, Building2, Layers, MapPin, Play, TrendingUp } from "lucide-react";
+import { Activity, ArrowRight, Building2, Layers, MapPin, TrendingUp } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { Navbar } from "./Navbar";
 import { LeafSwoosh } from "./Decor";
 import building from "@/assets/hero-building.jpg";
 
 const facts = [
-  { icon: MapPin, label: "RT 06 / RW 21 · Solo" },
+  { icon: MapPin, label: "Sukoharjo · Solo Raya" },
   { icon: Building2, label: "Bin Alfan Group" },
-  { icon: Activity, label: "Aktif 24/7" },
+  { icon: Activity, label: "Senin-Sabtu" },
 ];
 
 export function Hero() {
   return (
-    <div id="beranda" className="relative overflow-hidden">
+    <div id="beranda" className="relative overflow-hidden pt-20">
       {/* Soft diagonal light bands behind the hero */}
       <div className="pointer-events-none absolute inset-0 bg-streaks opacity-80" />
 
@@ -57,13 +57,11 @@ export function Hero() {
       <LeafSwoosh className="animate-sway absolute -bottom-1 right-0 hidden h-36 w-[42%] md:block" />
       <LeafSwoosh flip className="absolute -bottom-2 left-0 h-14 w-40 opacity-90" />
 
-      <Navbar />
-
       <section className="relative z-10 mx-auto max-w-[112rem] px-6 pb-20 pt-6 lg:px-12 lg:pb-28">
         <div className="max-w-xl xl:max-w-2xl">
           <span className="inline-flex animate-rise items-center gap-2 rounded-full bg-surface px-3 py-1.5 text-[0.7rem] font-bold text-navy">
             <span className="animate-pulse-dot size-2 rounded-full bg-lime" />
-            Pusat Eduwisata IT · Laboratorium Peradaban
+            Laboratorium Peradaban · Berbasis IT
           </span>
           <h1
             className="mt-4 animate-rise text-[2.6rem] font-extrabold leading-[1.08] tracking-tight text-navy sm:text-5xl lg:text-[3.4rem]"
@@ -79,21 +77,27 @@ export function Hero() {
             className="mt-5 max-w-lg animate-rise text-[0.95rem] leading-relaxed text-ink"
             style={{ animationDelay: "240ms" }}
           >
-            Pusat riset dan pengembangan pendidikan berbasis Adab &amp; IT di RT 06/RW 21 Surakarta
-            — bagian dari Bin Alfan Group bersama Elfan Bookless Library, Alwustho Technologies,
-            TUK, dan Alkubro.
+            Pusat riset dan pengembangan pendidikan berbasis Adab &amp; IT di Cemani, Grogol,
+            Sukoharjo. Kami membuka{" "}
+            <Link to="/eduwisata" className="font-semibold text-forest hover:underline">
+              eduwisata IT
+            </Link>{" "}
+            untuk sekolah, pesantren, dan komunitas, bagian dari Bin Alfan Group bersama Elfan
+            Bookless Library, Alwustho Technologies, TUK, dan Alkubro.
           </p>
           <div
             className="mt-8 flex animate-rise flex-wrap gap-3"
             style={{ animationDelay: "360ms" }}
           >
             <Button variant="forest" size="pill" asChild>
-              <a href="#ekosistem">
-                Jelajahi Ekosistem <ArrowRight />
+              <a href="#reservasi">
+                Reservasi Kunjungan <ArrowRight />
               </a>
             </Button>
-            <Button variant="outlinePill" size="pill">
-              <Play className="fill-current" /> Tonton Video
+            <Button variant="outlinePill" size="pill" asChild>
+              <a href="#ekosistem">
+                Jelajahi Ekosistem <Layers />
+              </a>
             </Button>
           </div>
 

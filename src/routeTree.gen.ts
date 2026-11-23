@@ -10,11 +10,81 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EduwisataRouteImport } from './routes/eduwisata'
+import { Route as KebijakanPrivasiRouteImport } from './routes/kebijakan-privasi'
+import { Route as KontakRouteImport } from './routes/kontak'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SyaratKetentuanRouteImport } from './routes/syarat-ketentuan'
+import { Route as TentangRouteImport } from './routes/tentang'
+import { Route as ArtikelIndexRouteImport } from './routes/artikel/index'
+import { Route as ArtikelSlugRouteImport } from './routes/artikel/$slug'
+import { Route as CeritaIndexRouteImport } from './routes/cerita/index'
+import { Route as CeritaSlugRouteImport } from './routes/cerita/$slug'
+import { Route as ProductsIndexRouteImport } from './routes/products/index'
 import { Route as ProductsSlugRouteImport } from './routes/products/$slug'
+import { Route as ProgramIndexRouteImport } from './routes/program/index'
+import { Route as ProgramSlugRouteImport } from './routes/program/$slug'
+import { Route as UntukIndexRouteImport } from './routes/untuk/index'
+import { Route as UntukSlugRouteImport } from './routes/untuk/$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EduwisataRoute = EduwisataRouteImport.update({
+  id: '/eduwisata',
+  path: '/eduwisata',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KebijakanPrivasiRoute = KebijakanPrivasiRouteImport.update({
+  id: '/kebijakan-privasi',
+  path: '/kebijakan-privasi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontakRoute = KontakRouteImport.update({
+  id: '/kontak',
+  path: '/kontak',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SyaratKetentuanRoute = SyaratKetentuanRouteImport.update({
+  id: '/syarat-ketentuan',
+  path: '/syarat-ketentuan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TentangRoute = TentangRouteImport.update({
+  id: '/tentang',
+  path: '/tentang',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArtikelIndexRoute = ArtikelIndexRouteImport.update({
+  id: '/artikel/',
+  path: '/artikel/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArtikelSlugRoute = ArtikelSlugRouteImport.update({
+  id: '/artikel/$slug',
+  path: '/artikel/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CeritaIndexRoute = CeritaIndexRouteImport.update({
+  id: '/cerita/',
+  path: '/cerita/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CeritaSlugRoute = CeritaSlugRouteImport.update({
+  id: '/cerita/$slug',
+  path: '/cerita/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsIndexRoute = ProductsIndexRouteImport.update({
+  id: '/products/',
+  path: '/products/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductsSlugRoute = ProductsSlugRouteImport.update({
@@ -22,31 +92,163 @@ const ProductsSlugRoute = ProductsSlugRouteImport.update({
   path: '/products/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProgramIndexRoute = ProgramIndexRouteImport.update({
+  id: '/program/',
+  path: '/program/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProgramSlugRoute = ProgramSlugRouteImport.update({
+  id: '/program/$slug',
+  path: '/program/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UntukIndexRoute = UntukIndexRouteImport.update({
+  id: '/untuk/',
+  path: '/untuk/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UntukSlugRoute = UntukSlugRouteImport.update({
+  id: '/untuk/$slug',
+  path: '/untuk/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/eduwisata': typeof EduwisataRoute
+  '/kebijakan-privasi': typeof KebijakanPrivasiRoute
+  '/kontak': typeof KontakRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/syarat-ketentuan': typeof SyaratKetentuanRoute
+  '/tentang': typeof TentangRoute
+  '/artikel/$slug': typeof ArtikelSlugRoute
+  '/cerita/$slug': typeof CeritaSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/program/$slug': typeof ProgramSlugRoute
+  '/untuk/$slug': typeof UntukSlugRoute
+  '/artikel/': typeof ArtikelIndexRoute
+  '/cerita/': typeof CeritaIndexRoute
+  '/products/': typeof ProductsIndexRoute
+  '/program/': typeof ProgramIndexRoute
+  '/untuk/': typeof UntukIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/eduwisata': typeof EduwisataRoute
+  '/kebijakan-privasi': typeof KebijakanPrivasiRoute
+  '/kontak': typeof KontakRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/syarat-ketentuan': typeof SyaratKetentuanRoute
+  '/tentang': typeof TentangRoute
+  '/artikel/$slug': typeof ArtikelSlugRoute
+  '/cerita/$slug': typeof CeritaSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/program/$slug': typeof ProgramSlugRoute
+  '/untuk/$slug': typeof UntukSlugRoute
+  '/artikel': typeof ArtikelIndexRoute
+  '/cerita': typeof CeritaIndexRoute
+  '/products': typeof ProductsIndexRoute
+  '/program': typeof ProgramIndexRoute
+  '/untuk': typeof UntukIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/eduwisata': typeof EduwisataRoute
+  '/kebijakan-privasi': typeof KebijakanPrivasiRoute
+  '/kontak': typeof KontakRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/syarat-ketentuan': typeof SyaratKetentuanRoute
+  '/tentang': typeof TentangRoute
+  '/artikel/$slug': typeof ArtikelSlugRoute
+  '/cerita/$slug': typeof CeritaSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/program/$slug': typeof ProgramSlugRoute
+  '/untuk/$slug': typeof UntukSlugRoute
+  '/artikel/': typeof ArtikelIndexRoute
+  '/cerita/': typeof CeritaIndexRoute
+  '/products/': typeof ProductsIndexRoute
+  '/program/': typeof ProgramIndexRoute
+  '/untuk/': typeof UntukIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/products/$slug'
+  fullPaths:
+    | '/'
+    | '/eduwisata'
+    | '/kebijakan-privasi'
+    | '/kontak'
+    | '/sitemap.xml'
+    | '/syarat-ketentuan'
+    | '/tentang'
+    | '/artikel/$slug'
+    | '/cerita/$slug'
+    | '/products/$slug'
+    | '/program/$slug'
+    | '/untuk/$slug'
+    | '/artikel/'
+    | '/cerita/'
+    | '/products/'
+    | '/program/'
+    | '/untuk/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/products/$slug'
-  id: '__root__' | '/' | '/products/$slug'
+  to:
+    | '/'
+    | '/eduwisata'
+    | '/kebijakan-privasi'
+    | '/kontak'
+    | '/sitemap.xml'
+    | '/syarat-ketentuan'
+    | '/tentang'
+    | '/artikel/$slug'
+    | '/cerita/$slug'
+    | '/products/$slug'
+    | '/program/$slug'
+    | '/untuk/$slug'
+    | '/artikel'
+    | '/cerita'
+    | '/products'
+    | '/program'
+    | '/untuk'
+  id:
+    | '__root__'
+    | '/'
+    | '/eduwisata'
+    | '/kebijakan-privasi'
+    | '/kontak'
+    | '/sitemap.xml'
+    | '/syarat-ketentuan'
+    | '/tentang'
+    | '/artikel/$slug'
+    | '/cerita/$slug'
+    | '/products/$slug'
+    | '/program/$slug'
+    | '/untuk/$slug'
+    | '/artikel/'
+    | '/cerita/'
+    | '/products/'
+    | '/program/'
+    | '/untuk/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EduwisataRoute: typeof EduwisataRoute
+  KebijakanPrivasiRoute: typeof KebijakanPrivasiRoute
+  KontakRoute: typeof KontakRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  SyaratKetentuanRoute: typeof SyaratKetentuanRoute
+  TentangRoute: typeof TentangRoute
+  ArtikelSlugRoute: typeof ArtikelSlugRoute
+  CeritaSlugRoute: typeof CeritaSlugRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
+  ProgramSlugRoute: typeof ProgramSlugRoute
+  UntukSlugRoute: typeof UntukSlugRoute
+  ArtikelIndexRoute: typeof ArtikelIndexRoute
+  CeritaIndexRoute: typeof CeritaIndexRoute
+  ProductsIndexRoute: typeof ProductsIndexRoute
+  ProgramIndexRoute: typeof ProgramIndexRoute
+  UntukIndexRoute: typeof UntukIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +260,83 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/eduwisata': {
+      id: '/eduwisata'
+      path: '/eduwisata'
+      fullPath: '/eduwisata'
+      preLoaderRoute: typeof EduwisataRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kebijakan-privasi': {
+      id: '/kebijakan-privasi'
+      path: '/kebijakan-privasi'
+      fullPath: '/kebijakan-privasi'
+      preLoaderRoute: typeof KebijakanPrivasiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontak': {
+      id: '/kontak'
+      path: '/kontak'
+      fullPath: '/kontak'
+      preLoaderRoute: typeof KontakRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/syarat-ketentuan': {
+      id: '/syarat-ketentuan'
+      path: '/syarat-ketentuan'
+      fullPath: '/syarat-ketentuan'
+      preLoaderRoute: typeof SyaratKetentuanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tentang': {
+      id: '/tentang'
+      path: '/tentang'
+      fullPath: '/tentang'
+      preLoaderRoute: typeof TentangRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/artikel/': {
+      id: '/artikel/'
+      path: '/artikel'
+      fullPath: '/artikel/'
+      preLoaderRoute: typeof ArtikelIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/artikel/$slug': {
+      id: '/artikel/$slug'
+      path: '/artikel/$slug'
+      fullPath: '/artikel/$slug'
+      preLoaderRoute: typeof ArtikelSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cerita/': {
+      id: '/cerita/'
+      path: '/cerita'
+      fullPath: '/cerita/'
+      preLoaderRoute: typeof CeritaIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cerita/$slug': {
+      id: '/cerita/$slug'
+      path: '/cerita/$slug'
+      fullPath: '/cerita/$slug'
+      preLoaderRoute: typeof CeritaSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/': {
+      id: '/products/'
+      path: '/products'
+      fullPath: '/products/'
+      preLoaderRoute: typeof ProductsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/$slug': {
       id: '/products/$slug'
       path: '/products/$slug'
@@ -65,12 +344,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/program/': {
+      id: '/program/'
+      path: '/program'
+      fullPath: '/program/'
+      preLoaderRoute: typeof ProgramIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/program/$slug': {
+      id: '/program/$slug'
+      path: '/program/$slug'
+      fullPath: '/program/$slug'
+      preLoaderRoute: typeof ProgramSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/untuk/': {
+      id: '/untuk/'
+      path: '/untuk'
+      fullPath: '/untuk/'
+      preLoaderRoute: typeof UntukIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/untuk/$slug': {
+      id: '/untuk/$slug'
+      path: '/untuk/$slug'
+      fullPath: '/untuk/$slug'
+      preLoaderRoute: typeof UntukSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EduwisataRoute: EduwisataRoute,
+  KebijakanPrivasiRoute: KebijakanPrivasiRoute,
+  KontakRoute: KontakRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  SyaratKetentuanRoute: SyaratKetentuanRoute,
+  TentangRoute: TentangRoute,
+  ArtikelSlugRoute: ArtikelSlugRoute,
+  CeritaSlugRoute: CeritaSlugRoute,
   ProductsSlugRoute: ProductsSlugRoute,
+  ProgramSlugRoute: ProgramSlugRoute,
+  UntukSlugRoute: UntukSlugRoute,
+  ArtikelIndexRoute: ArtikelIndexRoute,
+  CeritaIndexRoute: CeritaIndexRoute,
+  ProductsIndexRoute: ProductsIndexRoute,
+  ProgramIndexRoute: ProgramIndexRoute,
+  UntukIndexRoute: UntukIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

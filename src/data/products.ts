@@ -18,8 +18,11 @@ export type Product = {
   summary: string;
   cardDesc: string;
   highlights: string[];
+  relatedProgramSlugs?: string[];
+  relatedStorySlugs?: string[];
   image: string;
   featured?: boolean;
+  catalogFeatured?: boolean;
   description: string[];
   features: ProductBlock[];
   steps: ProductBlock[];
@@ -36,6 +39,8 @@ export const products: Product[] = [
       "Platform pendidikan AI, coding, data, dan teknologi masa depan. Mencetak talenta berkarakter yang siap bersaing global.",
     cardDesc: "Kaderisasi SDM IT: AI, coding, data, dan teknologi masa depan.",
     highlights: ["Metode 3M", "AI & Coding", "Vokasi Digital"],
+    relatedProgramSlugs: ["kelas-coding", "bootcamp-ai-vibe-coding", "workshop-umkm"],
+    relatedStorySlugs: ["komunitas-pelajar-smk", "umkm-pasar-solo-raya"],
     image: academyImg,
     featured: true,
     description: [
@@ -89,6 +94,7 @@ export const products: Product[] = [
       "Sistem perpustakaan digital personal dengan rekomendasi bacaan berbasis AI. Diakses oleh 228+ institusi sejak 2016.",
     cardDesc: "Perpustakaan digital dengan rekomendasi buku berbasis AI.",
     highlights: ["Sejak 2016", "228+ Institusi", "Akses 24/7"],
+    relatedProgramSlugs: ["literasi-digital"],
     image: libraryImg,
     featured: true,
     description: [
@@ -194,7 +200,10 @@ export const products: Product[] = [
       "Platform seperti Google Workspace khusus pendidikan Islam: 16 modul terintegrasi untuk administrasi, pembelajaran, dan kolaborasi.",
     cardDesc: "Platform 16 modul Digital Islamic Education untuk lembaga.",
     highlights: ["16 Modul", "Integrasi Penuh", "All-in-One"],
+    relatedProgramSlugs: ["implementasi-elfan-system", "desa-digital"],
+    relatedStorySlugs: ["desa-grogol-weru"],
     image: systemImg,
+    catalogFeatured: true,
     description: [
       "Elfan System adalah platform integrasi terpadu untuk lembaga pendidikan Islam. Dengan 16 modul yang saling terhubung, mulai dari Data Center, Search Engine, Bookless Library, Lesson Modul, El-Tube, Elfanpedia, hingga Smart Village dan E-Masjid, Elfan System menjadi pusat komando digital bagi pesantren, sekolah, masjid, dan pemerintah desa.",
       "Keenam belas modul mencakup seluruh aspek pengelolaan lembaga: Data Center, Visitor Data Record, Search Engine, Bookless Library, Lesson Modul, El-Tube, Elfan MP3, Elfanpedia, Akademik System, Produktivitas, Asset & Inventaris, Cleaning Control, Smart Village, Smart Control, Elfan SmartHub, dan E-Masjid. Setiap modul bekerja dalam harmoni dan berbagi data secara real-time.",
@@ -246,6 +255,7 @@ export const products: Product[] = [
       "Tempat eksperimen AI untuk sains, bahasa, matematika, sosial, dan berbagai bidang ilmu lainnya.",
     cardDesc: "Laboratorium eksperimen AI lintas bidang ilmu.",
     highlights: ["Multi Disiplin", "Terbuka untuk Umum", "Fokus Literasi AI"],
+    relatedProgramSlugs: ["kelas-coding", "bootcamp-ai-vibe-coding"],
     image: aiLabImg,
     description: [
       "Elfan AI Lab adalah laboratorium berbasis AI yang dirancang untuk eksplorasi lintas disiplin ilmu, dari sains, bahasa, matematika, hingga ilmu sosial. Laboratorium ini bertujuan mendemokratisasi literasi AI dengan memberi akses kepada siswa, peneliti, dan masyarakat umum untuk bereksperimen dalam lingkungan yang aman dan terbimbing.",
@@ -315,6 +325,7 @@ export const products: Product[] = [
       "Voice assistant dan kontrol perangkat via perintah suara. Didesain untuk mengurangi ketergantungan pada layar.",
     cardDesc: "Pembelajaran berbasis suara dan voice assistant.",
     highlights: ["Input Suara", "Untuk Pesantren", "Voice + IoT"],
+    relatedProgramSlugs: ["implementasi-elfan-system"],
     image: smartSchoolImg,
     description: [
       "Smart School / Boarding adalah media pembelajaran berbasis suara (voice bot) yang memungkinkan kontrol perangkat ruangan dan akses materi interaktif melalui perintah suara. Produk ini didesain khusus untuk mengurangi ketergantungan pada layar, menjadikannya solusi untuk lingkungan asrama, pesantren, dan boarding school.",
@@ -417,6 +428,7 @@ export const products: Product[] = [
       "Tokoh virtual yang dapat berbicara dan menjelaskan materi sesuai tema. Media pembelajaran yang lebih hidup.",
     cardDesc: "Figura edukasi interaktif yang menjelaskan materi.",
     highlights: ["Audio AI", "Multi Tema", "Online & Offline"],
+    relatedProgramSlugs: ["kelas-coding"],
     image: academyImg,
     description: [
       "Smart Figura adalah figura atau patung edukasi interaktif berbasis audio yang dapat berbicara sesuai tema. Figur pahlawan nasional dapat menceritakan kisah perjuangannya, atau figur ilmuwan menjelaskan teori fisika dengan suara alami dan interaktif.",

@@ -1,22 +1,15 @@
 import type React from "react";
+import { Link } from "@tanstack/react-router";
 import { ArrowRight, CircleCheck, Play, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionLabel } from "./SectionLabel";
 import { LeafSwoosh } from "./Decor";
+import { publishedPrograms } from "@/data/programs";
 import workshop from "@/assets/program-workshop.jpg";
-
-const programs = [
-  "Pelatihan Desa Digital",
-  "Workshop Foto & Video Produk UMKM",
-  "Kelas Coding Akhir Pekan",
-  "Literasi Media & Keamanan Digital",
-  "Bootcamp IT & Sertifikasi TUK",
-  "Implementasi 16 Modul Elfan System",
-];
 
 export function Program() {
   return (
-    <section id="program" className="relative overflow-hidden bg-section-tint py-10">
+    <section id="program" className="relative overflow-hidden bg-section-tint py-16 lg:py-20">
       <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.25fr]">
         <div className="relative">
           <div className="absolute -right-2 top-6 hidden h-[85%] w-10 -skew-x-[14deg] rounded-xl bg-lime/40 lg:block" />
@@ -24,7 +17,7 @@ export function Program() {
             <div data-reveal="clip">
               <img
                 src={workshop}
-                alt="Peserta program belajar bersama"
+                alt="Peserta pelatihan digital Kampung IT Solo belajar bersama"
                 loading="lazy"
                 width={1280}
                 height={768}
@@ -32,12 +25,13 @@ export function Program() {
               />
             </div>
           </div>
-          <button
-            aria-label="Putar video"
+          <a
+            href="#tentang"
+            aria-label="Tonton video profil Kampung IT Solo"
             className="absolute bottom-8 left-12 grid size-12 place-items-center rounded-full bg-lime text-lime-foreground shadow-card transition-transform hover:scale-105"
           >
             <Play className="size-4 translate-x-0.5 fill-current" />
-          </button>
+          </a>
         </div>
 
         <div className="grid gap-8 px-6 lg:grid-cols-[1.55fr_0.75fr] lg:pr-12">
@@ -49,14 +43,20 @@ export function Program() {
               dan Berkolaborasi.
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-ink">
-              Program eduwisata IT untuk desa, UMKM, pelajar, dan komunitas — dari pelatihan
+              Program eduwisata IT untuk desa, UMKM, pelajar, dan komunitas, dari pelatihan
               keterampilan digital hingga implementasi sistem.
             </p>
             <ul data-reveal="stagger" className="mt-5 grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
-              {programs.map((p) => (
-                <li key={p} className="flex items-center gap-2 text-[0.78rem] text-ink">
+              {publishedPrograms.map((p) => (
+                <li key={p.slug} className="flex items-center gap-2 text-[0.78rem] text-ink">
                   <CircleCheck className="size-4 shrink-0 fill-lime text-background" />
-                  {p}
+                  <Link
+                    to="/program/$slug"
+                    params={{ slug: p.slug }}
+                    className="hover:text-forest hover:underline"
+                  >
+                    {p.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -65,8 +65,10 @@ export function Program() {
               Pendampingan desa digital, workshop UMKM, dan implementasi modul disesuaikan dengan
               ruang lingkup.
             </p>
-            <Button variant="navy" size="pillSm" className="mt-7">
-              Lihat Program Lengkap <ArrowRight />
+            <Button variant="navy" size="pillSm" className="mt-7" asChild>
+              <Link to="/program">
+                Lihat Program Lengkap <ArrowRight />
+              </Link>
             </Button>
           </div>
 
@@ -80,7 +82,7 @@ export function Program() {
             <p className="mt-4 text-[0.95rem] font-medium leading-relaxed text-navy">
               “Kampung IT Solo adalah bukti nyata bahwa teknologi bisa memberdayakan masyarakat.”
             </p>
-            <footer className="mt-4 text-[0.7rem] text-muted-foreground">— Mitra Kolaborasi</footer>
+            <footer className="mt-4 text-[0.7rem] text-muted-foreground">Mitra Kolaborasi</footer>
           </blockquote>
         </div>
       </div>

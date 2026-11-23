@@ -85,18 +85,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Pusat Eduwisata IT & Laboratorium Peradaban Digital di RT 06/RW 21 Surakarta, bagian dari Bin Alfan Group.",
+          "Pusat eduwisata IT dan laboratorium peradaban digital di Sukoharjo, Solo Raya. Bagian dari Bin Alfan Group.",
       },
       { name: "author", content: "Kampung IT Solo" },
       { property: "og:title", content: "Kampung IT Solo" },
       {
         property: "og:description",
         content:
-          "Pusat Eduwisata IT & Laboratorium Peradaban Digital di RT 06/RW 21 Surakarta, bagian dari Bin Alfan Group.",
+          "Pusat eduwisata IT dan laboratorium peradaban digital di Sukoharjo, Solo Raya. Bagian dari Bin Alfan Group.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {

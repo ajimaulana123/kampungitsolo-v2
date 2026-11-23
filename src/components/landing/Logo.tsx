@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export function Logo({ className, href = "#beranda" }: { className?: string; href?: string }) {
+export function Logo({ className, href = "/" }: { className?: string; href?: string }) {
   return (
     <a
       href={href}

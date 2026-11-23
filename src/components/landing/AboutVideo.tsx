@@ -29,6 +29,7 @@ type PlayerOptions = {
   events: {
     onReady: (event: PlayerEvent) => void;
     onStateChange: (event: PlayerEvent) => void;
+    onError?: () => void;
   };
 };
 
@@ -84,6 +85,7 @@ export function AboutVideo() {
   const userPausedRef = useRef(false);
   const autoPausedRef = useRef(false);
   const reduceMotionRef = useRef(false);
+  const playTimeoutRef = useRef<number | undefined>(undefined);
 
   const [shouldMount, setShouldMount] = useState(false);
   const [ready, setReady] = useState(false);
@@ -187,7 +189,9 @@ export function AboutVideo() {
             },
             onStateChange: (event) => {
               if (event.data === YT.PlayerState.PLAYING) {
+                window.clearTimeout(playTimeoutRef.current);
                 setPlaying(true);
+                setFailed(false);
                 userPausedRef.current = false;
                 autoPausedRef.current = false;
               } else if (
@@ -197,6 +201,7 @@ export function AboutVideo() {
                 setPlaying(false);
               }
             },
+            onError: () => setFailed(true),
           },
         });
       })
@@ -207,6 +212,7 @@ export function AboutVideo() {
     return () => {
       cancelled = true;
       if (autoplayFallback !== undefined) window.clearTimeout(autoplayFallback);
+      window.clearTimeout(playTimeoutRef.current);
       playerRef.current = null;
       player?.destroy();
       host.replaceChildren();
@@ -220,10 +226,18 @@ export function AboutVideo() {
     userPausedRef.current = false;
     if (player.getPlayerState() === 0) player.seekTo(0, true);
     player.playVideo();
+
+    // Pemutar tersembunyi sampai video benar-benar berjalan, jadi kalau YouTube menolak
+    // memutar, tampilkan tautan ke YouTube alih-alih tombol yang tidak merespons.
+    window.clearTimeout(playTimeoutRef.current);
+    playTimeoutRef.current = window.setTimeout(() => {
+      if (playerRef.current?.getPlayerState() !== window.YT?.PlayerState.PLAYING) setFailed(true);
+    }, 8000);
   };
 
   const pause = () => {
     userPausedRef.current = true;
+    window.clearTimeout(playTimeoutRef.current);
     playerRef.current?.pauseVideo();
   };
 
@@ -314,10 +328,12 @@ export function AboutVideo() {
         className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#06141D]/85 via-[#06141D]/10 to-[#06141D]/20"
       />
 
+      {/* Iframe dibuat lebih tinggi dari bingkai: judul, logo, dan tautan YouTube jatuh di luar
+          area yang terlihat. Saat tidak diputar, poster menutupi layar jeda bawaan YouTube. */}
       <div
         className={cn(
-          "absolute inset-0 transition-opacity duration-500 [&_iframe]:absolute [&_iframe]:inset-0 [&_iframe]:size-full [&>div]:size-full",
-          ready ? "opacity-100" : "opacity-0",
+          "absolute inset-0 transition-opacity duration-500 [&_iframe]:absolute [&_iframe]:inset-x-0 [&_iframe]:-top-[72px] [&_iframe]:h-[calc(100%+144px)] [&_iframe]:w-full [&>div]:size-full",
+          ready && playing ? "opacity-100" : "opacity-0",
         )}
       >
         <div ref={playerHostRef} className="size-full" />
@@ -338,7 +354,7 @@ export function AboutVideo() {
         </span>
       ) : null}
 
-      {ready && !playing ? (
+      {ready && !playing && !failed ? (
         <button
           type="button"
           onClick={play}
@@ -362,7 +378,7 @@ export function AboutVideo() {
       ) : null}
 
       {ready ? (
-        <div className="absolute inset-x-0 bottom-0 z-20 flex items-center gap-2 px-5 pb-3.5 pt-10 sm:pb-4">
+        <div className="absolute inset-x-0 bottom-0 z-20 flex items-center gap-2 px-4 pb-3.5 pt-10 sm:px-5 sm:pb-4">
           <button
             type="button"
             onClick={playing ? pause : play}

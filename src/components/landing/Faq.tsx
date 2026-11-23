@@ -1,4 +1,7 @@
 import type React from "react";
+import { Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
+import { CONTACT, WHATSAPP_URL } from "@/lib/site";
 import { SectionLabel } from "./SectionLabel";
 import {
   Accordion,
@@ -10,11 +13,11 @@ import {
 const faqs = [
   {
     q: "Apa itu Kampung IT Solo?",
-    a: "Kampung IT Solo adalah Pusat Eduwisata IT dan Laboratorium Peradaban Digital di RT 06/RW 21, Surakarta. Kami bagian dari Bin Alfan Group dan menjadi pusat riset, pelatihan, serta pengembangan pendidikan berbasis adab dan teknologi informasi.",
+    a: "Kampung IT Solo adalah pusat eduwisata IT dan laboratorium peradaban digital di Cemani, Grogol, Kabupaten Sukoharjo. Kami bagian dari Bin Alfan Group dan menjadi pusat riset, pelatihan, serta pengembangan pendidikan berbasis adab dan teknologi informasi.",
   },
   {
     q: "Di mana lokasi Kampung IT Solo?",
-    a: "Kampung IT Solo berada di RT 06/RW 21, Kota Surakarta (Solo), Jawa Tengah. Aktivitas eduwisata dan pelatihan dilayani di area Solo Raya, termasuk Sukoharjo dan sekitarnya.",
+    a: "Kampung IT Solo berada di Jl. Semenromo, Gg. Melon Jl. Waringinrejo No. 15, Ngruki, Cemani, Kec. Grogol, Kabupaten Sukoharjo, Jawa Tengah 57552. Aktivitas eduwisata dan pelatihan dilayani di area Solo Raya.",
   },
   {
     q: "Apa itu Elfan System?",
@@ -22,11 +25,11 @@ const faqs = [
   },
   {
     q: "Layanan apa saja yang ditawarkan?",
-    a: "Pelatihan desa digital, workshop foto dan video produk untuk UMKM, kelas coding akhir pekan untuk pelajar SMK, literasi media dan keamanan digital untuk karang taruna, serta implementasi 16 modul Elfan System untuk lembaga, masjid, dan pemerintah desa.",
+    a: "Pelatihan desa digital, workshop foto dan video produk untuk UMKM, kelas coding akhir pekan untuk pelajar SMK, literasi media dan keamanan digital untuk karang taruna, Bootcamp AI Vibe Coding, serta implementasi Elfan System untuk lembaga, masjid, dan pemerintah desa.",
   },
   {
     q: "Apa itu Bin Alfan Group?",
-    a: "Bin Alfan Group adalah organisasi induk yang menaungi Kampung IT Solo, Elfan Bookless Library, Alwustho Technologies, TUK (Tempat Uji Kompetensi), dan Alkubro — fokus pada pendidikan berbasis adab dan teknologi.",
+    a: "Bin Alfan Group adalah organisasi induk yang menaungi Kampung IT Solo, Elfan Bookless Library, Alwustho Technologies, TUK (Tempat Uji Kompetensi), dan Alkubro. Fokus kami pada pendidikan berbasis adab dan teknologi.",
   },
   {
     q: "Apa itu Bookless Library?",
@@ -38,21 +41,35 @@ const faqs = [
   },
   {
     q: "Apa itu E-Masjid?",
-    a: "E-Masjid adalah modul Elfan System untuk manajemen kegiatan masjid, jamaah, kas, dan layanan masjid secara digital — memudahkan takmir mengelola operasional masjid sehari-hari.",
+    a: "E-Masjid adalah modul Elfan System untuk manajemen kegiatan masjid, jamaah, kas, dan layanan masjid secara digital, memudahkan takmir mengelola operasional masjid sehari-hari.",
   },
   {
     q: "Bagaimana cara berkunjung atau berkolaborasi?",
-    a: "Kunjungan, studi banding, atau kolaborasi dapat dilakukan melalui formulir reservasi tamu di halaman ini, atau menghubungi tim lewat email kampungitsolo@gmail.com dan WhatsApp +62 812-3566-6665.",
+    a: "Kunjungan, studi banding, atau kolaborasi dapat dilakukan melalui formulir reservasi di beranda atau halaman kontak, atau menghubungi tim lewat email kampungitsolo@gmail.com dan WhatsApp +62 812-3566-6665.",
   },
   {
     q: "Apakah pelatihan di Kampung IT Solo berbayar?",
-    a: "Sebagian besar kelas reguler seperti kelas coding akhir pekan dan literasi digital untuk karang taruna bersifat terbuka. Untuk pendampingan desa digital, workshop UMKM, dan implementasi modul Elfan System, biaya disesuaikan dengan ruang lingkup dan dapat didiskusikan langsung dengan tim.",
+    a: "Kelas coding akhir pekan dan literasi digital untuk karang taruna termasuk kelas reguler yang terbuka. Bootcamp AI Vibe Coding berbiaya Rp 500.000 untuk 6 hari. Untuk pendampingan desa digital, workshop UMKM, dan implementasi Elfan System, biaya disesuaikan dengan ruang lingkup dan dapat didiskusikan langsung dengan tim.",
   },
 ];
 
+const FAQ_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
+
 export function Faq() {
   return (
-    <section id="faq" className="relative overflow-hidden py-16">
+    <section id="faq" className="relative overflow-hidden py-16 lg:py-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }}
+      />
       <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.75fr_1.25fr] lg:px-12">
         <div data-reveal="left">
           <SectionLabel lead="FAQ" rest="Pertanyaan Umum" />
@@ -62,7 +79,7 @@ export function Faq() {
             seputar kami.
           </h2>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink">
-            Ringkasan informasi penting tentang Kampung IT Solo — lokasi, layanan, modul Elfan
+            Ringkasan informasi penting tentang Kampung IT Solo: lokasi, layanan, modul Elfan
             System, hingga cara berkunjung.
           </p>
           <div className="mt-6 rounded-2xl border border-border bg-surface p-5">
@@ -70,11 +87,17 @@ export function Faq() {
               Pertanyaan lain? Hubungi tim langsung.
             </p>
             <a
-              href="https://wa.me/6281235666665"
+              href={WHATSAPP_URL}
               className="mt-2 inline-flex items-center gap-2 text-[0.78rem] font-bold text-forest hover:underline"
             >
-              WhatsApp +62 812-3566-6665
+              WhatsApp {CONTACT.phoneDisplay}
             </a>
+            <Link
+              to="/kontak"
+              className="mt-2 flex items-center gap-2 text-[0.78rem] font-bold text-forest hover:underline"
+            >
+              Lihat halaman kontak <ArrowRight className="size-3.5" />
+            </Link>
           </div>
         </div>
 

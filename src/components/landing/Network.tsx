@@ -33,7 +33,7 @@ const cardClass =
 const links: Resource[] = [
   {
     name: "Alwustho",
-    desc: "Riset & sistem digital — bagian dari Bin Alfan Group",
+    desc: "Riset & sistem digital, bagian dari Bin Alfan Group",
     logo: alwusthoLogo,
   },
   {
@@ -79,7 +79,7 @@ const links: Resource[] = [
   },
   {
     name: "TUK",
-    desc: "Tempat Uji Kompetensi — sertifikasi keahlian",
+    desc: "Tempat Uji Kompetensi, sertifikasi keahlian",
     href: "https://ufukhijau.com",
     logo: ufukLogo,
   },
@@ -99,6 +99,8 @@ const links: Resource[] = [
 export function Network() {
   const [comingSoon, setComingSoon] = useState<string | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
+  // Dengan sisa 5 dari kelipatan 6, kartu pertama dilebarkan agar grid 2 dan 3 kolom terisi penuh.
+  const wideFirst = links.length % 6 === 5;
 
   return (
     <section id="jejaring" className="scroll-mt-24 bg-[#F7F9F7] py-16 lg:py-20">
@@ -178,7 +180,7 @@ export function Network() {
             );
 
             return (
-              <li key={name} className="h-full">
+              <li key={name} className={`h-full ${i === 0 && wideFirst ? "sm:col-span-2" : ""}`}>
                 {href ? (
                   <a href={href} target="_blank" rel="noopener noreferrer" className={cardClass}>
                     {body}

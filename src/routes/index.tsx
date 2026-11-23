@@ -1,44 +1,100 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
-import { Hero } from "@/components/landing/Hero";
-import { Ticker } from "@/components/landing/Ticker";
+
 import { About } from "@/components/landing/About";
+import { Articles } from "@/components/landing/Articles";
+import { Cta } from "@/components/landing/Cta";
 import { Ecosystem } from "@/components/landing/Ecosystem";
-import { Program } from "@/components/landing/Program";
+import { Faq } from "@/components/landing/Faq";
+import { Hero } from "@/components/landing/Hero";
 import { Impact } from "@/components/landing/Impact";
 import { Network } from "@/components/landing/Network";
-import { Faq } from "@/components/landing/Faq";
+import { Program } from "@/components/landing/Program";
 import { Reservation } from "@/components/landing/Reservation";
-import { Cta } from "@/components/landing/Cta";
-import { Footer } from "@/components/landing/Footer";
-import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { Ticker } from "@/components/landing/Ticker";
+import { JsonLd } from "@/components/site/JsonLd";
+import { PageShell } from "@/components/site/PageShell";
 import { useScrollParallax } from "@/hooks/use-scroll-parallax";
+import { pageHead } from "@/lib/seo";
+import { CONTACT, SITE_URL, SOCIALS } from "@/lib/site";
+
+const STRUCTURED_DATA = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "EducationalOrganization",
+      "@id": `${SITE_URL}/#organization`,
+      name: "Kampung IT Solo",
+      alternateName: "Kampung IT Solo, Pusat Eduwisata IT",
+      url: SITE_URL,
+      logo: `${SITE_URL}/kampung-it-solo.png`,
+      image: `${SITE_URL}/og-image.jpg`,
+      description:
+        "Pusat eduwisata IT dan laboratorium peradaban digital di Cemani, Grogol, Sukoharjo, bagian dari Bin Alfan Group.",
+      email: CONTACT.email,
+      telephone: CONTACT.phoneE164,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: CONTACT.address.street,
+        addressLocality: CONTACT.address.locality,
+        addressRegion: CONTACT.address.region,
+        postalCode: CONTACT.address.postalCode,
+        addressCountry: CONTACT.address.country,
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: CONTACT.geo.latitude,
+        longitude: CONTACT.geo.longitude,
+      },
+      hasMap: CONTACT.mapUrl,
+      openingHoursSpecification: CONTACT.hours.flatMap((hours) =>
+        "opens" in hours
+          ? [
+              {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: hours.days,
+                opens: hours.opens,
+                closes: hours.closes,
+              },
+            ]
+          : [],
+      ),
+      areaServed: ["Sukoharjo", "Surakarta", "Solo Raya"],
+      parentOrganization: { "@type": "Organization", name: "Bin Alfan Group" },
+      sameAs: SOCIALS.map((social) => social.href),
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      name: "Kampung IT Solo",
+      url: SITE_URL,
+      inLanguage: "id-ID",
+      publisher: { "@id": `${SITE_URL}/#organization` },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${SITE_URL}/#breadcrumb`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Beranda",
+          item: `${SITE_URL}/`,
+        },
+      ],
+    },
+  ],
+};
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      {
-        title: "Kampung IT Solo — Pusat Eduwisata IT & Lab. Peradaban Digital di Surakarta",
-      },
-      {
-        name: "description",
-        content:
-          "Kampung IT Solo adalah Pusat Eduwisata IT & Laboratorium Peradaban Digital di RT 06/21 Surakarta. Bagian dari Bin Alfan Group, menghadirkan 10 produk dan 16 modul Elfan System untuk pendidikan, UMKM, desa, dan pelajar.",
-      },
-      {
-        property: "og:title",
-        content: "Kampung IT Solo — Lab. Peradaban Berbasis IT",
-      },
-      {
-        property: "og:description",
-        content:
-          "Pusat Eduwisata IT dan Laboratorium Peradaban Digital di RT 06/RW 21 Surakarta, bagian dari Bin Alfan Group.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: "Kampung IT Solo: Lab Peradaban Digital di Solo Raya",
+      description:
+        "Pusat eduwisata IT dan laboratorium peradaban digital di Sukoharjo, Solo Raya. Program untuk lembaga, UMKM, dan komunitas.",
+      path: "/",
+    }),
   component: Index,
 });
 
@@ -65,22 +121,23 @@ function BackToTop() {
 }
 
 function Index() {
-  useScrollReveal();
   useScrollParallax();
+
   return (
-    <main className="bg-background">
+    <PageShell>
+      <JsonLd data={STRUCTURED_DATA} />
       <Hero />
       <Ticker />
       <About />
       <Ecosystem />
       <Program />
       <Impact />
+      <Articles />
       <Network />
       <Faq />
       <Cta />
       <Reservation />
-      <Footer />
       <BackToTop />
-    </main>
+    </PageShell>
   );
 }

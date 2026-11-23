@@ -6,7 +6,7 @@ import { Network } from "./Network";
 const resources = [
   {
     name: "Alwustho",
-    desc: "Riset & sistem digital — bagian dari Bin Alfan Group",
+    desc: "Riset & sistem digital, bagian dari Bin Alfan Group",
     href: null,
   },
   {
@@ -46,7 +46,7 @@ const resources = [
   },
   {
     name: "TUK",
-    desc: "Tempat Uji Kompetensi — sertifikasi keahlian",
+    desc: "Tempat Uji Kompetensi, sertifikasi keahlian",
     href: "https://ufukhijau.com",
   },
   {

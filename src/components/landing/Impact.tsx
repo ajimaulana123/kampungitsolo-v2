@@ -1,6 +1,9 @@
 import type React from "react";
+import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getProgram } from "@/data/programs";
+import { publishedStories } from "@/data/stories";
 import { SectionLabel } from "./SectionLabel";
 import seminar from "@/assets/impact-seminar.jpg";
 import umkm from "@/assets/impact-umkm.jpg";
@@ -8,36 +11,14 @@ import team from "@/assets/impact-team.jpg";
 import city from "@/assets/impact-city.jpg";
 import classroom from "@/assets/about-class.jpg";
 
-const cases = [
-  {
-    no: "01",
-    client: "Desa Grogol, Weru — Sukoharjo",
-    project: "Pelatihan Desa Digital",
-    year: "2024",
-    desc: "Mendampingi perangkat desa dan karang taruna membangun budaya kerja digital — dari surat menyurat hingga publikasi kegiatan desa.",
-  },
-  {
-    no: "02",
-    client: "UMKM Pasar Solo Raya",
-    project: "Workshop Foto & Video Produk",
-    year: "2023–2024",
-    desc: "Belasan pelaku UMKM kuliner dan kerajinan dilatih membuat foto dan video produk berkualitas marketplace — hanya dengan ponsel.",
-  },
-  {
-    no: "03",
-    client: "Komunitas Pelajar SMK",
-    project: "Kelas Coding Akhir Pekan",
-    year: "Berjalan",
-    desc: "Kelas mingguan pemrograman web yang terbuka untuk pelajar mana pun. Lulusan kelas mengisi ulang kelas berikutnya.",
-  },
-  {
-    no: "04",
-    client: "Karang Taruna & Pemuda Desa",
-    project: "Literasi Media & Keamanan Digital",
-    year: "2023",
-    desc: "Sesi diskusi keliling tentang hoaks, jejak digital, dan etika bermedia sosial untuk pemuda di beberapa kelurahan.",
-  },
-];
+const cases = publishedStories.map((story, index) => ({
+  no: String(index + 1).padStart(2, "0"),
+  client: story.client,
+  project: getProgram(story.programSlug)?.name ?? "Program Kampung IT Solo",
+  year: story.year,
+  desc: story.cardDesc,
+  slug: story.slug,
+}));
 
 function Photo({
   src,
@@ -72,7 +53,7 @@ function Photo({
 
 export function Impact() {
   return (
-    <section id="dampak" className="py-16">
+    <section id="dampak" className="py-16 lg:py-20">
       <div className="mx-auto grid max-w-7xl items-center gap-8 px-6 lg:grid-cols-[0.85fr_1.2fr] lg:px-12">
         <div data-reveal="left">
           <SectionLabel lead="Jejak" rest="di Lapangan" />
@@ -82,33 +63,60 @@ export function Impact() {
             dicatat oleh kampung.
           </h2>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink">
-            Dari desa, UMKM, pelajar SMK, hingga karang taruna — program Kampung IT Solo berjalan
+            Dari desa, UMKM, pelajar SMK, hingga karang taruna. Program Kampung IT Solo berjalan
             bersama warga Solo Raya dan sekitarnya.
           </p>
-          <Button variant="lime" size="pillSm" className="mt-6">
-            Lihat Dampak Kami <ArrowRight />
+          <Button variant="lime" size="pillSm" className="mt-6" asChild>
+            <Link to="/cerita">
+              Lihat Dampak Kami <ArrowRight />
+            </Link>
           </Button>
         </div>
 
         <div className="relative lg:ml-4">
           <div className="pointer-events-none absolute -bottom-2 -left-10 hidden h-24 w-12 bg-dots lg:block" />
           <div className="grid h-[300px] grid-cols-[1fr_1fr_0.9fr] grid-rows-2 gap-2">
-            <Photo src={seminar} alt="Seminar teknologi" w={992} h={672} />
-            <Photo src={umkm} alt="Pendampingan UMKM" w={992} h={672} delay={120} />
+            <Photo
+              src={seminar}
+              alt="Seminar teknologi Kampung IT Solo di Surakarta"
+              w={992}
+              h={672}
+            />
+            <Photo
+              src={umkm}
+              alt="Pendampingan foto produk untuk UMKM Solo Raya"
+              w={992}
+              h={672}
+              delay={120}
+            />
             <div className="row-span-2">
               <Photo src={city} alt="Balai Kota Surakarta" w={752} h={896} delay={240} />
             </div>
-            <Photo src={team} alt="Gerakan literasi digital" w={992} h={672} delay={120} />
-            <Photo src={classroom} alt="Kelas pemrograman" w={1280} h={768} delay={240} />
+            <Photo
+              src={team}
+              alt="Kegiatan literasi digital bersama warga"
+              w={992}
+              h={672}
+              delay={120}
+            />
+            <Photo
+              src={classroom}
+              alt="Kelas pemrograman untuk pelajar SMK"
+              w={1280}
+              h={768}
+              delay={240}
+            />
           </div>
         </div>
       </div>
 
-      <div className="mx-auto mt-10 max-w-7xl px-6 lg:px-12">
+      <div id="cerita-dampak" className="mx-auto mt-10 max-w-7xl px-6 lg:px-12">
         <div data-reveal="stagger" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {cases.map(({ no, client, project, year, desc }) => (
-            <article
+          {cases.map(({ no, client, project, year, desc, slug }) => (
+            <Link
               key={no}
+              to="/cerita/$slug"
+              params={{ slug }}
               className="flex flex-col rounded-2xl border border-border bg-card p-5 shadow-soft transition-[translate,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-forest/40 hover:shadow-lift"
             >
               <div className="flex items-center justify-between">
@@ -122,7 +130,7 @@ export function Impact() {
               </p>
               <h3 className="mt-1 text-sm font-bold leading-snug text-navy">{project}</h3>
               <p className="mt-2 text-[0.75rem] leading-relaxed text-ink">{desc}</p>
-            </article>
+            </Link>
           ))}
         </div>
       </div>

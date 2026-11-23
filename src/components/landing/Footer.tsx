@@ -1,6 +1,10 @@
-import { Globe, Instagram, Mail, MapPin, MessageCircle } from "lucide-react";
+import { Clock, Instagram, Mail, MapPin, MessageCircle } from "lucide-react";
 import type { LucideProps } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+
+import { CONTACT, SOCIALS, WHATSAPP_URL } from "@/lib/site";
 import { LeafSwoosh } from "./Decor";
+import { Logo } from "./Logo";
 
 function YoutubeFilled({ className }: LucideProps) {
   return (
@@ -9,6 +13,7 @@ function YoutubeFilled({ className }: LucideProps) {
     </svg>
   );
 }
+
 function FacebookFilled({ className }: LucideProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
@@ -16,37 +21,55 @@ function FacebookFilled({ className }: LucideProps) {
     </svg>
   );
 }
-function LinkedinFilled({ className }: LucideProps) {
+
+function TikTokFilled({ className }: LucideProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
-      <path d="M3.5 8.8h3.7V21H3.5V8.8ZM5.3 3a2.1 2.1 0 1 1 0 4.3 2.1 2.1 0 0 1 0-4.3Zm4.2 5.8h3.5v1.7h.1c.5-.9 1.7-2 3.6-2 3.8 0 4.5 2.5 4.5 5.8V21h-3.7v-5.9c0-1.4 0-3.2-2-3.2s-2.2 1.5-2.2 3.1v6H9.5V8.8Z" />
+      <path d="M16.5 3c.4 2.2 1.7 3.6 3.9 3.9v2.6c-1.4.1-2.7-.3-3.9-1.1v6.1c0 3.2-2.2 5.5-5.3 5.5-2.9 0-5.2-2.1-5.2-5 0-3 2.4-5.2 5.5-5v2.7c-.3 0-.6-.1-.9-.1-1.4 0-2.4 1-2.4 2.4 0 1.4 1 2.3 2.3 2.3 1.5 0 2.5-1 2.5-2.7V3h3.5Z" />
     </svg>
   );
 }
-import { Link } from "@tanstack/react-router";
-import { Logo } from "./Logo";
 
-const nav = [
-  { label: "Beranda", href: "#beranda" },
-  { label: "Tentang", href: "#tentang" },
-  { label: "Ekosistem", href: "#ekosistem" },
-  { label: "Program", href: "#program" },
-];
-const info = [
-  { label: "Dampak", href: "#dampak" },
-  { label: "Jejaring", href: "#jejaring" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Reservasi", href: "#reservasi" },
-];
-const socials = [
-  { icon: YoutubeFilled, label: "YouTube" },
-  { icon: Instagram, label: "Instagram" },
-  { icon: FacebookFilled, label: "Facebook" },
-  { icon: LinkedinFilled, label: "LinkedIn" },
-  { icon: Globe, label: "Website" },
+function SocialIcon({ label, className }: { label: string; className?: string }) {
+  if (label === "YouTube") return <YoutubeFilled className={className} />;
+  if (label === "Facebook") return <FacebookFilled className={className} />;
+  if (label === "TikTok") return <TikTokFilled className={className} />;
+  return <Instagram className={className} />;
+}
+
+type FooterLink = {
+  label: string;
+  to?:
+    | "/products"
+    | "/program"
+    | "/eduwisata"
+    | "/cerita"
+    | "/artikel"
+    | "/untuk"
+    | "/tentang"
+    | "/kontak"
+    | "/kebijakan-privasi"
+    | "/syarat-ketentuan";
+  href?: string;
+};
+
+const explore: FooterLink[] = [
+  { label: "Produk", to: "/products" },
+  { label: "Program", to: "/program" },
+  { label: "Eduwisata", to: "/eduwisata" },
+  { label: "Cerita", to: "/cerita" },
+  { label: "Artikel", to: "/artikel" },
+  { label: "Solusi", to: "/untuk" },
 ];
 
-export function Footer({ variant = "landing" }: { variant?: "landing" | "detail" }) {
+const info: FooterLink[] = [
+  { label: "Tentang", to: "/tentang" },
+  { label: "Kontak", to: "/kontak" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Reservasi", href: "/#reservasi" },
+];
+
+export function Footer() {
   return (
     <footer id="kontak" className="relative overflow-hidden pt-12">
       <LeafSwoosh className="absolute bottom-16 right-0 hidden h-40 w-48 md:block" />
@@ -67,64 +90,79 @@ export function Footer({ variant = "landing" }: { variant?: "landing" | "detail"
         className="relative mx-auto grid max-w-7xl gap-10 px-6 sm:grid-cols-2 lg:grid-cols-[1.6fr_0.8fr_1fr_1.2fr] lg:px-12"
       >
         <div>
-          <Logo href={variant === "detail" ? "/" : "#beranda"} />
+          <Logo href="/" />
           <p className="mt-4 max-w-xs text-[0.8rem] leading-relaxed text-ink">
-            Pusat Eduwisata IT & Laboratorium Peradaban Digital di RT 06/RW 21 Surakarta, bagian
-            dari Bin Alfan Group.
+            Pusat riset dan pengembangan pendidikan berbasis adab dan IT di Cemani, Grogol,
+            Sukoharjo, bagian dari Bin Alfan Group.
           </p>
           <div className="mt-6 flex gap-5 text-navy">
-            {socials.map(({ icon: Icon, label }) => (
+            {SOCIALS.map(({ label, href }) => (
               <a
                 key={label}
-                href="#"
+                href={href}
+                target="_blank"
+                rel="noreferrer"
                 aria-label={label}
                 className="transition-colors hover:text-forest"
               >
-                <Icon className="size-[18px]" />
+                <SocialIcon label={label} className="size-[18px]" />
               </a>
             ))}
           </div>
         </div>
-        <FooterCol title="Navigasi" items={nav} />
+
+        <FooterCol title="Jelajahi" items={explore} />
         <FooterCol title="Informasi" items={info} />
+
         <div>
           <h3 className="text-sm font-bold text-navy">Kontak Kami</h3>
           <ul className="mt-4 space-y-3 text-[0.78rem] text-ink">
-            <li className="flex items-center gap-3">
-              <MapPin className="size-4" /> RT 06 / RW 21, Surakarta, Jawa Tengah
+            <li className="flex items-start gap-3">
+              <MapPin className="mt-0.5 size-4 shrink-0" />
+              <address className="not-italic leading-relaxed">
+                {CONTACT.address.lines.map((line, index) => (
+                  <span key={line}>
+                    {line}
+                    {index < CONTACT.address.lines.length - 1 && <br />}
+                  </span>
+                ))}
+              </address>
             </li>
             <li className="flex items-center gap-3">
-              <Mail className="size-4" />{" "}
-              <a href="mailto:kampungitsolo@gmail.com" className="hover:text-forest">
-                kampungitsolo@gmail.com
+              <Mail className="size-4 shrink-0" />
+              <a href={`mailto:${CONTACT.email}`} className="break-all hover:text-forest">
+                {CONTACT.email}
               </a>
             </li>
             <li className="flex items-center gap-3">
-              <MessageCircle className="size-4" />{" "}
-              <a href="https://wa.me/6281235666665" className="hover:text-forest">
-                +62 812-3566-6665
+              <MessageCircle className="size-4 shrink-0" />
+              <a href={WHATSAPP_URL} className="hover:text-forest">
+                {CONTACT.phoneDisplay}
               </a>
             </li>
-            <li className="flex items-center gap-3">
-              <Globe className="size-4" />{" "}
-              <a href="https://kampungitsolo.com" className="hover:text-forest">
-                www.kampungitsolo.com
-              </a>
+            <li className="flex items-start gap-3">
+              <Clock className="mt-0.5 size-4 shrink-0" />
+              <span className="leading-relaxed">
+                Senin-Jumat 08.00-16.00
+                <br />
+                Sabtu 08.00-13.00
+              </span>
             </li>
           </ul>
         </div>
       </div>
+
       <div className="relative mx-auto mt-10 max-w-7xl px-6 lg:px-12">
         <div className="flex flex-col gap-3 border-t border-border py-6 text-[0.7rem] text-ink sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 Kampung IT Solo. Bersama Membangun Peradaban Digital.</p>
           <div className="flex items-center gap-3">
-            <a href="#" className="hover:text-forest">
+            <Link to="/kebijakan-privasi" className="hover:text-forest">
               Kebijakan Privasi
-            </a>
+            </Link>
             <span className="h-3 w-px bg-border" />
-            <a href="#" className="hover:text-forest">
+            <Link to="/syarat-ketentuan" className="hover:text-forest">
               Syarat & Ketentuan
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -132,16 +170,22 @@ export function Footer({ variant = "landing" }: { variant?: "landing" | "detail"
   );
 }
 
-function FooterCol({ title, items }: { title: string; items: { label: string; href: string }[] }) {
+function FooterCol({ title, items }: { title: string; items: FooterLink[] }) {
   return (
     <div>
       <h3 className="text-sm font-bold text-navy">{title}</h3>
       <ul className="mt-4 space-y-2.5 text-[0.78rem] text-ink">
         {items.map((item) => (
           <li key={item.label}>
-            <Link to="/" hash={item.href.slice(1)} className="hover:text-forest">
-              {item.label}
-            </Link>
+            {item.to ? (
+              <Link to={item.to} className="hover:text-forest">
+                {item.label}
+              </Link>
+            ) : (
+              <a href={item.href} className="hover:text-forest">
+                {item.label}
+              </a>
+            )}
           </li>
         ))}
       </ul>

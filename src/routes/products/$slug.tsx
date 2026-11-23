@@ -2,14 +2,25 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, Check, MessageCircle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Navbar } from "@/components/landing/Navbar";
-import { Footer } from "@/components/landing/Footer";
 import { SectionLabel } from "@/components/landing/SectionLabel";
 import { LeafSwoosh } from "@/components/landing/Decor";
+import { Breadcrumbs } from "@/components/site/Breadcrumbs";
+import { JsonLd } from "@/components/site/JsonLd";
+import { PageShell } from "@/components/site/PageShell";
+import { RelatedLinks } from "@/components/site/RelatedLinks";
 import { getProduct, products } from "@/data/products";
-import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { getProgram } from "@/data/programs";
+import { getStory } from "@/data/stories";
+import { pageHead } from "@/lib/seo";
+import { absoluteUrl, canonicalUrl, WHATSAPP_URL } from "@/lib/site";
 
-const WHATSAPP = "https://wa.me/6281235666665";
+const DESCRIPTION_SUFFIX = " Konsultasi kebutuhan lembaga Anda bersama Kampung IT Solo.";
+
+function productDescription(summary: string) {
+  const combined = `${summary}${DESCRIPTION_SUFFIX}`;
+  if (combined.length <= 160) return combined;
+  return `${combined.slice(0, 157).replace(/\s+\S*$/, "")}...`;
+}
 
 export const Route = createFileRoute("/products/$slug")({
   loader: ({ params }) => {
@@ -19,22 +30,13 @@ export const Route = createFileRoute("/products/$slug")({
   },
   head: ({ loaderData }) => {
     const product = loaderData?.product;
-    return {
-      meta: [
-        { title: product ? `${product.name} · Kampung IT Solo` : "Produk · Kampung IT Solo" },
-        {
-          name: "description",
-          content:
-            product?.summary ?? "Produk dan layanan Kampung IT Solo, bagian dari Bin Alfan Group.",
-        },
-        { property: "og:title", content: product ? `${product.name} · Kampung IT Solo` : "Produk" },
-        {
-          property: "og:description",
-          content: product?.summary ?? "Produk dan layanan Kampung IT Solo.",
-        },
-        { property: "og:type", content: "website" },
-      ],
-    };
+    return pageHead({
+      title: product ? `${product.name} | Kampung IT Solo` : "Produk | Kampung IT Solo",
+      description: product
+        ? productDescription(product.summary)
+        : "Produk dan layanan Kampung IT Solo, bagian dari Bin Alfan Group.",
+      path: product ? `/products/${product.slug}` : "/products",
+    });
   },
   component: ProductDetail,
 });
@@ -47,14 +49,43 @@ function ProductDetail() {
     ...products.filter((p) => p.slug !== product.slug && p.category !== product.category),
   ].slice(0, 3);
 
-  useScrollReveal(product.slug);
+  const relatedPrograms = (product.relatedProgramSlugs ?? [])
+    .map((slug) => getProgram(slug))
+    .filter((program): program is NonNullable<typeof program> => Boolean(program?.published));
+
+  const relatedStories = (product.relatedStorySlugs ?? [])
+    .map((slug) => getStory(slug))
+    .filter((story): story is NonNullable<typeof story> =>
+      Boolean(story?.published && story.permission === "granted"),
+    );
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar variant="detail" />
-
+    <PageShell revealKey={product.slug}>
       {/* key: replay the entrance motion when moving to another product */}
-      <main key={product.slug}>
+      <div key={product.slug}>
+        <div className="border-b border-border bg-section-tint pt-24">
+          <div className="mx-auto max-w-7xl px-6 pb-4 lg:px-12">
+            <Breadcrumbs
+              items={[
+                { label: "Beranda", href: "/" },
+                { label: "Produk", href: "/products" },
+                { label: product.name },
+              ]}
+            />
+          </div>
+        </div>
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: product.name,
+            description: product.summary,
+            category: product.category,
+            url: canonicalUrl(`/products/${product.slug}`),
+            image: absoluteUrl(product.image),
+            brand: { "@type": "Organization", name: "Kampung IT Solo" },
+          }}
+        />
         <section className="relative overflow-hidden bg-section-tint">
           <LeafSwoosh className="absolute -bottom-2 right-0 hidden h-28 w-[36%] md:block" />
           <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 py-12 lg:grid-cols-[1.05fr_0.95fr] lg:px-12 lg:py-16">
@@ -89,7 +120,7 @@ function ProductDetail() {
                   </Button>
                 )}
                 <Button variant="forest" size="pill" asChild>
-                  <a href={WHATSAPP} target="_blank" rel="noreferrer">
+                  <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
                     Hubungi Kami <MessageCircle />
                   </a>
                 </Button>
@@ -211,6 +242,36 @@ function ProductDetail() {
           </section>
         )}
 
+        {relatedPrograms.length > 0 && (
+          <RelatedLinks
+            eyebrow="Program terkait"
+            title="Program yang mendukung produk ini."
+            description="Lihat program pendampingan yang bisa membantu lembaga memakai produk ini dengan lebih terarah."
+            className="bg-section-tint py-14"
+            items={relatedPrograms.map((program) => ({
+              href: `/program/${program.slug}`,
+              title: program.name,
+              description: program.cardDesc,
+              meta: program.format,
+              image: program.image,
+            }))}
+          />
+        )}
+
+        {relatedStories.length > 0 && (
+          <RelatedLinks
+            eyebrow="Cerita terkait"
+            title="Cerita dari lapangan."
+            items={relatedStories.map((story) => ({
+              href: `/cerita/${story.slug}`,
+              title: story.title,
+              description: story.cardDesc,
+              meta: `${story.client} · ${story.year}`,
+              image: story.images[0]?.src,
+            }))}
+          />
+        )}
+
         <section className="py-14">
           <div className="mx-auto max-w-7xl px-6 lg:px-12">
             <div
@@ -224,8 +285,7 @@ function ProductDetail() {
                 </h2>
               </div>
               <Link
-                to="/"
-                hash="ekosistem"
+                to="/products"
                 className="inline-flex items-center gap-1.5 text-[0.78rem] font-bold text-forest hover:underline"
               >
                 Lihat semua produk <ArrowRight className="size-3.5" />
@@ -282,7 +342,7 @@ function ProductDetail() {
               </div>
               <div className="flex flex-wrap gap-3 md:ml-auto">
                 <Button variant="lime" size="pill" asChild>
-                  <a href={WHATSAPP} target="_blank" rel="noreferrer">
+                  <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
                     Hubungi Kami <MessageCircle />
                   </a>
                 </Button>
@@ -295,9 +355,7 @@ function ProductDetail() {
             </div>
           </div>
         </section>
-      </main>
-
-      <Footer variant="detail" />
-    </div>
+      </div>
+    </PageShell>
   );
 }

@@ -1,6 +1,11 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import hands from "@/assets/cta-hands.jpg";
+
+const CTA_WHATSAPP_URL = buildWhatsAppUrl(
+  "Halo Kampung IT Solo, saya ingin berdiskusi tentang rencana kolaborasi atau kunjungan.",
+);
 
 export function Cta() {
   return (
@@ -16,7 +21,7 @@ export function Cta() {
       <div className="absolute inset-0 bg-gradient-cta" />
       <div
         data-reveal="up"
-        className="relative mx-auto flex max-w-7xl flex-col gap-6 px-6 py-10 md:flex-row md:items-center lg:px-12"
+        className="relative mx-auto flex max-w-7xl flex-col gap-6 px-6 py-12 md:flex-row lg:py-14 md:items-center lg:px-12"
       >
         <div className="flex items-center gap-8">
           <svg
@@ -37,19 +42,29 @@ export function Cta() {
           </svg>
           <div>
             <h2 className="text-xl font-extrabold text-navy-foreground lg:text-2xl">
-              Mari Bangun Masa Depan Digital Bersama.
+              Punya rencana untuk kampung Anda?
             </h2>
             <p className="mt-1 max-w-xl text-[0.8rem] leading-snug text-navy-foreground/85">
-              Ajak sekolah, komunitas, pemerintah, dan mitra industri untuk berkolaborasi membangun
-              ekosistem inovasi teknologi yang bermanfaat bagi masyarakat.
+              Sekolah, komunitas, pemerintah desa, dan mitra industri. Mari rancang program digital
+              yang tepat sasaran, dari pelatihan hingga implementasi sistem.
+            </p>
+            <p className="mt-3 text-[0.7rem] font-semibold text-lime">
+              Ceritakan kebutuhan Anda · Tim kami akan membantu memetakan langkah berikutnya
             </p>
           </div>
         </div>
-        <Button variant="lime" size="pill" className="md:ml-auto" asChild>
-          <a href="#reservasi">
-            Mulai Kolaborasi <ArrowRight />
-          </a>
-        </Button>
+        <div className="flex flex-col gap-3 sm:flex-row md:ml-auto">
+          <Button variant="lime" size="pill" asChild>
+            <a href="#reservasi">
+              Jadwalkan Kunjungan <ArrowRight />
+            </a>
+          </Button>
+          <Button variant="outlinePill" size="pill" asChild>
+            <a href={CTA_WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+              <MessageCircle /> Tanya via WhatsApp
+            </a>
+          </Button>
+        </div>
       </div>
     </section>
   );

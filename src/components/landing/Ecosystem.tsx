@@ -4,10 +4,11 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionLabel } from "./SectionLabel";
 import { products } from "@/data/products";
+import { WHATSAPP_URL } from "@/lib/site";
 
 export function Ecosystem() {
   return (
-    <section id="ekosistem" className="relative overflow-hidden py-14">
+    <section id="ekosistem" className="relative overflow-hidden py-16 lg:py-20">
       <div className="pointer-events-none absolute inset-0 bg-streaks" />
       <div className="pointer-events-none absolute right-6 top-14 hidden h-20 w-16 bg-dots opacity-70 lg:block" />
       <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 lg:grid-cols-[0.9fr_1.6fr] lg:px-12">
@@ -22,11 +23,18 @@ export function Ecosystem() {
             10 produk inovatif, dari AI dan energi hijau hingga IoT, yang memberdayakan pendidikan
             dan kehidupan sehari-hari.
           </p>
-          <Button variant="navy" size="pillSm" className="mt-6" asChild>
-            <a href="https://wa.me/6281235666665" target="_blank" rel="noreferrer">
-              Konsultasi Produk <ArrowRight />
-            </a>
-          </Button>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Button variant="navy" size="pillSm" asChild>
+              <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+                Konsultasi Produk <ArrowRight />
+              </a>
+            </Button>
+            <Button variant="outlinePill" size="pillSm" asChild>
+              <Link to="/products">
+                Lihat Semua Produk <ArrowRight />
+              </Link>
+            </Button>
+          </div>
         </div>
 
         <EcoCarousel />
