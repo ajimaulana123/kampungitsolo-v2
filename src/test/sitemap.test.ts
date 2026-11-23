@@ -23,12 +23,12 @@ describe("Sitemap", () => {
     }
   });
 
-  it("includes Batch 3 routes but not unpublished audiences", () => {
+  it("includes Batch 3 routes including all published audiences", () => {
     expect(xml).toContain("/program");
     expect(xml).toContain("/eduwisata");
     expect(xml).toContain("/cerita");
     expect(xml).toContain("/artikel/kursus-coding-untuk-anak-di-solo");
     expect(xml).toContain("/untuk/sekolah");
-    expect(xml).not.toContain("/untuk/pesantren");
+    expect(xml).toContain("/untuk/pesantren");
   });
 });

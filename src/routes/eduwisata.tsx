@@ -78,11 +78,11 @@ const faqs = [
   },
   {
     q: "Berapa jumlah peserta yang bisa dilayani?",
-    a: "Jumlah peserta dikonfirmasi saat penjadwalan agar ruang, aktivitas, dan pendampingan bisa disiapkan dengan tepat.",
+    a: "Kapasitas ruangan dan pendampingan optimal hingga maksimal 35 peserta per sesi agar sesi praktik dan diskusi berjalan efektif.",
   },
   {
     q: "Apakah ada biaya?",
-    a: "Biaya kunjungan menyesuaikan alur dan kebutuhan kegiatan. Rinciannya disampaikan saat penjadwalan, sebelum kunjungan dilaksanakan.",
+    a: "Biaya kunjungan fleksibel menyesuaikan kebutuhan alur dan konsumsi kegiatan. Rincian penawaran paket disampaikan langsung via WhatsApp sebelum jadwal dikonfirmasi.",
   },
   {
     q: "Bagaimana cara mendaftar?",
@@ -255,7 +255,7 @@ function EduwisataPage() {
             <div className="flex flex-col justify-center rounded-2xl bg-navy p-5 text-navy-foreground">
               <Users className="size-6 text-lime" />
               <p className="mt-3 text-[0.8rem] font-bold leading-snug">
-                Fasilitas dan jumlah peserta dikonfirmasi saat penjadwalan.
+                Kapasitas optimal hingga maksimal 35 peserta per sesi kunjungan.
               </p>
             </div>
           </div>

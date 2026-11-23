@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { buildInquiryMessage, buildWhatsAppUrl, normalizeWhatsapp } from "./whatsapp";
+import { buildInquiryMessage, buildWhatsAppUrl, normalizeWhatsapp, WA_MESSAGES } from "./whatsapp";
 
 describe("normalizeWhatsapp", () => {
   it("normalizes local, 62, and +62 numbers", () => {
@@ -42,5 +42,19 @@ describe("buildWhatsAppUrl", () => {
 
     expect(url.startsWith("https://wa.me/6281235666665?text=")).toBe(true);
     expect(url).toContain("Halo%20%26%20selamat%20datang");
+  });
+
+  it("returns base URL when message is empty or omitted", () => {
+    expect(buildWhatsAppUrl()).toBe("https://wa.me/6281235666665");
+    expect(buildWhatsAppUrl("")).toBe("https://wa.me/6281235666665");
+  });
+
+  it("provides contextual WA_MESSAGES templates", () => {
+    expect(WA_MESSAGES.general).toContain("Halo Kampung IT Solo");
+    expect(WA_MESSAGES.product("Elfan POS")).toContain("Elfan POS");
+    expect(WA_MESSAGES.product()).toContain("produk dan layanan");
+    expect(WA_MESSAGES.program("Bootcamp AI")).toContain("Bootcamp AI");
+    expect(WA_MESSAGES.program()).toContain("program pelatihan");
+    expect(WA_MESSAGES.audience("SMK")).toContain("solusi untuk SMK");
   });
 });

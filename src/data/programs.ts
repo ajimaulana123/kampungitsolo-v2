@@ -54,7 +54,7 @@ export const programs: Program[] = [
       "Desa punya gambaran langkah digitalisasi berikutnya yang realistis.",
     ],
     format: "Pelatihan kelompok dan pendampingan",
-    duration: "Menyesuaikan ruang lingkup",
+    duration: "1 minggu",
     location: "Di lokasi desa atau Cemani, Grogol, Sukoharjo",
     schedule: "Jadwal disepakati bersama",
     curriculum: [
@@ -121,7 +121,7 @@ export const programs: Program[] = [
       "Peserta punya daftar perlengkapan sederhana yang bisa disiapkan sebelum sesi foto berikutnya.",
     ],
     format: "Workshop praktik",
-    duration: "Satu sesi atau beberapa sesi",
+    duration: "1 minggu",
     location: "Cemani, Grogol, Sukoharjo atau lokasi mitra",
     schedule: "Menyesuaikan kebutuhan kelompok",
     curriculum: [
@@ -190,7 +190,7 @@ export const programs: Program[] = [
       "Peserta berani mencoba proyek baru setelah kelas selesai.",
     ],
     format: "Kelas reguler",
-    duration: "Sesi mingguan",
+    duration: "1 minggu intensif atau mingguan",
     location: "Cemani, Grogol, Sukoharjo",
     schedule: "Akhir pekan, jadwal per angkatan",
     curriculum: [
@@ -259,7 +259,7 @@ export const programs: Program[] = [
       "Peserta punya rencana kebiasaan digital yang ingin dicoba setelah sesi.",
     ],
     format: "Sesi diskusi dan lokakarya",
-    duration: "Satu atau beberapa sesi",
+    duration: "1 minggu",
     location: "Di lokasi mitra atau Cemani, Grogol, Sukoharjo",
     schedule: "Menyesuaikan kebutuhan kelompok",
     curriculum: [
@@ -327,7 +327,7 @@ export const programs: Program[] = [
       "Peserta tahu langkah memeriksa kode bantuan AI sebelum dipakai.",
     ],
     format: "Bootcamp intensif",
-    duration: "6 hari",
+    duration: "1 minggu (6 hari)",
     location: "Lokasi dikonfirmasi saat pendaftaran",
     schedule: "Jadwal per batch",
     price: "Rp 500.000",
@@ -397,7 +397,7 @@ export const programs: Program[] = [
       "Lembaga punya titik awal yang jelas untuk implementasi berikutnya.",
     ],
     format: "Pendampingan implementasi",
-    duration: "Menyesuaikan ruang lingkup",
+    duration: "Pilot awal 1 minggu",
     location: "Di lembaga mitra",
     schedule: "Menyesuaikan kesiapan lembaga",
     curriculum: [

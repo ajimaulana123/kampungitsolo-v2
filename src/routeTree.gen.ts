@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BootcampRouteImport } from './routes/bootcamp'
 import { Route as EduwisataRouteImport } from './routes/eduwisata'
 import { Route as KebijakanPrivasiRouteImport } from './routes/kebijakan-privasi'
 import { Route as KontakRouteImport } from './routes/kontak'
@@ -30,6 +31,11 @@ import { Route as UntukSlugRouteImport } from './routes/untuk/$slug'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BootcampRoute = BootcampRouteImport.update({
+  id: '/bootcamp',
+  path: '/bootcamp',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EduwisataRoute = EduwisataRouteImport.update({
@@ -115,6 +121,7 @@ const UntukSlugRoute = UntukSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/bootcamp': typeof BootcampRoute
   '/eduwisata': typeof EduwisataRoute
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kontak': typeof KontakRoute
@@ -134,6 +141,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/bootcamp': typeof BootcampRoute
   '/eduwisata': typeof EduwisataRoute
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kontak': typeof KontakRoute
@@ -154,6 +162,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/bootcamp': typeof BootcampRoute
   '/eduwisata': typeof EduwisataRoute
   '/kebijakan-privasi': typeof KebijakanPrivasiRoute
   '/kontak': typeof KontakRoute
@@ -175,6 +184,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/bootcamp'
     | '/eduwisata'
     | '/kebijakan-privasi'
     | '/kontak'
@@ -194,6 +204,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/bootcamp'
     | '/eduwisata'
     | '/kebijakan-privasi'
     | '/kontak'
@@ -213,6 +224,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/bootcamp'
     | '/eduwisata'
     | '/kebijakan-privasi'
     | '/kontak'
@@ -233,6 +245,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BootcampRoute: typeof BootcampRoute
   EduwisataRoute: typeof EduwisataRoute
   KebijakanPrivasiRoute: typeof KebijakanPrivasiRoute
   KontakRoute: typeof KontakRoute
@@ -258,6 +271,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bootcamp': {
+      id: '/bootcamp'
+      path: '/bootcamp'
+      fullPath: '/bootcamp'
+      preLoaderRoute: typeof BootcampRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/eduwisata': {
@@ -377,6 +397,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BootcampRoute: BootcampRoute,
   EduwisataRoute: EduwisataRoute,
   KebijakanPrivasiRoute: KebijakanPrivasiRoute,
   KontakRoute: KontakRoute,

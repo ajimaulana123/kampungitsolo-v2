@@ -14,7 +14,8 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { pageHead } from "@/lib/seo";
-import { canonicalUrl, CONTACT, SITE_URL, SOCIALS, WHATSAPP_URL } from "@/lib/site";
+import { canonicalUrl, CONTACT, SITE_URL, SOCIALS } from "@/lib/site";
+import { buildWhatsAppUrl, WA_MESSAGES } from "@/lib/whatsapp";
 
 const faqs = [
   {
@@ -105,7 +106,7 @@ function ContactPage() {
         breadcrumbs={[{ label: "Beranda", href: "/" }, { label: "Kontak" }]}
         actions={
           <Button variant="forest" size="pill" asChild>
-            <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+            <a href={buildWhatsAppUrl(WA_MESSAGES.kontak)} target="_blank" rel="noreferrer">
               Chat WhatsApp <MessageCircle />
             </a>
           </Button>
@@ -141,7 +142,7 @@ function ContactPage() {
                   <MessageCircle className="size-4" /> WhatsApp
                 </p>
                 <a
-                  href={WHATSAPP_URL}
+                  href={buildWhatsAppUrl(WA_MESSAGES.kontak)}
                   target="_blank"
                   rel="noreferrer"
                   className="mt-2 block text-base font-bold text-navy hover:text-forest"
@@ -254,7 +255,11 @@ function ContactPage() {
         title="Ingin melihat langsung suasana belajar?"
         description="Jadwalkan kunjungan atau studi banding. Tim akan menyiapkan alur yang sesuai dengan kebutuhan lembaga Anda."
         primary={{ label: "Reservasi Kunjungan", href: "/#reservasi" }}
-        secondary={{ label: "Tanya via WhatsApp", href: WHATSAPP_URL, external: true }}
+        secondary={{
+          label: "Tanya via WhatsApp",
+          href: buildWhatsAppUrl(WA_MESSAGES.kontak),
+          external: true,
+        }}
       />
     </PageShell>
   );

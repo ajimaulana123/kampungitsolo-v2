@@ -1,7 +1,8 @@
 import type React from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
-import { CONTACT, WHATSAPP_URL } from "@/lib/site";
+import { CONTACT } from "@/lib/site";
+import { buildWhatsAppUrl, WA_MESSAGES } from "@/lib/whatsapp";
 import { SectionLabel } from "./SectionLabel";
 import {
   Accordion,
@@ -87,7 +88,9 @@ export function Faq() {
               Pertanyaan lain? Hubungi tim langsung.
             </p>
             <a
-              href={WHATSAPP_URL}
+              href={buildWhatsAppUrl(WA_MESSAGES.faq)}
+              target="_blank"
+              rel="noreferrer"
               className="mt-2 inline-flex items-center gap-2 text-[0.78rem] font-bold text-forest hover:underline"
             >
               WhatsApp {CONTACT.phoneDisplay}

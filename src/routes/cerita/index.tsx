@@ -9,7 +9,8 @@ import { Button } from "@/components/ui/button";
 import { getProgram } from "@/data/programs";
 import { publishedStories } from "@/data/stories";
 import { pageHead } from "@/lib/seo";
-import { canonicalUrl, WHATSAPP_URL } from "@/lib/site";
+import { canonicalUrl } from "@/lib/site";
+import { buildWhatsAppUrl, WA_MESSAGES } from "@/lib/whatsapp";
 
 const STORY_SCHEMA = {
   "@context": "https://schema.org",
@@ -69,7 +70,7 @@ function StoriesPage() {
               </Link>
             </Button>
             <Button variant="outlinePill" size="pill" asChild>
-              <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+              <a href={buildWhatsAppUrl(WA_MESSAGES.cerita)} target="_blank" rel="noreferrer">
                 <MessageCircle /> Tanya via WhatsApp
               </a>
             </Button>
@@ -182,7 +183,11 @@ function StoriesPage() {
         title="Bagaimana dengan lembaga Anda?"
         description="Setiap kolaborasi dimulai dari kebutuhan yang jelas. Ceritakan kondisi lembaga, komunitas, atau usaha Anda, lalu tim akan membantu memetakan langkah pertama."
         primary={{ label: "Diskusikan Kebutuhan", href: "/kontak" }}
-        secondary={{ label: "Tanya via WhatsApp", href: WHATSAPP_URL, external: true }}
+        secondary={{
+          label: "Tanya via WhatsApp",
+          href: buildWhatsAppUrl(WA_MESSAGES.cerita),
+          external: true,
+        }}
       />
     </PageShell>
   );

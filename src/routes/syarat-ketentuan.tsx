@@ -5,7 +5,8 @@ import { PageHero } from "@/components/site/PageHero";
 import { PageShell } from "@/components/site/PageShell";
 import { Prose } from "@/components/site/Prose";
 import { pageHead } from "@/lib/seo";
-import { canonicalUrl, CONTACT, WHATSAPP_URL } from "@/lib/site";
+import { canonicalUrl, CONTACT } from "@/lib/site";
+import { buildWhatsAppUrl, WA_MESSAGES } from "@/lib/whatsapp";
 
 const TERMS_SCHEMA = {
   "@context": "https://schema.org",
@@ -100,7 +101,7 @@ function TermsPage() {
               <p>
                 Pertanyaan tentang ketentuan ini dapat dikirim ke{" "}
                 <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> atau{" "}
-                <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+                <a href={buildWhatsAppUrl(WA_MESSAGES.legal)} target="_blank" rel="noreferrer">
                   WhatsApp {CONTACT.phoneDisplay}
                 </a>
                 .

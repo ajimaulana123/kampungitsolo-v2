@@ -5,11 +5,17 @@ import { Button } from "@/components/ui/button";
 import { getProgram } from "@/data/programs";
 import { publishedStories } from "@/data/stories";
 import { SectionLabel } from "./SectionLabel";
+import { TestimonialSlider, type TestimonialItem } from "./TestimonialSlider";
 import seminar from "@/assets/impact-seminar.jpg";
 import umkm from "@/assets/impact-umkm.jpg";
 import team from "@/assets/impact-team.jpg";
 import city from "@/assets/impact-city.jpg";
 import classroom from "@/assets/about-class.jpg";
+import heroBuilding from "@/assets/hero-building.jpg";
+import avatar1 from "@/assets/avatar-1.jpg";
+import avatar2 from "@/assets/avatar-2.jpg";
+import avatar3 from "@/assets/avatar-3.jpg";
+import avatar4 from "@/assets/avatar-4.jpg";
 
 const cases = publishedStories.map((story, index) => ({
   no: String(index + 1).padStart(2, "0"),
@@ -19,6 +25,54 @@ const cases = publishedStories.map((story, index) => ({
   desc: story.cardDesc,
   slug: story.slug,
 }));
+
+const TESTIMONIALS: TestimonialItem[] = [
+  {
+    quote:
+      "Santri tidak hanya belajar ilmu agama, tapi di sini dilatih memahami kecerdasan buatan (AI) dan teknologi terapan dengan adab yang tetap terjaga. Ini bekal kemandirian nyata untuk generasi santri.",
+    name: "Pembina Santri",
+    role: "Pengasuh & Instruktur",
+    organization: "IDBC & Elfan AI Academy",
+    client: "Pesantren Digital",
+    image: classroom,
+    imageAlt: "Santri dan pelajar mengikuti sesi teknologi di laboratorium Kampung IT Solo",
+    avatar: avatar1,
+  },
+  {
+    quote:
+      "Dulu arsip dan pengumuman warga tersebar di berkas fisik dan grup chat. Setelah pendampingan dari tim Kampung IT Solo, alur kerja digital desa jadi tertata rapi dan layanan surat-menyurat warga jauh lebih cepat.",
+    name: "Perangkat Desa & Pegiat Komunitas",
+    role: "Mitra Pelatihan Desa Digital",
+    organization: "Sukoharjo",
+    client: "Pemerintah Desa",
+    image: team,
+    imageAlt: "Pendampingan kerja digital dan pengelolaan informasi bersama perangkat desa",
+    avatar: avatar2,
+  },
+  {
+    quote:
+      "Tempat belajar teknologi yang sangat inspiratif di Solo Raya. Fasilitas lab dan perpustakaan digitalnya lengkap, suasananya nyaman, dan mentor membimbing langkah demi langkah dengan ramah.",
+    name: "Pengunjung Studi Banding & Eduwisata",
+    role: "Ulasan Terverifikasi",
+    organization: "Google Maps",
+    client: "Eduwisata Solo Raya",
+    rating: 5,
+    image: heroBuilding,
+    imageAlt: "Gedung pusat eduwisata IT dan laboratorium peradaban Kampung IT Solo",
+    avatar: avatar3,
+  },
+  {
+    quote:
+      "Sebelumnya foto katalog kami gelap dan kurang meyakinkan di marketplace. Setelah ikut workshop, kami bisa foto dan buat video produk yang bersih hanya bermodal kamera ponsel sendiri.",
+    name: "Pelaku Usaha Batik",
+    role: "Peserta Workshop UMKM",
+    organization: "Solo Raya",
+    client: "UMKM Solo Raya",
+    image: umkm,
+    imageAlt: "Praktik pengambilan foto dan video produk UMKM menggunakan smartphone",
+    avatar: avatar4,
+  },
+];
 
 function Photo({
   src,
@@ -132,6 +186,10 @@ export function Impact() {
               <p className="mt-2 text-[0.75rem] leading-relaxed text-ink">{desc}</p>
             </Link>
           ))}
+        </div>
+
+        <div className="mt-10">
+          <TestimonialSlider items={TESTIMONIALS} />
         </div>
       </div>
     </section>

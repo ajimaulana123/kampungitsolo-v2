@@ -145,7 +145,7 @@ export const audiences: Audience[] = [
     description: [
       "Pesantren punya kebutuhan digital yang tidak selalu sama dengan sekolah umum. Administrasi, pembelajaran, perpustakaan, komunikasi wali santri, dan kegiatan keagamaan berjalan dalam satu lingkungan yang padat.",
       "Kami memandang teknologi sebagai alat bantu, bukan pengganti guru atau pengasuh. Implementasi dimulai dari satu masalah yang disepakati, lalu disertai aturan penggunaan, pelatihan, dan pendampingan agar staf bisa merawatnya sendiri.",
-      "Halaman ini masih disiapkan karena kami belum memiliki cerita pesantren yang boleh dipublikasikan sebagai bukti. Kami tidak ingin menampilkan studi kasus yang tidak nyata. Silakan hubungi tim untuk mendiskusikan kebutuhan pesantren Anda.",
+      "Bersama ekosistem IDBC (Islamic Digital Boarding College) dan Alwustho Technologies, kami memadukan literasi digital Islam melalui platform Al-Kubro, Elfan Bookless Library, serta kurikulum AI terapan yang membentuk kemandirian santri berlandaskan nilai-nilai Qur'ani.",
     ],
     painPoints: [
       "Administrasi dan data santri tersebar di banyak berkas.",
@@ -155,7 +155,7 @@ export const audiences: Audience[] = [
     ],
     recommendedProgramSlugs: ["implementasi-elfan-system", "literasi-digital"],
     recommendedProductSlugs: ["elfan-system", "bookless-library", "smart-school"],
-    storySlugs: [],
+    storySlugs: ["pesantren-idbc-adab-it"],
     faqs: [
       {
         q: "Apakah pesantren harus memakai semua modul?",
@@ -171,7 +171,7 @@ export const audiences: Audience[] = [
       },
     ],
     image: buildingImg,
-    published: false,
+    published: true,
   },
 ];
 

@@ -13,8 +13,8 @@ import { getProduct } from "@/data/products";
 import { getProgram } from "@/data/programs";
 import { getStory } from "@/data/stories";
 import { pageHead } from "@/lib/seo";
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
-import { canonicalUrl, SITE_URL, WHATSAPP_URL } from "@/lib/site";
+import { buildWhatsAppUrl, WA_MESSAGES } from "@/lib/whatsapp";
+import { canonicalUrl, SITE_URL } from "@/lib/site";
 
 export const Route = createFileRoute("/untuk/$slug")({
   loader: ({ params }) => {
@@ -242,7 +242,11 @@ function AudienceDetail() {
           title={`Rancang solusi untuk ${audience.name.toLowerCase()}.`}
           description="Ceritakan kondisi, jumlah pengguna, dan hasil yang diharapkan. Tim akan membantu memilih program dan produk yang paling relevan."
           primary={{ label: "Konsultasi", href: "/kontak" }}
-          secondary={{ label: "Tanya via WhatsApp", href: WHATSAPP_URL, external: true }}
+          secondary={{
+            label: "Tanya via WhatsApp",
+            href: buildWhatsAppUrl(WA_MESSAGES.audience(audience.name)),
+            external: true,
+          }}
         />
       </div>
     </PageShell>

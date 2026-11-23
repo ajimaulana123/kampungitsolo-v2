@@ -106,9 +106,9 @@ describe("Program data", () => {
 });
 
 describe("Story data", () => {
-  it("has four published stories and all have permission", () => {
-    expect(stories).toHaveLength(4);
-    expect(publishedStories).toHaveLength(4);
+  it("has five published stories and all have permission", () => {
+    expect(stories).toHaveLength(5);
+    expect(publishedStories).toHaveLength(5);
     for (const story of publishedStories) {
       expect(story.permission).toBe("granted");
       expect(story.images.length).toBeGreaterThan(0);
@@ -169,7 +169,7 @@ describe("Article data", () => {
 
 describe("Audience data", () => {
   it("publishes only audiences with a program, product, and story", () => {
-    expect(publishedAudiences).toHaveLength(3);
+    expect(publishedAudiences).toHaveLength(4);
     for (const audience of publishedAudiences) {
       expect(audience.recommendedProgramSlugs.length).toBeGreaterThan(0);
       expect(audience.recommendedProductSlugs.length).toBeGreaterThan(0);
@@ -182,10 +182,10 @@ describe("Audience data", () => {
     }
   });
 
-  it("keeps pesantren unpublished until a real story exists", () => {
+  it("verifies pesantren audience is published with real story", () => {
     const pesantren = audiences.find((audience) => audience.slug === "pesantren");
-    expect(pesantren?.published).toBe(false);
-    expect(pesantren?.storySlugs).toEqual([]);
+    expect(pesantren?.published).toBe(true);
+    expect(pesantren?.storySlugs).toEqual(["pesantren-idbc-adab-it"]);
   });
 
   it("only references existing and published content", () => {
@@ -207,14 +207,13 @@ describe("Audience data", () => {
 
 describe("Route manifest", () => {
   it("contains every published page and no duplicates", () => {
-    expect(siteRoutes).toHaveLength(38);
+    expect(siteRoutes).toHaveLength(40);
     expect(new Set(siteRoutes.map((route) => route.path)).size).toBe(siteRoutes.length);
   });
 
-  it("contains Batch 3 pages and leaves unpublished audiences out", () => {
+  it("contains Batch 3 pages and published audiences", () => {
     for (const route of siteRoutes) {
       expect(route.path.startsWith("/")).toBe(true);
-      expect(route.path).not.toBe("/untuk/pesantren");
     }
     expect(publishedPaths.has("/artikel")).toBe(true);
     for (const article of publishedArticles) {
@@ -243,8 +242,8 @@ describe("Search entries", () => {
   it("indexes products, programs, stories, articles, and audiences", () => {
     expect(searchEntries.filter((entry) => entry.group === "Produk")).toHaveLength(10);
     expect(searchEntries.filter((entry) => entry.group === "Program")).toHaveLength(6);
-    expect(searchEntries.filter((entry) => entry.group === "Cerita")).toHaveLength(4);
+    expect(searchEntries.filter((entry) => entry.group === "Cerita")).toHaveLength(5);
     expect(searchEntries.filter((entry) => entry.group === "Artikel")).toHaveLength(4);
-    expect(searchEntries.filter((entry) => entry.group === "Solusi")).toHaveLength(3);
+    expect(searchEntries.filter((entry) => entry.group === "Solusi")).toHaveLength(4);
   });
 });

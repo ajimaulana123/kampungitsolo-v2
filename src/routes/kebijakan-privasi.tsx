@@ -5,7 +5,8 @@ import { PageHero } from "@/components/site/PageHero";
 import { PageShell } from "@/components/site/PageShell";
 import { Prose } from "@/components/site/Prose";
 import { pageHead } from "@/lib/seo";
-import { canonicalUrl, CONTACT, WHATSAPP_URL } from "@/lib/site";
+import { canonicalUrl, CONTACT } from "@/lib/site";
+import { buildWhatsAppUrl, WA_MESSAGES } from "@/lib/whatsapp";
 
 const PRIVACY_SCHEMA = {
   "@context": "https://schema.org",
@@ -93,7 +94,7 @@ function PrivacyPage() {
               <p>
                 Anda dapat meminta informasi, koreksi, atau penghapusan data yang Anda kirim dengan
                 menghubungi <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> atau{" "}
-                <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+                <a href={buildWhatsAppUrl(WA_MESSAGES.legal)} target="_blank" rel="noreferrer">
                   WhatsApp {CONTACT.phoneDisplay}
                 </a>
                 . Kami akan menindaklanjuti sesuai data yang tersedia di percakapan kami.

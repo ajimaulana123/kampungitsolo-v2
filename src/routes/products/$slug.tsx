@@ -12,7 +12,8 @@ import { getProduct, products } from "@/data/products";
 import { getProgram } from "@/data/programs";
 import { getStory } from "@/data/stories";
 import { pageHead } from "@/lib/seo";
-import { absoluteUrl, canonicalUrl, WHATSAPP_URL } from "@/lib/site";
+import { absoluteUrl, canonicalUrl } from "@/lib/site";
+import { buildWhatsAppUrl, WA_MESSAGES } from "@/lib/whatsapp";
 
 const DESCRIPTION_SUFFIX = " Konsultasi kebutuhan lembaga Anda bersama Kampung IT Solo.";
 
@@ -120,7 +121,11 @@ function ProductDetail() {
                   </Button>
                 )}
                 <Button variant="forest" size="pill" asChild>
-                  <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+                  <a
+                    href={buildWhatsAppUrl(WA_MESSAGES.product(product.name))}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     Hubungi Kami <MessageCircle />
                   </a>
                 </Button>
@@ -342,7 +347,11 @@ function ProductDetail() {
               </div>
               <div className="flex flex-wrap gap-3 md:ml-auto">
                 <Button variant="lime" size="pill" asChild>
-                  <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+                  <a
+                    href={buildWhatsAppUrl(WA_MESSAGES.product(product.name))}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     Hubungi Kami <MessageCircle />
                   </a>
                 </Button>

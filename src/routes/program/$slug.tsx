@@ -27,8 +27,8 @@ import { getProduct } from "@/data/products";
 import { getProgram, publishedPrograms, type Program } from "@/data/programs";
 import { getStory } from "@/data/stories";
 import { fitDescription, pageHead } from "@/lib/seo";
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
-import { canonicalUrl, SITE_URL, WHATSAPP_URL } from "@/lib/site";
+import { buildWhatsAppUrl, WA_MESSAGES } from "@/lib/whatsapp";
+import { canonicalUrl, SITE_URL } from "@/lib/site";
 
 function programSchema(program: Program) {
   const base = {
@@ -260,7 +260,11 @@ function ProgramDetail() {
                 )}
               </dl>
               <Button variant="forest" size="pill" className="mt-6 w-full" asChild>
-                <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+                <a
+                  href={buildWhatsAppUrl(WA_MESSAGES.program(program.name))}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Diskusikan Program <MessageCircle />
                 </a>
               </Button>

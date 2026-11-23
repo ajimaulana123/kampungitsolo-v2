@@ -52,8 +52,10 @@ export const CONTACT = {
 } as const;
 
 export const SOCIALS = [
-  { label: "YouTube", href: "https://www.youtube.com/@AlwusthoTechnologies" },
-  { label: "Instagram", href: "https://www.instagram.com/kampungit.solo/" },
+  { label: "YouTube Alwustho", href: "https://www.youtube.com/@AlwusthoTechnologies" },
+  { label: "YouTube Elfan AI", href: "https://www.youtube.com/@elfanaiacademy" },
+  { label: "Instagram Elfan AI", href: "https://www.instagram.com/elfanaiacademy.official/" },
+  { label: "Instagram Alwustho", href: "https://www.instagram.com/alwustho_tech/" },
   { label: "TikTok", href: "https://www.tiktok.com/@kampungitsolo" },
   { label: "Facebook", href: "https://www.facebook.com/kampungitsolo/" },
 ] as const;

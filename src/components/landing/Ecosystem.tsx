@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionLabel } from "./SectionLabel";
 import { products } from "@/data/products";
-import { WHATSAPP_URL } from "@/lib/site";
+import { buildWhatsAppUrl, WA_MESSAGES } from "@/lib/whatsapp";
 
 export function Ecosystem() {
   return (
@@ -25,7 +25,7 @@ export function Ecosystem() {
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Button variant="navy" size="pillSm" asChild>
-              <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+              <a href={buildWhatsAppUrl(WA_MESSAGES.product())} target="_blank" rel="noreferrer">
                 Konsultasi Produk <ArrowRight />
               </a>
             </Button>

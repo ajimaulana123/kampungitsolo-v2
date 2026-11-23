@@ -10,7 +10,8 @@ import { PageShell } from "@/components/site/PageShell";
 import { Button } from "@/components/ui/button";
 import { GOAL, GROUP_MEMBERS, MISSIONS, VISION } from "@/data/organization";
 import { pageHead } from "@/lib/seo";
-import { canonicalUrl, CONTACT, SITE_URL, SOCIALS, WHATSAPP_URL } from "@/lib/site";
+import { canonicalUrl, CONTACT, SITE_URL, SOCIALS } from "@/lib/site";
+import { buildWhatsAppUrl, WA_MESSAGES } from "@/lib/whatsapp";
 
 const ABOUT_SCHEMA = {
   "@context": "https://schema.org",
@@ -250,7 +251,7 @@ function AboutPage() {
                 </a>
               </Button>
               <Button variant="outlinePill" size="pill" asChild>
-                <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+                <a href={buildWhatsAppUrl(WA_MESSAGES.tentang)} target="_blank" rel="noreferrer">
                   <MessageCircle /> Tanya via WhatsApp
                 </a>
               </Button>
@@ -264,7 +265,11 @@ function AboutPage() {
         title="Ada rencana untuk lembaga atau kampung Anda?"
         description="Ceritakan kebutuhan Anda. Kami akan membantu memetakan langkah berikutnya, dari pelatihan hingga implementasi sistem."
         primary={{ label: "Hubungi Kami", href: "/kontak" }}
-        secondary={{ label: "Tanya via WhatsApp", href: WHATSAPP_URL, external: true }}
+        secondary={{
+          label: "Tanya via WhatsApp",
+          href: buildWhatsAppUrl(WA_MESSAGES.tentang),
+          external: true,
+        }}
       />
     </PageShell>
   );

@@ -8,7 +8,8 @@ import { PageShell } from "@/components/site/PageShell";
 import { Button } from "@/components/ui/button";
 import { publishedPrograms } from "@/data/programs";
 import { pageHead } from "@/lib/seo";
-import { canonicalUrl, WHATSAPP_URL } from "@/lib/site";
+import { canonicalUrl } from "@/lib/site";
+import { buildWhatsAppUrl, WA_MESSAGES } from "@/lib/whatsapp";
 
 const PROGRAM_SCHEMA = {
   "@context": "https://schema.org",
@@ -61,7 +62,7 @@ function ProgramPage() {
               </Link>
             </Button>
             <Button variant="outlinePill" size="pill" asChild>
-              <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+              <a href={buildWhatsAppUrl(WA_MESSAGES.program())} target="_blank" rel="noreferrer">
                 <MessageCircle /> Tanya via WhatsApp
               </a>
             </Button>
@@ -205,7 +206,11 @@ function ProgramPage() {
         title="Ceritakan kebutuhan lembaga Anda."
         description="Jumlah peserta, lokasi, waktu, dan hasil yang diharapkan akan membantu tim menyusun program yang paling masuk akal. Tidak semua program harus dimulai dari paket yang sama."
         primary={{ label: "Konsultasi Program", href: "/kontak" }}
-        secondary={{ label: "Tanya via WhatsApp", href: WHATSAPP_URL, external: true }}
+        secondary={{
+          label: "Tanya via WhatsApp",
+          href: buildWhatsAppUrl(WA_MESSAGES.program()),
+          external: true,
+        }}
       />
     </PageShell>
   );

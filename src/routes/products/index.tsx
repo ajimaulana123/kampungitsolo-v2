@@ -8,7 +8,8 @@ import { PageShell } from "@/components/site/PageShell";
 import { Button } from "@/components/ui/button";
 import { products } from "@/data/products";
 import { pageHead } from "@/lib/seo";
-import { canonicalUrl, WHATSAPP_URL } from "@/lib/site";
+import { canonicalUrl } from "@/lib/site";
+import { buildWhatsAppUrl, WA_MESSAGES } from "@/lib/whatsapp";
 
 const featured = products.find((product) => product.catalogFeatured) ?? products[0]!;
 const pillars = Array.from(new Set(products.map((product) => product.category)));
@@ -59,7 +60,7 @@ function ProductsPage() {
         breadcrumbs={[{ label: "Beranda", href: "/" }, { label: "Produk" }]}
         actions={
           <Button variant="forest" size="pill" asChild>
-            <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+            <a href={buildWhatsAppUrl(WA_MESSAGES.product())} target="_blank" rel="noreferrer">
               Konsultasi Produk <MessageCircle />
             </a>
           </Button>
@@ -96,7 +97,11 @@ function ProductsPage() {
                     </Link>
                   </Button>
                   <Button variant="outlinePill" size="pill" asChild>
-                    <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+                    <a
+                      href={buildWhatsAppUrl(WA_MESSAGES.product(featured.name))}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       Tanya via WhatsApp
                     </a>
                   </Button>
@@ -195,7 +200,11 @@ function ProductsPage() {
         title="Pilih produk yang sesuai kebutuhan lembaga Anda."
         description="Ceritakan kondisi lembaga, jumlah pengguna, dan target digitalisasinya. Tim akan membantu memetakan produk dan program yang paling relevan."
         primary={{ label: "Diskusikan Kebutuhan", href: "/kontak" }}
-        secondary={{ label: "Tanya via WhatsApp", href: WHATSAPP_URL, external: true }}
+        secondary={{
+          label: "Tanya via WhatsApp",
+          href: buildWhatsAppUrl(WA_MESSAGES.product()),
+          external: true,
+        }}
       />
     </PageShell>
   );

@@ -2,7 +2,8 @@ import { Clock, Instagram, Mail, MapPin, MessageCircle } from "lucide-react";
 import type { LucideProps } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
-import { CONTACT, SOCIALS, WHATSAPP_URL } from "@/lib/site";
+import { CONTACT, SOCIALS } from "@/lib/site";
+import { buildWhatsAppUrl, WA_MESSAGES } from "@/lib/whatsapp";
 import { LeafSwoosh } from "./Decor";
 import { Logo } from "./Logo";
 
@@ -31,9 +32,9 @@ function TikTokFilled({ className }: LucideProps) {
 }
 
 function SocialIcon({ label, className }: { label: string; className?: string }) {
-  if (label === "YouTube") return <YoutubeFilled className={className} />;
-  if (label === "Facebook") return <FacebookFilled className={className} />;
-  if (label === "TikTok") return <TikTokFilled className={className} />;
+  if (label.startsWith("YouTube")) return <YoutubeFilled className={className} />;
+  if (label.startsWith("Facebook")) return <FacebookFilled className={className} />;
+  if (label.startsWith("TikTok")) return <TikTokFilled className={className} />;
   return <Instagram className={className} />;
 }
 
@@ -136,7 +137,12 @@ export function Footer() {
             </li>
             <li className="flex items-center gap-3">
               <MessageCircle className="size-4 shrink-0" />
-              <a href={WHATSAPP_URL} className="hover:text-forest">
+              <a
+                href={buildWhatsAppUrl(WA_MESSAGES.general)}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-forest"
+              >
                 {CONTACT.phoneDisplay}
               </a>
             </li>

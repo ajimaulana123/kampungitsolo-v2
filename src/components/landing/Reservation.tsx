@@ -2,7 +2,8 @@ import { MapPin, Mail, MessageCircle } from "lucide-react";
 
 import building from "@/assets/hero-building.jpg";
 import { InquiryForm } from "@/components/forms/InquiryForm";
-import { CONTACT, WHATSAPP_URL } from "@/lib/site";
+import { CONTACT } from "@/lib/site";
+import { buildWhatsAppUrl, WA_MESSAGES } from "@/lib/whatsapp";
 
 export function Reservation() {
   return (
@@ -45,6 +46,29 @@ export function Reservation() {
                 <p className="mt-1.5 whitespace-pre-line text-[0.82rem] leading-relaxed text-navy-foreground/90">
                   {CONTACT.address.lines.join("\n")}
                 </p>
+                <a
+                  href={CONTACT.mapUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-lime/20 px-3.5 py-1.5 text-[0.72rem] font-bold text-lime transition-colors hover:bg-lime/30"
+                >
+                  <MapPin className="size-3.5" /> Buka Rute Google Maps
+                </a>
+              </div>
+
+              <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+                <div className="flex items-center gap-1.5 text-[0.7rem] font-bold text-lime">
+                  <span>⭐⭐⭐⭐⭐</span>
+                  <span className="text-white/80">Ulasan Google Maps (5.0)</span>
+                </div>
+                <p className="mt-2 text-[0.78rem] leading-relaxed italic text-navy-foreground/90">
+                  "Tempat belajar teknologi yang sangat inspiratif di Solo Raya. Fasilitas lab dan
+                  perpustakaan digitalnya lengkap, suasananya nyaman, dan mentor membimbing langkah
+                  demi langkah dengan ramah."
+                </p>
+                <p className="mt-2 text-[0.68rem] font-semibold text-navy-foreground/60">
+                  Pengunjung Studi Banding &amp; Eduwisata
+                </p>
               </div>
 
               <ul className="mt-6 space-y-3 text-[0.8rem]">
@@ -56,7 +80,12 @@ export function Reservation() {
                 </li>
                 <li className="flex items-center gap-3">
                   <MessageCircle className="size-4 shrink-0 text-lime" />
-                  <a href={WHATSAPP_URL} className="hover:underline">
+                  <a
+                    href={buildWhatsAppUrl(WA_MESSAGES.general)}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:underline"
+                  >
                     {CONTACT.phoneDisplay}
                   </a>
                 </li>
