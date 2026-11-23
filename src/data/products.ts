@@ -7,8 +7,27 @@ import smartEnergyImg from "@/assets/hero-building.jpg";
 import smartSchoolImg from "@/assets/impact-umkm.jpg";
 import smartSafetyImg from "@/assets/cta-hands.jpg";
 
+import academyBootcampImg from "@/assets/academy/academy-bootcamp.jpg";
+import academyClassImg from "@/assets/academy/academy-class.jpg";
+import academyLabImg from "@/assets/academy/academy-lab.jpg";
+import academyPodcastImg from "@/assets/academy/academy-podcast.jpg";
+
 export type ProductBlock = { title: string; desc: string };
 export type ProductSpec = { label: string; value: string };
+
+export type ProductVideo = {
+  youtubeId: string;
+  title: string;
+  caption?: string;
+  uploadDate?: string;
+};
+
+export type ProductGalleryItem = {
+  src: string;
+  alt: string;
+  caption: string;
+  category?: string;
+};
 
 export type Product = {
   slug: string;
@@ -27,6 +46,8 @@ export type Product = {
   features: ProductBlock[];
   steps: ProductBlock[];
   specs: ProductSpec[];
+  video?: ProductVideo;
+  gallery?: ProductGalleryItem[];
 };
 
 export const products: Product[] = [
@@ -83,6 +104,40 @@ export const products: Product[] = [
       { label: "Karakter", value: "Islami & Beradab" },
       { label: "Target", value: "Kader SDM IT Masa Depan" },
       { label: "Pilar", value: "Pendidikan & Kaderisasi" },
+    ],
+    video: {
+      youtubeId: "SMNiHt1ewB4",
+      title: "Video Company Profil Elfan AI Academy 2025 | Angkatan 1",
+      caption:
+        "Mengenal ekosistem belajar, lab teknologi vokasi, dan kaderisasi santri digital berbasis adab di Elfan AI Academy.",
+      uploadDate: "2025-01-01",
+    },
+    gallery: [
+      {
+        src: academyBootcampImg,
+        alt: "Suasana bootcamp IT dan pemrograman web AI di Elfan AI Academy Solo",
+        caption:
+          "Bootcamp IT intensif dengan fokus pemrograman web, data, dan implementasi AI praktis",
+        category: "Bootcamp & Kelas",
+      },
+      {
+        src: academyLabImg,
+        alt: "Praktik langsung di lab komputer Elfan AI Academy Solo Raya",
+        caption: "Praktik lab komputer terstruktur dengan pendampingan mentor langkah demi langkah",
+        category: "Fasilitas Lab",
+      },
+      {
+        src: academyPodcastImg,
+        alt: "Studio podcast dan literasi penyiaran digital Elfan AI Academy",
+        caption: "Studio live podcast untuk latihan public speaking dan literasi digital santri",
+        category: "Studio & Media",
+      },
+      {
+        src: academyClassImg,
+        alt: "Suasana kelas kaderisasi santri berkarakter Islami di Elfan AI Academy",
+        caption: "Pembekalan adab, karakter kepemimpinan, dan etika kecerdasan buatan",
+        category: "Kaderisasi Santri",
+      },
     ],
   },
   {

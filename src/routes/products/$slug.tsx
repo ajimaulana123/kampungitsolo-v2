@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowRight, Check, MessageCircle } from "lucide-react";
+import { ArrowRight, Check, ExternalLink, MessageCircle, Play } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { SectionLabel } from "@/components/landing/SectionLabel";
@@ -8,7 +9,7 @@ import { Breadcrumbs } from "@/components/site/Breadcrumbs";
 import { JsonLd } from "@/components/site/JsonLd";
 import { PageShell } from "@/components/site/PageShell";
 import { RelatedLinks } from "@/components/site/RelatedLinks";
-import { getProduct, products } from "@/data/products";
+import { getProduct, products, type Product } from "@/data/products";
 import { getProgram } from "@/data/programs";
 import { getStory } from "@/data/stories";
 import { pageHead } from "@/lib/seo";
@@ -87,6 +88,23 @@ function ProductDetail() {
             brand: { "@type": "Organization", name: "Kampung IT Solo" },
           }}
         />
+        {product.video && (
+          <JsonLd
+            data={{
+              "@context": "https://schema.org",
+              "@type": "VideoObject",
+              name: product.video.title,
+              description: product.video.caption ?? product.summary,
+              thumbnailUrl: [
+                `https://i.ytimg.com/vi/${product.video.youtubeId}/maxresdefault.jpg`,
+                `https://i.ytimg.com/vi/${product.video.youtubeId}/hqdefault.jpg`,
+              ],
+              uploadDate: product.video.uploadDate ?? "2025-01-01",
+              embedUrl: `https://www.youtube-nocookie.com/embed/${product.video.youtubeId}`,
+              contentUrl: `https://www.youtube.com/watch?v=${product.video.youtubeId}`,
+            }}
+          />
+        )}
         <section className="relative overflow-hidden bg-section-tint">
           <LeafSwoosh className="absolute -bottom-2 right-0 hidden h-28 w-[36%] md:block" />
           <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 py-12 lg:grid-cols-[1.05fr_0.95fr] lg:px-12 lg:py-16">
@@ -219,6 +237,8 @@ function ProductDetail() {
             </div>
           </section>
         )}
+
+        <ProductMediaSection product={product} />
 
         {product.specs.length > 0 && (
           <section className="bg-navy py-14 text-navy-foreground">
@@ -366,5 +386,150 @@ function ProductDetail() {
         </section>
       </div>
     </PageShell>
+  );
+}
+
+function ProductMediaSection({ product }: { product: Product }) {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  if (!product.video && (!product.gallery || product.gallery.length === 0)) {
+    return null;
+  }
+
+  return (
+    <section id="dokumentasi" className="scroll-mt-24 py-16 lg:py-20">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12">
+        <div data-reveal="up" className="max-w-2xl">
+          <SectionLabel lead="Dokumentasi" rest="& Suasana Belajar" />
+          <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-navy lg:text-[2rem]">
+            Aktivitas nyata di lapangan.
+          </h2>
+          <p className="mt-3 text-sm leading-relaxed text-ink">
+            Melihat langsung bagaimana santri dan peserta belajar, praktik langsung di lab komputer,
+            hingga pembekalan adab dan teknologi.
+          </p>
+        </div>
+
+        {product.video && (
+          <div
+            data-reveal="up"
+            className="mt-10 overflow-hidden rounded-3xl border border-border bg-card shadow-card"
+          >
+            <div className="grid items-center lg:grid-cols-[1.2fr_0.8fr]">
+              <div className="relative aspect-video w-full bg-navy">
+                {isPlaying ? (
+                  <iframe
+                    src={`https://www.youtube-nocookie.com/embed/${product.video.youtubeId}?autoplay=1&rel=0`}
+                    title={product.video.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className="size-full border-0"
+                  />
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setIsPlaying(true)}
+                    className="group relative size-full cursor-pointer text-left focus:outline-none focus:ring-4 focus:ring-lime"
+                    aria-label={`Putar ${product.video.title}`}
+                  >
+                    <img
+                      src={`https://i.ytimg.com/vi/${product.video.youtubeId}/maxresdefault.jpg`}
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src =
+                          `https://i.ytimg.com/vi/${product.video?.youtubeId}/hqdefault.jpg`;
+                      }}
+                      alt={product.video.title}
+                      loading="lazy"
+                      className="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/40 to-transparent" />
+
+                    <div className="absolute inset-0 grid place-items-center">
+                      <span className="grid size-16 place-items-center rounded-full bg-lime text-lime-foreground shadow-lift transition-all duration-300 ease-out group-hover:scale-110 sm:size-20">
+                        <Play className="ml-1 size-7 fill-current sm:size-9" />
+                      </span>
+                    </div>
+
+                    <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6">
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-black/60 px-3 py-1 text-[0.68rem] font-bold text-white backdrop-blur-md">
+                        <Play className="size-3 fill-current" /> Video Profil Resmi
+                      </span>
+                      <p className="mt-2 line-clamp-2 text-sm font-bold text-white sm:text-base">
+                        {product.video.title}
+                      </p>
+                    </div>
+                  </button>
+                )}
+              </div>
+
+              <div className="p-7 sm:p-9">
+                <p className="eyebrow">Sorotan Video</p>
+                <h3 className="mt-2 text-xl font-extrabold text-navy sm:text-2xl">
+                  {product.video.title}
+                </h3>
+                {product.video.caption && (
+                  <p className="mt-3 text-sm leading-relaxed text-ink">{product.video.caption}</p>
+                )}
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Button variant="outlinePill" size="pillSm" asChild>
+                    <a
+                      href={`https://www.youtube.com/watch?v=${product.video.youtubeId}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2"
+                    >
+                      Buka di YouTube <ExternalLink className="size-3.5" />
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {product.gallery && product.gallery.length > 0 && (
+          <div className="mt-12">
+            <div data-reveal="up" className="flex items-center justify-between">
+              <div>
+                <p className="eyebrow">Galeri Kegiatan</p>
+                <h3 className="mt-1 text-xl font-extrabold text-navy">
+                  Momen pembelajaran &amp; fasilitas santri
+                </h3>
+              </div>
+            </div>
+
+            <div data-reveal="stagger" className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {product.gallery.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:border-forest/40 hover:shadow-lift"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden bg-section-tint">
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      loading="lazy"
+                      width={1200}
+                      height={900}
+                      className="size-full object-cover transition-transform duration-500 ease-out group-hover:scale-108"
+                    />
+                    {item.category && (
+                      <span className="absolute left-3 top-3 rounded-full bg-navy/80 px-2.5 py-1 text-[0.62rem] font-extrabold uppercase tracking-wide text-white backdrop-blur-md">
+                        {item.category}
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex flex-1 flex-col p-4">
+                    <p className="text-[0.78rem] font-semibold leading-relaxed text-ink">
+                      {item.caption}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
