@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { SectionLabel } from "./SectionLabel";
 import { LeafSwoosh } from "./Decor";
 import { publishedPrograms } from "@/data/programs";
-import workshop from "@/assets/program-workshop.jpg";
+import workshop from "@/assets/academy/academy-class.jpg";
 
 export function Program() {
   return (

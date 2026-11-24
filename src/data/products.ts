@@ -1,16 +1,27 @@
-import academyImg from "@/assets/about-class.jpg";
-import libraryImg from "@/assets/impact-seminar.jpg";
-import solarImg from "@/assets/impact-city.jpg";
-import systemImg from "@/assets/impact-team.jpg";
-import aiLabImg from "@/assets/program-workshop.jpg";
-import smartEnergyImg from "@/assets/hero-building.jpg";
-import smartSchoolImg from "@/assets/impact-umkm.jpg";
-import smartSafetyImg from "@/assets/cta-hands.jpg";
-
 import academyBootcampImg from "@/assets/academy/academy-bootcamp.jpg";
 import academyClassImg from "@/assets/academy/academy-class.jpg";
 import academyLabImg from "@/assets/academy/academy-lab.jpg";
 import academyPodcastImg from "@/assets/academy/academy-podcast.jpg";
+
+import booklessAppImg from "@/assets/bookless/bookless-app.jpg";
+import booklessInstallImg from "@/assets/bookless/bookless-install.jpg";
+import booklessReadingImg from "@/assets/bookless/bookless-reading.jpg";
+
+import solarPanelsImg from "@/assets/solar/solar-panels.jpg";
+import solarInverterImg from "@/assets/solar/solar-inverter.jpg";
+import solarMonitoringImg from "@/assets/solar/solar-monitoring.jpg";
+import solarComponentsImg from "@/assets/solar/solar-components.jpg";
+
+import systemModulesImg from "@/assets/system/system-modules.jpg";
+import systemInstallationImg from "@/assets/system/system-installation.jpg";
+import systemTrainingImg from "@/assets/system/system-training.jpg";
+import systemHandoverImg from "@/assets/system/system-handover.jpg";
+
+import smartEnergyVisual from "@/assets/products/smart-energy.png";
+import smartSchoolVisual from "@/assets/products/smart-school.png";
+import smartSafetyVisual from "@/assets/products/smart-safety.png";
+import smartFiguraVisual from "@/assets/products/smart-figura.png";
+import smartGardenVisual from "@/assets/products/smart-garden.png";
 
 export type ProductBlock = { title: string; desc: string };
 export type ProductSpec = { label: string; value: string };
@@ -40,6 +51,7 @@ export type Product = {
   relatedProgramSlugs?: string[];
   relatedStorySlugs?: string[];
   image: string;
+  imageAlt?: string;
   featured?: boolean;
   catalogFeatured?: boolean;
   description: string[];
@@ -48,6 +60,7 @@ export type Product = {
   specs: ProductSpec[];
   video?: ProductVideo;
   gallery?: ProductGalleryItem[];
+  website?: { label: string; url: string };
 };
 
 export const products: Product[] = [
@@ -62,7 +75,8 @@ export const products: Product[] = [
     highlights: ["Metode 3M", "AI & Coding", "Vokasi Digital"],
     relatedProgramSlugs: ["kelas-coding", "bootcamp-ai-vibe-coding", "workshop-umkm"],
     relatedStorySlugs: ["komunitas-pelajar-smk", "umkm-pasar-solo-raya"],
-    image: academyImg,
+    image: academyClassImg,
+    imageAlt: "Peserta ELFAN AI Academy belajar dengan laptop di ruang kelas",
     featured: true,
     description: [
       "Elfan AI Academy adalah lembaga pendidikan vokasi digital berbasis AI yang dirancang untuk mencetak kader SDM IT berkarakter Islami. Menggunakan metode akselerasi 3M (Minat, Manut atau taat pada proses, Mandiri), akademi ini membekali siswa dengan keterampilan teknologi terkini sambil menanamkan nilai-nilai adab dan karakter.",
@@ -150,7 +164,8 @@ export const products: Product[] = [
     cardDesc: "Perpustakaan digital dengan rekomendasi buku berbasis AI.",
     highlights: ["Sejak 2016", "228+ Institusi", "Akses 24/7"],
     relatedProgramSlugs: ["literasi-digital"],
-    image: libraryImg,
+    relatedStorySlugs: ["pesantren-idbc-adab-it"],
+    image: booklessReadingImg,
     featured: true,
     description: [
       "Elfan Bookless Library adalah sistem perpustakaan digital personal yang mengubah cara mengakses ilmu. Dengan rekomendasi bacaan yang dipersonalisasi sesuai minat pengguna, sistem ini telah dipercaya oleh lebih dari 228 institusi sejak tahun 2016. Tidak perlu rak fisik, tidak perlu antre: semua bahan bacaan tersedia dalam genggaman.",
@@ -192,114 +207,200 @@ export const products: Product[] = [
       { label: "Format", value: "E-book, jurnal, artikel, audiobook, multimedia" },
       { label: "Pilar", value: "Literasi & Pengetahuan" },
     ],
+    video: {
+      youtubeId: "zManXSTIbgY",
+      title: "ELFAN Bookless Library Karya Anak Bangsa Indonesia",
+      caption:
+        "Solusi perpustakaan digital yang lengkap, mudah, dan efisien untuk pembelajaran serta eksplorasi data.",
+      uploadDate: "2020-09-21",
+    },
+    gallery: [
+      {
+        src: booklessAppImg,
+        alt: "Aplikasi pembaca Elfan Bookless Library di ponsel",
+        caption: "Akses koleksi digital lewat aplikasi pembaca di ponsel",
+        category: "Aplikasi",
+      },
+      {
+        src: booklessReadingImg,
+        alt: "Pemindaian QR Code koleksi buku digital Elfan Bookless Library",
+        caption: "Pindai QR Code di rak untuk membuka buku digital",
+        category: "QR Code",
+      },
+      {
+        src: booklessInstallImg,
+        alt: "Pemasangan rak dan materi Elfan Bookless Library",
+        caption: "Pemasangan rak dan materi Bookless Library di lokasi mitra",
+        category: "Implementasi",
+      },
+    ],
   },
   {
     slug: "solar-energi",
     name: "ELFAN Solar Energi H",
     category: "Kemandirian Energi",
-    tagline: "Energi mandiri ramah lingkungan.",
+    tagline: "Energi surya untuk operasional lembaga.",
     summary:
-      "Solusi PLTS untuk operasional lembaga, bekerja sama dengan PT Ufuk Hijau Energi. Hemat biaya, bersih, dan mandiri.",
-    cardDesc: "Panel surya mandiri untuk operasional pendidikan.",
-    highlights: ["Partner Ufuk Hijau", "Masa Pakai 20+ Thn", "Listrik Mandiri"],
-    image: solarImg,
+      "Solusi PLTS untuk lembaga pendidikan bersama PT Ufuk Hijau Energi, dari survei dan desain hingga instalasi serta perawatan.",
+    cardDesc: "Panel surya untuk operasional lembaga, dari survei hingga perawatan.",
+    highlights: ["EPC End-to-End", "Monitoring IoT", "Layanan Seluruh Jawa"],
+    image: solarPanelsImg,
     featured: true,
     description: [
-      "Elfan Solar Energi H adalah solusi pembangkit listrik tenaga surya (PLTS) hasil kerja sama dengan PT Ufuk Hijau Energi. Solusi ini dirancang untuk mendukung operasional lembaga pendidikan secara mandiri, bersih, dan hemat biaya. Dengan panel surya berkualitas tinggi dan sistem monitoring cerdas, lembaga dapat mengurangi ketergantungan pada listrik PLN dan berkontribusi pada lingkungan yang lebih hijau.",
-      "Elfan Solar Energi H menyediakan solusi PLTS yang disesuaikan dengan kebutuhan lembaga pendidikan, dari pesantren di pelosok desa hingga sekolah di perkotaan. Panel dapat dipasang di atap gedung, lahan kosong, atau area parkir, dan mampu memenuhi sebagian besar kebutuhan listrik harian.",
-      "Elfan Solar Energi H hadir melalui kerja sama strategis dengan PT Ufuk Hijau Energi, perusahaan energi terbarukan yang berpengalaman. Jaminan kualitas, garansi panel, dan layanan purna jual menjadi standar dalam setiap instalasi.",
+      "ELFAN Solar Energi H adalah solusi PLTS untuk lembaga pendidikan yang dikerjakan bersama PT Ufuk Hijau Energi. Sebagai kontraktor EPC, Ufuk Hijau menangani survei lokasi, analisis beban listrik, desain sistem, pengadaan komponen, instalasi, pengujian, hingga perawatan.",
+      "Kapasitas dan konfigurasi sistem disusun dari kebutuhan listrik serta kondisi lokasi. Pilihan sistem mencakup on-grid, hybrid, dan off-grid, sehingga desain dapat disesuaikan dengan pola pemakaian lembaga dan ketersediaan jaringan listrik.",
+      "Sistem PLTS dapat dilengkapi pemantauan berbasis IoT untuk melihat kondisi sistem secara real time melalui aplikasi. Setelah instalasi, perawatan berkala menjaga komponen tetap bekerja aman dan kinerja sistem tetap terukur.",
     ],
     features: [
       {
-        title: "Panel Surya Berkualitas",
-        desc: "Menggunakan panel surya dengan efisiensi tinggi dan daya tahan lama, cocok untuk iklim tropis Indonesia.",
+        title: "Desain Berbasis Data",
+        desc: "Kapasitas sistem dihitung dari pola konsumsi listrik dan kondisi atap, bukan memakai paket seragam.",
       },
       {
-        title: "Monitoring Cerdas",
-        desc: "Pantau produksi dan konsumsi energi real-time melalui dashboard, lalu optimalkan penggunaan energi untuk efisiensi maksimal.",
+        title: "Tiga Model Sistem",
+        desc: "Pilihan on-grid, hybrid, dan off-grid disesuaikan dengan kebutuhan cadangan daya serta ketersediaan jaringan PLN.",
       },
       {
-        title: "Ramah Lingkungan",
-        desc: "Mengurangi jejak karbon lembaga dengan energi bersih yang mendukung keberlanjutan dan kemandirian energi.",
+        title: "Monitoring dan Perawatan",
+        desc: "Pemantauan berbasis IoT dan perawatan berkala membantu menjaga kinerja sistem setelah instalasi.",
       },
     ],
     steps: [
       {
-        title: "Energi Surya untuk Pendidikan",
-        desc: "Sistem dipasang di atap, lahan kosong, atau area parkir, lalu menutup sebagian besar kebutuhan listrik harian lembaga.",
+        title: "Survei dan Perencanaan",
+        desc: "Tim teknis menilai potensi energi surya, struktur bangunan, dan arah matahari. Hasil survei dipakai untuk merancang sistem yang efisien dan aman.",
       },
       {
-        title: "Kerja Sama PT Ufuk Hijau Energi",
-        desc: "Instalasi ditangani mitra energi terbarukan berpengalaman, dengan jaminan kualitas, garansi panel, dan layanan purna jual.",
+        title: "Instalasi dan Pengujian",
+        desc: "Pengadaan komponen, pemasangan, dan pengujian dikerjakan tim berpengalaman dengan fokus keselamatan.",
       },
       {
-        title: "Mandiri, Bersih, Hemat Biaya",
-        desc: "Biaya instalasi kembali melalui penghematan listrik dalam 5-7 tahun, lalu lembaga menikmati listrik hampir gratis selama 20+ tahun masa pakai panel.",
+        title: "Monitoring dan Perawatan",
+        desc: "Kondisi sistem dipantau melalui aplikasi, lalu dirawat berkala agar kinerjanya tetap terjaga.",
       },
     ],
     specs: [
       { label: "Jenis", value: "Pembangkit Listrik Tenaga Surya" },
+      { label: "Model", value: "On-grid, hybrid, off-grid" },
       { label: "Partner", value: "PT Ufuk Hijau Energi" },
-      { label: "Keunggulan", value: "Mandiri, bersih, hemat biaya" },
-      { label: "Masa Pakai", value: "20+ tahun" },
-      { label: "Target", value: "Lembaga pendidikan & pesantren" },
+      { label: "Layanan", value: "Survei, desain, instalasi, pengujian, perawatan" },
+      { label: "Area Layanan", value: "Seluruh Pulau Jawa" },
       { label: "Pilar", value: "Kemandirian Energi" },
     ],
+    video: {
+      youtubeId: "K54d1Wywhzs",
+      title: "Hidden Gem Energi Surya di Solo",
+      caption:
+        "Menelusuri Open Lab Ufuk Hijau Energi: panel surya, inverter, baterai, dan pemantauan sistem secara langsung.",
+      uploadDate: "2026-06-24",
+    },
+    gallery: [
+      {
+        src: solarInverterImg,
+        alt: "Inverter PLTS dengan logo Ufuk Hijau Energi",
+        caption: "Inverter 11 kW pada instalasi PLTS berkapasitas 12,4 kWp.",
+        category: "Komponen",
+      },
+      {
+        src: solarMonitoringImg,
+        alt: "Pemantauan sistem PLTS melalui aplikasi ponsel",
+        caption: "Pemantauan kondisi sistem secara real time melalui aplikasi.",
+        category: "Monitoring",
+      },
+      {
+        src: solarComponentsImg,
+        alt: "Rangkaian inverter, proteksi, dan baterai pada sistem PLTS",
+        caption: "Inverter, proteksi, dan baterai penyimpanan di Open Lab Ufuk Hijau Energi.",
+        category: "Instalasi",
+      },
+    ],
+    website: { label: "Situs Ufuk Hijau Energi", url: "https://ufukhijau.com/" },
   },
   {
     slug: "elfan-system",
     name: "ELFAN System",
     category: "Teknologi & Inovasi",
-    tagline: "Platform digital Islamic Education.",
+    tagline: "Platform digital untuk lembaga pendidikan Islam.",
     summary:
-      "Platform seperti Google Workspace khusus pendidikan Islam: 16 modul terintegrasi untuk administrasi, pembelajaran, dan kolaborasi.",
-    cardDesc: "Platform 16 modul Digital Islamic Education untuk lembaga.",
-    highlights: ["16 Modul", "Integrasi Penuh", "All-in-One"],
+      "Platform 16 modul untuk administrasi, pembelajaran, pustaka, dan layanan lembaga, dengan server yang dikelola sendiri.",
+    cardDesc: "Platform 16 modul dengan server mandiri untuk lembaga pendidikan.",
+    highlights: ["16 Modul", "Server Mandiri", "Pendampingan Implementasi"],
     relatedProgramSlugs: ["implementasi-elfan-system", "desa-digital"],
     relatedStorySlugs: ["desa-grogol-weru"],
-    image: systemImg,
+    image: systemModulesImg,
     catalogFeatured: true,
     description: [
-      "Elfan System adalah platform integrasi terpadu untuk lembaga pendidikan Islam. Dengan 16 modul yang saling terhubung, mulai dari Data Center, Search Engine, Bookless Library, Lesson Modul, El-Tube, Elfanpedia, hingga Smart Village dan E-Masjid, Elfan System menjadi pusat komando digital bagi pesantren, sekolah, masjid, dan pemerintah desa.",
-      "Keenam belas modul mencakup seluruh aspek pengelolaan lembaga: Data Center, Visitor Data Record, Search Engine, Bookless Library, Lesson Modul, El-Tube, Elfan MP3, Elfanpedia, Akademik System, Produktivitas, Asset & Inventaris, Cleaning Control, Smart Village, Smart Control, Elfan SmartHub, dan E-Masjid. Setiap modul bekerja dalam harmoni dan berbagi data secara real-time.",
-      "Seperti Google Workspace yang menyatukan email, dokumen, kalender, dan drive, Elfan System menyatukan administrasi, pembelajaran, perpustakaan, keuangan, dan komunikasi dalam satu platform. Pengguna berpindah antar modul tanpa hambatan, dengan satu akun dan satu pusat notifikasi.",
+      "ELFAN System adalah platform digital untuk mengelola lembaga pendidikan Islam dalam satu ekosistem. Platform ini dikembangkan Alwustho Technologies dan mencakup 16 modul, dari Data Center dan Bookless Library hingga Akademik System, Smart Village, dan E-Masjid.",
+      "Berbeda dari layanan awan yang seragam, ELFAN System dipasang pada server mandiri milik lembaga. Data dan konten dikelola sendiri, akses dapat disesuaikan dengan kebutuhan, dan lingkungan belajar dapat dibatasi dari konten yang tidak relevan.",
+      "Platform ini dipakai pesantren, madrasah, sekolah, kampus, masjid, dan pemerintah desa. Implementasi dilakukan bertahap: pemetaan kebutuhan, penyiapan server dan data, lalu pelatihan staf agar modul yang dipilih benar-benar masuk ke pekerjaan sehari-hari.",
     ],
     features: [
       {
         title: "16 Modul Terintegrasi",
-        desc: "Dari Data Center hingga E-Masjid, setiap modul dirancang untuk saling terhubung, berbagi data, dan bekerja dalam satu ekosistem.",
+        desc: "Mulai dari Data Center, Bookless Library, dan Akademik System hingga E-Masjid, modul berbagi data dalam satu platform.",
       },
       {
-        title: "Pusat Komando Digital",
-        desc: "Elfan SmartHub menjadi dashboard utama yang mengintegrasikan seluruh modul, dengan notifikasi terpusat dan visualisasi real-time.",
+        title: "Server Mandiri",
+        desc: "Data dan konten berada di server lembaga, sehingga akses dan batasan konten dapat diatur sesuai kebutuhan pendidikan.",
       },
       {
-        title: "Untuk Semua Lembaga",
-        desc: "Cocok untuk pesantren, sekolah, masjid, dan pemerintah desa, dengan modul yang dapat disesuaikan kebutuhan masing-masing.",
+        title: "Pendampingan Implementasi",
+        desc: "Instalasi, pelatihan staf, dan pendampingan penggunaan dilakukan bersama tim Kampung IT Solo.",
       },
     ],
     steps: [
       {
-        title: "16 Modul, Satu Ekosistem",
-        desc: "Seluruh modul berbagi data secara real-time, sehingga administrasi, pembelajaran, dan layanan warga berada dalam satu alur.",
+        title: "Pemetaan Kebutuhan",
+        desc: "Tim meninjau pekerjaan administrasi, pembelajaran, dan layanan yang akan dipindahkan ke platform.",
       },
       {
-        title: "Integrasi ala Google Workspace",
-        desc: "Satu akun dan satu pusat notifikasi untuk administrasi, pembelajaran, perpustakaan, keuangan, dan komunikasi.",
+        title: "Instalasi dan Penyiapan Data",
+        desc: "Server dan perangkat pendukung dipasang, lalu data awal serta hak akses pengguna disiapkan.",
       },
       {
-        title: "Digital Islamic Education",
-        desc: "Setiap fitur mempertimbangkan nilai adab, kebutuhan pesantren dan madrasah, serta integrasi kurikulum Islami.",
+        title: "Pelatihan dan Pendampingan",
+        desc: "Staf dilatih memakai modul yang dipilih melalui pekerjaan nyata, lalu didampingi saat pemakaian awal.",
       },
     ],
     specs: [
       { label: "Jumlah Modul", value: "16 Modul" },
       { label: "Jenis", value: "Platform Integrasi Terpadu" },
-      { label: "Target", value: "Lembaga Pendidikan Islam" },
-      { label: "Fitur Utama", value: "Elfan SmartHub Dashboard" },
-      { label: "Model", value: "Seperti Google Workspace" },
+      { label: "Model", value: "Server Mandiri" },
+      { label: "Pengembang", value: "Alwustho Technologies" },
+      { label: "Target", value: "Pesantren, sekolah, kampus, masjid, pemerintah desa" },
       { label: "Pilar", value: "Teknologi & Inovasi" },
     ],
+    video: {
+      youtubeId: "AA6sbCPaSQc",
+      title: "Instalasi & Training ELFAN System di MTS Fisabilillah Bekasi",
+      caption:
+        "Tim Kampung IT Solo memasang server dan melatih staf MTS Fisabilillah Bekasi pada Juli 2024.",
+      uploadDate: "2024-08-03",
+    },
+    gallery: [
+      {
+        src: systemInstallationImg,
+        alt: "Pemasangan jaringan ELFAN System di lorong sekolah",
+        caption: "Pemasangan jaringan dan perangkat pendukung ELFAN System di sekolah mitra.",
+        category: "Instalasi",
+      },
+      {
+        src: systemTrainingImg,
+        alt: "Tim mendampingi staf sekolah menggunakan laptop",
+        caption: "Pelatihan staf sekolah untuk memakai modul ELFAN System.",
+        category: "Pelatihan",
+      },
+      {
+        src: systemHandoverImg,
+        alt: "Staf sekolah melihat perangkat bersama tim pendamping",
+        caption: "Penyiapan perangkat dan pendampingan awal di MTS Fisabilillah Bekasi.",
+        category: "Pendampingan",
+      },
+    ],
+    website: {
+      label: "Instagram Alwustho",
+      url: "https://www.instagram.com/alwustho_tech/",
+    },
   },
   {
     slug: "elfan-ai-lab",
@@ -311,7 +412,8 @@ export const products: Product[] = [
     cardDesc: "Laboratorium eksperimen AI lintas bidang ilmu.",
     highlights: ["Multi Disiplin", "Terbuka untuk Umum", "Fokus Literasi AI"],
     relatedProgramSlugs: ["kelas-coding", "bootcamp-ai-vibe-coding"],
-    image: aiLabImg,
+    image: academyLabImg,
+    imageAlt: "Ruang laboratorium komputer untuk eksperimen AI",
     description: [
       "Elfan AI Lab adalah laboratorium berbasis AI yang dirancang untuk eksplorasi lintas disiplin ilmu, dari sains, bahasa, matematika, hingga ilmu sosial. Laboratorium ini bertujuan mendemokratisasi literasi AI dengan memberi akses kepada siswa, peneliti, dan masyarakat umum untuk bereksperimen dalam lingkungan yang aman dan terbimbing.",
       "Elfan AI Lab dibangun dengan visi bahwa kecerdasan buatan bukan hanya untuk insinyur dan ilmuwan komputer. Laboratorium ini membuka pintu bagi siapa pun yang ingin memahami, bereksperimen, dan berinovasi dengan AI, mulai dari pelajar SMA yang baru belajar Python hingga peneliti yang ingin menerapkan machine learning di bidang sosial dan humaniora.",
@@ -363,7 +465,8 @@ export const products: Product[] = [
       "Pantau konsumsi listrik, hemat biaya energi, dan dukung keberlanjutan lingkungan dengan sistem cerdas.",
     cardDesc: "Monitoring konsumsi energi berbasis AI & IoT.",
     highlights: [],
-    image: smartEnergyImg,
+    image: smartEnergyVisual,
+    imageAlt: "Ilustrasi konsep ELFAN Smart Energy dengan meteran dan data konsumsi listrik",
     description: [
       "Elfan Smart Energy memantau konsumsi listrik lembaga secara cerdas dengan AI dan IoT, membantu menghemat biaya energi sekaligus mendukung keberlanjutan lingkungan.",
     ],
@@ -381,7 +484,8 @@ export const products: Product[] = [
     cardDesc: "Pembelajaran berbasis suara dan voice assistant.",
     highlights: ["Input Suara", "Untuk Pesantren", "Voice + IoT"],
     relatedProgramSlugs: ["implementasi-elfan-system"],
-    image: smartSchoolImg,
+    image: smartSchoolVisual,
+    imageAlt: "Ilustrasi konsep Smart School dengan buku dan perintah suara",
     description: [
       "Smart School / Boarding adalah media pembelajaran berbasis suara (voice bot) yang memungkinkan kontrol perangkat ruangan dan akses materi interaktif melalui perintah suara. Produk ini didesain khusus untuk mengurangi ketergantungan pada layar, menjadikannya solusi untuk lingkungan asrama, pesantren, dan boarding school.",
       "Dengan voice bot, siswa cukup berbicara untuk mengakses materi pelajaran, mengerjakan kuis, atau mendengarkan penjelasan. Ini mengurangi ketergantungan pada smartphone dan laptop sekaligus menciptakan lingkungan belajar yang lebih sehat.",
@@ -431,7 +535,8 @@ export const products: Product[] = [
       "CCTV AI dengan deteksi anomali real-time dan notifikasi cerdas. Bukan sekadar merekam, tapi mencegah.",
     cardDesc: "CCTV AI dengan deteksi bahaya dan notifikasi real-time.",
     highlights: ["Analisis Real-time", "Mode Preventif", "Notifikasi Multi-channel"],
-    image: smartSafetyImg,
+    image: smartSafetyVisual,
+    imageAlt: "Ilustrasi konsep Smart Safety dengan kamera, analisis, dan notifikasi",
     description: [
       "Smart Safety adalah sistem keamanan berbasis CCTV AI yang bersifat preventif, bukan sekadar merekam kejadian. Dengan kemampuan mendeteksi anomali secara real-time dan memberikan notifikasi cerdas, Smart Safety memungkinkan respon cepat sebelum insiden berkembang. Sistem ini cocok untuk lingkungan pendidikan, pesantren, dan perumahan.",
       "Smart Safety mengubah paradigma keamanan dari reaktif menjadi preventif. Sistem tidak hanya merekam, tetapi secara aktif menganalisis aliran video untuk mendeteksi potensi ancaman: orang yang berkeliaran di area terlarang, kendaraan mencurigakan, atau situasi darurat seperti kebakaran.",
@@ -484,7 +589,8 @@ export const products: Product[] = [
     cardDesc: "Figura edukasi interaktif yang menjelaskan materi.",
     highlights: ["Audio AI", "Multi Tema", "Online & Offline"],
     relatedProgramSlugs: ["kelas-coding"],
-    image: academyImg,
+    image: smartFiguraVisual,
+    imageAlt: "Ilustrasi konsep Smart Figura dengan tokoh dan gelombang audio",
     description: [
       "Smart Figura adalah figura atau patung edukasi interaktif berbasis audio yang dapat berbicara sesuai tema. Figur pahlawan nasional dapat menceritakan kisah perjuangannya, atau figur ilmuwan menjelaskan teori fisika dengan suara alami dan interaktif.",
       "Smart Figura mengubah cara siswa berinteraksi dengan materi pelajaran. Dengan menempatkan figura tematik di ruang kelas atau museum, siswa dapat berdialog dengan tokoh sejarah, ilmuwan, atau figur agama. Pengalaman ini menciptakan koneksi emosional yang memperkuat retensi materi.",
@@ -535,7 +641,8 @@ export const products: Product[] = [
       "Sensor kelembapan tanah, kontrol irigasi otomatis, dan monitoring tanaman secara real-time.",
     cardDesc: "Otomasi kebun, sensor kelembapan, dan irigasi berbasis IoT.",
     highlights: ["Hemat Air 40%", "IoT + AI", "Untuk Urban Farming"],
-    image: smartEnergyImg,
+    image: smartGardenVisual,
+    imageAlt: "Ilustrasi konsep Smart Garden dengan sensor tanah dan irigasi",
     description: [
       "Smart Garden adalah sistem otomasi pertanian cerdas yang menggunakan IoT dan AI untuk penyiraman serta pemeliharaan tanah secara efisien. Dengan sensor kelembapan tanah, kontrol irigasi otomatis, dan monitoring tanaman real-time, Smart Garden memudahkan urban farming, pertanian sekolah, dan kebun komunitas.",
       "Sensor IoT yang tertanam di tanah memantau kelembapan, suhu, dan nutrisi tanah secara real-time. Data ini dipakai untuk mengatur irigasi otomatis yang presisi, menyiram tanaman tepat saat dibutuhkan dalam jumlah yang tepat.",

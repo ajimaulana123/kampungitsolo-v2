@@ -96,7 +96,7 @@ function ProductDetail() {
               name: product.video.title,
               description: product.video.caption ?? product.summary,
               thumbnailUrl: [
-                `https://i.ytimg.com/vi/${product.video.youtubeId}/maxresdefault.jpg`,
+                `https://i.ytimg.com/vi/${product.video.youtubeId}/sddefault.jpg`,
                 `https://i.ytimg.com/vi/${product.video.youtubeId}/hqdefault.jpg`,
               ],
               uploadDate: product.video.uploadDate ?? "2025-01-01",
@@ -159,7 +159,7 @@ function ProductDetail() {
                 <div className="animate-clip-in">
                   <img
                     src={product.image}
-                    alt={`Ilustrasi ${product.name}`}
+                    alt={product.imageAlt ?? `Ilustrasi ${product.name}`}
                     width={992}
                     height={672}
                     fetchPriority="high"
@@ -400,13 +400,13 @@ function ProductMediaSection({ product }: { product: Product }) {
     <section id="dokumentasi" className="scroll-mt-24 py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div data-reveal="up" className="max-w-2xl">
-          <SectionLabel lead="Dokumentasi" rest="& Suasana Belajar" />
+          <SectionLabel lead="Dokumentasi" rest="& Penggunaan" />
           <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-navy lg:text-[2rem]">
-            Aktivitas nyata di lapangan.
+            Lihat produk dalam penggunaan nyata.
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-ink">
-            Melihat langsung bagaimana santri dan peserta belajar, praktik langsung di lab komputer,
-            hingga pembekalan adab dan teknologi.
+            Simak video resmi dan dokumentasi lapangan, dari penggunaan produk hingga
+            implementasinya di lokasi mitra.
           </p>
         </div>
 
@@ -416,7 +416,7 @@ function ProductMediaSection({ product }: { product: Product }) {
             className="mt-10 overflow-hidden rounded-3xl border border-border bg-card shadow-card"
           >
             <div className="grid items-center lg:grid-cols-[1.2fr_0.8fr]">
-              <div className="relative aspect-video w-full bg-navy">
+              <div className="relative aspect-video w-full overflow-hidden bg-navy">
                 {isPlaying ? (
                   <iframe
                     src={`https://www.youtube-nocookie.com/embed/${product.video.youtubeId}?autoplay=1&rel=0`}
@@ -433,7 +433,7 @@ function ProductMediaSection({ product }: { product: Product }) {
                     aria-label={`Putar ${product.video.title}`}
                   >
                     <img
-                      src={`https://i.ytimg.com/vi/${product.video.youtubeId}/maxresdefault.jpg`}
+                      src={`https://i.ytimg.com/vi/${product.video.youtubeId}/sddefault.jpg`}
                       onError={(e) => {
                         (e.target as HTMLImageElement).src =
                           `https://i.ytimg.com/vi/${product.video?.youtubeId}/hqdefault.jpg`;
@@ -481,6 +481,18 @@ function ProductMediaSection({ product }: { product: Product }) {
                       Buka di YouTube <ExternalLink className="size-3.5" />
                     </a>
                   </Button>
+                  {product.website && (
+                    <Button variant="outlinePill" size="pillSm" asChild>
+                      <a
+                        href={product.website.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2"
+                      >
+                        {product.website.label} <ExternalLink className="size-3.5" />
+                      </a>
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>
@@ -491,14 +503,19 @@ function ProductMediaSection({ product }: { product: Product }) {
           <div className="mt-12">
             <div data-reveal="up" className="flex items-center justify-between">
               <div>
-                <p className="eyebrow">Galeri Kegiatan</p>
+                <p className="eyebrow">Galeri Implementasi</p>
                 <h3 className="mt-1 text-xl font-extrabold text-navy">
-                  Momen pembelajaran &amp; fasilitas santri
+                  Implementasi &amp; fasilitas
                 </h3>
               </div>
             </div>
 
-            <div data-reveal="stagger" className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div
+              data-reveal="stagger"
+              className={`mt-6 grid gap-6 sm:grid-cols-2 ${
+                product.gallery.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"
+              }`}
+            >
               {product.gallery.map((item, idx) => (
                 <div
                   key={idx}
