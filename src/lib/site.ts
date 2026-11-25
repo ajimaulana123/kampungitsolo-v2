@@ -1,5 +1,5 @@
 export const SITE_URL =
-  import.meta.env.VITE_SITE_URL || "https://kampungitsolo-v2.aji658911.workers.dev";
+import.meta.env.VITE_SITE_URL || "https://kampungitsolo.com";
 export const SITE_NAME = "Kampung IT Solo";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
