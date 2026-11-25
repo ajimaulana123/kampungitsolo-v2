@@ -1,7 +1,7 @@
-import classImg from "@/assets/about-class.jpg";
-import communityImg from "@/assets/impact-team.jpg";
-import umkmImg from "@/assets/impact-umkm.jpg";
-import buildingImg from "@/assets/hero-building.jpg";
+import academyLabImg from "@/assets/academy/academy-lab.jpg";
+import systemTrainingImg from "@/assets/system/system-training.jpg";
+import academyPodcastImg from "@/assets/academy/academy-podcast.jpg";
+import academyBootcampImg from "@/assets/academy/academy-bootcamp.jpg";
 
 export type AudienceFaq = { q: string; a: string };
 
@@ -17,6 +17,7 @@ export type Audience = {
   storySlugs: string[];
   faqs: AudienceFaq[];
   image: string;
+  imageAlt: string;
   published: boolean;
 };
 
@@ -59,7 +60,8 @@ export const audiences: Audience[] = [
         a: "Bisa. Untuk implementasi sistem, pelatihan pengguna dan pendampingan awal menjadi bagian dari ruang lingkup yang disepakati.",
       },
     ],
-    image: classImg,
+    image: academyLabImg,
+    imageAlt: "Peserta belajar dengan laptop di laboratorium komputer Kampung IT Solo",
     published: true,
   },
   {
@@ -96,7 +98,8 @@ export const audiences: Audience[] = [
         a: "Durasi menyesuaikan ruang lingkup, jumlah peserta, dan alur yang ingin dibenahi. Jadwal disepakati bersama.",
       },
     ],
-    image: communityImg,
+    image: systemTrainingImg,
+    imageAlt: "Pendampingan penggunaan laptop dalam kegiatan digitalisasi desa",
     published: true,
   },
   {
@@ -133,7 +136,8 @@ export const audiences: Audience[] = [
         a: "Bisa, selama lokasi dan jadwal disepakati. Workshop juga bisa berlangsung di Cemani, Grogol, Sukoharjo.",
       },
     ],
-    image: umkmImg,
+    image: academyPodcastImg,
+    imageAlt: "Kegiatan produksi konten video di ELFAN AI Academy",
     published: true,
   },
   {
@@ -170,7 +174,8 @@ export const audiences: Audience[] = [
         a: "Bisa. Sesi literasi AI untuk guru dan pengasuh dapat menjadi langkah awal sebelum implementasi sistem yang lebih besar.",
       },
     ],
-    image: buildingImg,
+    image: academyBootcampImg,
+    imageAlt: "Pemateri menyampaikan materi kepada santri di ruang kelas",
     published: true,
   },
 ];

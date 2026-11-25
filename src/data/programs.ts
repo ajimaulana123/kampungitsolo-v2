@@ -1,9 +1,9 @@
-import academyImg from "@/assets/about-class.jpg";
-import communityImg from "@/assets/impact-team.jpg";
-import seminarImg from "@/assets/impact-seminar.jpg";
-import workshopImg from "@/assets/impact-umkm.jpg";
-import bootcampImg from "@/assets/program-workshop.jpg";
-import systemImg from "@/assets/hero-building.jpg";
+import academyLabImg from "@/assets/academy/academy-lab.jpg";
+import academyClassImg from "@/assets/academy/academy-class.jpg";
+import academyBootcampImg from "@/assets/academy/academy-bootcamp.jpg";
+import academyPodcastImg from "@/assets/academy/academy-podcast.jpg";
+import systemTrainingImg from "@/assets/system/system-training.jpg";
+import systemHandoverImg from "@/assets/system/system-handover.jpg";
 
 export type ProgramBlock = { title: string; desc: string };
 export type ProgramFaq = { q: string; a: string };
@@ -27,6 +27,7 @@ export type Program = {
   relatedProductSlugs: string[];
   relatedStorySlugs?: string[];
   image: string;
+  imageAlt: string;
   schemaType: "Service" | "Course";
   featured?: boolean;
   published: boolean;
@@ -95,7 +96,8 @@ export const programs: Program[] = [
     ],
     relatedProductSlugs: ["elfan-system", "bookless-library"],
     relatedStorySlugs: ["desa-grogol-weru"],
-    image: communityImg,
+    image: systemTrainingImg,
+    imageAlt: "Pendampingan penggunaan laptop dalam kegiatan digitalisasi desa",
     schemaType: "Service",
     published: true,
   },
@@ -162,7 +164,8 @@ export const programs: Program[] = [
     ],
     relatedProductSlugs: ["elfan-ai-academy"],
     relatedStorySlugs: ["umkm-pasar-solo-raya"],
-    image: workshopImg,
+    image: academyPodcastImg,
+    imageAlt: "Kegiatan produksi konten video di ELFAN AI Academy",
     schemaType: "Service",
     published: true,
   },
@@ -231,7 +234,8 @@ export const programs: Program[] = [
     ],
     relatedProductSlugs: ["elfan-ai-academy", "elfan-ai-lab"],
     relatedStorySlugs: ["komunitas-pelajar-smk"],
-    image: academyImg,
+    image: academyLabImg,
+    imageAlt: "Peserta belajar dengan laptop di laboratorium komputer Kampung IT Solo",
     schemaType: "Course",
     published: true,
   },
@@ -300,7 +304,8 @@ export const programs: Program[] = [
     ],
     relatedProductSlugs: ["bookless-library", "elfan-ai-academy"],
     relatedStorySlugs: ["karang-taruna-pemuda-desa"],
-    image: seminarImg,
+    image: academyBootcampImg,
+    imageAlt: "Sesi literasi digital bersama peserta di ruang kelas",
     schemaType: "Service",
     published: true,
   },
@@ -368,7 +373,8 @@ export const programs: Program[] = [
       },
     ],
     relatedProductSlugs: ["elfan-ai-academy", "elfan-system"],
-    image: bootcampImg,
+    image: academyClassImg,
+    imageAlt: "Peserta bootcamp belajar bersama dengan laptop di Kampung IT Solo",
     schemaType: "Course",
     featured: true,
     published: true,
@@ -437,7 +443,8 @@ export const programs: Program[] = [
       },
     ],
     relatedProductSlugs: ["elfan-system", "smart-school"],
-    image: systemImg,
+    image: systemHandoverImg,
+    imageAlt: "Pendampingan penggunaan perangkat ELFAN System",
     schemaType: "Service",
     published: true,
   },

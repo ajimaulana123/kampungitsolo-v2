@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, ExternalLink, Play, Quote, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play, Quote, Star } from "lucide-react";
 
 export type TestimonialItem = {
   quote: string;
@@ -70,27 +70,25 @@ export function TestimonialSlider({ items }: { items: TestimonialItem[] }) {
           {active.instagramUrl ? (
             <>
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(190,242,100,0.16),transparent_46%)]" />
-              <div className="relative w-full max-w-[380px] overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-white/20">
-                <iframe
-                  key={active.instagramUrl}
-                  src={instagramEmbedUrl(active.instagramUrl)}
-                  title={`Video testimoni dari ${active.name}`}
-                  className="block h-[600px] w-full border-0 sm:h-[640px]"
-                  loading="lazy"
-                  scrolling="no"
-                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                  allowFullScreen
-                  referrerPolicy="strict-origin-when-cross-origin"
+              <div className="relative mx-auto w-full max-w-[420px] overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-white/20">
+                <div className="relative w-full" style={{ paddingBottom: "calc(125% + 54px)" }}>
+                  <iframe
+                    key={active.instagramUrl}
+                    src={instagramEmbedUrl(active.instagramUrl)}
+                    title={`Video testimoni dari ${active.name}`}
+                    className="absolute inset-0 size-full border-0"
+                    loading="lazy"
+                    scrolling="no"
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                    allowFullScreen
+                    referrerPolicy="strict-origin-when-cross-origin"
+                  />
+                </div>
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute right-0 top-0 z-10 h-[55px] w-[33%] bg-white"
                 />
               </div>
-              <a
-                href={active.instagramUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="relative mt-3 inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1.5 text-[0.68rem] font-semibold text-white/90 ring-1 ring-white/15 transition-colors hover:bg-white/20 hover:text-white"
-              >
-                Buka video di Instagram <ExternalLink className="size-3.5" />
-              </a>
             </>
           ) : active.image ? (
             <>

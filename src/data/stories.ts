@@ -1,8 +1,8 @@
-import communityImg from "@/assets/impact-team.jpg";
-import umkmImg from "@/assets/impact-umkm.jpg";
-import classroomImg from "@/assets/about-class.jpg";
-import seminarImg from "@/assets/impact-seminar.jpg";
-import workshopImg from "@/assets/program-workshop.jpg";
+import systemTrainingImg from "@/assets/system/system-training.jpg";
+import systemHandoverImg from "@/assets/system/system-handover.jpg";
+import academyLabImg from "@/assets/academy/academy-lab.jpg";
+import academyClassImg from "@/assets/academy/academy-class.jpg";
+import academyBootcampImg from "@/assets/academy/academy-bootcamp.jpg";
 
 export type StoryImage = { src: string; alt: string };
 export type StoryQuote = { text: string; name: string; role: string; organization: string };
@@ -49,8 +49,14 @@ export const stories: Story[] = [
       "Yang lebih penting, peserta memahami langkah berikutnya. Mereka tidak hanya tahu cara memakai perangkat, tetapi punya gambaran kebiasaan kerja yang perlu dijaga agar hasilnya bertahan.",
     ],
     images: [
-      { src: communityImg, alt: "Kegiatan pelatihan bersama warga desa" },
-      { src: classroomImg, alt: "Peserta mengikuti sesi belajar di Kampung IT Solo" },
+      {
+        src: systemHandoverImg,
+        alt: "Pendampingan penggunaan perangkat digital bersama peserta",
+      },
+      {
+        src: systemTrainingImg,
+        alt: "Peserta menggunakan laptop dalam kegiatan pendampingan digital",
+      },
     ],
     quote: {
       text: "Dulu arsip dan pengumuman warga tersebar di berkas fisik dan grup chat. Setelah pendampingan dari tim Kampung IT Solo, alur kerja digital desa jadi tertata rapi dan layanan surat-menyurat warga jauh lebih cepat.",
@@ -84,8 +90,14 @@ export const stories: Story[] = [
       "Perubahan kecil pada cahaya dan latar memberi dampak yang terlihat. Peserta tidak perlu membeli studio untuk mulai menampilkan produknya dengan lebih baik.",
     ],
     images: [
-      { src: umkmImg, alt: "Pendampingan foto produk untuk UMKM Solo Raya" },
-      { src: workshopImg, alt: "Peserta workshop mempraktikkan pengambilan gambar produk" },
+      {
+        src: academyClassImg,
+        alt: "Peserta mengikuti pelatihan dengan laptop di Kampung IT Solo",
+      },
+      {
+        src: systemTrainingImg,
+        alt: "Pendampingan penggunaan laptop dalam kegiatan pelatihan",
+      },
     ],
     permission: "granted",
     published: true,
@@ -113,8 +125,14 @@ export const stories: Story[] = [
       "Siklus alumnus yang mengajar ulang membuat kelas tidak bergantung pada satu pengajar. Pelajar yang pernah belajar di kelas yang sama bisa menjadi penghubung bagi angkatan berikutnya.",
     ],
     images: [
-      { src: classroomImg, alt: "Kelas pemrograman untuk pelajar SMK" },
-      { src: communityImg, alt: "Peserta belajar bersama di Kampung IT Solo" },
+      {
+        src: academyLabImg,
+        alt: "Peserta belajar pemrograman dengan laptop di laboratorium komputer",
+      },
+      {
+        src: academyClassImg,
+        alt: "Peserta mengikuti kelas coding bersama di Kampung IT Solo",
+      },
     ],
     permission: "granted",
     published: true,
@@ -142,8 +160,14 @@ export const stories: Story[] = [
       "Yang terbangun bukan hanya pengetahuan, tetapi kesepakatan komunitas tentang cara bermedia sosial. Kesepakatan itu membantu pemuda desa menjaga percakapan tetap sehat di ruang digital.",
     ],
     images: [
-      { src: seminarImg, alt: "Kegiatan literasi digital bersama warga" },
-      { src: communityImg, alt: "Diskusi komunitas pemuda di Kampung IT Solo" },
+      {
+        src: academyBootcampImg,
+        alt: "Sesi literasi digital bersama peserta di ruang kelas",
+      },
+      {
+        src: academyClassImg,
+        alt: "Peserta mengikuti diskusi belajar di Kampung IT Solo",
+      },
     ],
     permission: "granted",
     published: true,
@@ -171,8 +195,14 @@ export const stories: Story[] = [
       "Pesantren memiliki model pembelajaran IT yang mandiri dan selaras dengan nilai-nilai Qur'ani serta tradisi kepesantrenan.",
     ],
     images: [
-      { src: classroomImg, alt: "Santri mengikuti sesi belajar teknologi di lingkungan pesantren" },
-      { src: seminarImg, alt: "Sesi literasi digital dan adab teknologi" },
+      {
+        src: academyClassImg,
+        alt: "Santri mengikuti sesi belajar teknologi dengan laptop",
+      },
+      {
+        src: academyBootcampImg,
+        alt: "Pemateri menyampaikan materi kepada santri di ruang kelas",
+      },
     ],
     quote: {
       text: "Santri tidak hanya belajar ilmu agama, tapi di sini dilatih memahami kecerdasan buatan (AI) dan teknologi terapan dengan adab yang tetap terjaga. Ini bekal kemandirian nyata untuk generasi santri.",

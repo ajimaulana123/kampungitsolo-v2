@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Lightbulb, MapPin, MessageCircle, Target, Users } from "lucide-react";
 
-import aboutClass from "@/assets/about-class.jpg";
+import academyClass from "@/assets/academy/academy-class.jpg";
 import heroBuilding from "@/assets/hero-building.jpg";
 import { CtaBand } from "@/components/site/CtaBand";
 import { JsonLd } from "@/components/site/JsonLd";
@@ -122,8 +122,8 @@ function AboutPage() {
           </div>
           <div data-reveal="clip" className="overflow-hidden rounded-3xl shadow-card">
             <img
-              src={aboutClass}
-              alt="Peserta belajar bersama di Kampung IT Solo"
+              src={academyClass}
+              alt="Peserta belajar dengan laptop di ruang kelas Kampung IT Solo"
               width={1280}
               height={960}
               loading="lazy"

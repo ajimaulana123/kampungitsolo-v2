@@ -1,7 +1,7 @@
-import classImg from "@/assets/about-class.jpg";
-import workshopImg from "@/assets/program-workshop.jpg";
-import buildingImg from "@/assets/hero-building.jpg";
-import communityImg from "@/assets/impact-team.jpg";
+import codingClassImg from "@/assets/academy/academy-lab.jpg";
+import pesantrenClassImg from "@/assets/academy/academy-bootcamp.jpg";
+import solarPanelsImg from "@/assets/solar/solar-panels.jpg";
+import digitalisasiDesaImg from "@/assets/system/system-training.jpg";
 
 export type ArticleBlock =
   | { type: "paragraph"; text: string }
@@ -44,8 +44,8 @@ export const articles: Article[] = [
     category: "Pendidikan",
     readingTime: "7 menit",
     heroImage: {
-      src: classImg,
-      alt: "Pelajar mengikuti kelas pemrograman di Kampung IT Solo",
+      src: codingClassImg,
+      alt: "Peserta kelas menggunakan laptop di laboratorium komputer Kampung IT Solo",
     },
     blocks: [
       {
@@ -190,8 +190,8 @@ export const articles: Article[] = [
     category: "Teknologi",
     readingTime: "8 menit",
     heroImage: {
-      src: workshopImg,
-      alt: "Peserta pelatihan digital Kampung IT Solo belajar bersama",
+      src: pesantrenClassImg,
+      alt: "Pemateri menyampaikan materi kepada santri di ruang kelas",
     },
     blocks: [
       {
@@ -304,8 +304,8 @@ export const articles: Article[] = [
     category: "Energi",
     readingTime: "9 menit",
     heroImage: {
-      src: buildingImg,
-      alt: "Gedung sekolah dan area kegiatan yang bisa memakai PLTS",
+      src: solarPanelsImg,
+      alt: "Panel surya terpasang di atas atap gedung",
     },
     blocks: [
       {
@@ -430,8 +430,8 @@ export const articles: Article[] = [
     category: "Desa",
     readingTime: "8 menit",
     heroImage: {
-      src: communityImg,
-      alt: "Kegiatan bersama warga dan perangkat desa di Kampung IT Solo",
+      src: digitalisasiDesaImg,
+      alt: "Pendampingan penggunaan laptop dalam kegiatan digitalisasi desa",
     },
     blocks: [
       {

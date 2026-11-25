@@ -115,7 +115,7 @@ function AudienceDetail() {
             <div className="relative overflow-hidden rounded-2xl shadow-card">
               <img
                 src={audience.image}
-                alt={`Ilustrasi solusi untuk ${audience.name}`}
+                alt={audience.imageAlt}
                 width={992}
                 height={672}
                 fetchPriority="high"

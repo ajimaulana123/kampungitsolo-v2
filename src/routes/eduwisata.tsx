@@ -9,9 +9,9 @@ import { Button } from "@/components/ui/button";
 import { pageHead } from "@/lib/seo";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { canonicalUrl, SITE_URL } from "@/lib/site";
-import seminarImg from "@/assets/impact-seminar.jpg";
-import classImg from "@/assets/about-class.jpg";
-import communityImg from "@/assets/impact-team.jpg";
+import academyBootcampImg from "@/assets/academy/academy-bootcamp.jpg";
+import academyLabImg from "@/assets/academy/academy-lab.jpg";
+import academyClassImg from "@/assets/academy/academy-class.jpg";
 
 const EDUWISATA_SCHEMA = {
   "@context": "https://schema.org",
@@ -138,8 +138,8 @@ function EduwisataPage() {
         aside={
           <div className="relative overflow-hidden rounded-2xl shadow-card">
             <img
-              src={seminarImg}
-              alt="Kegiatan belajar bersama peserta Kampung IT Solo"
+              src={academyBootcampImg}
+              alt="Pemateri menyampaikan materi kepada peserta kunjungan"
               width={992}
               height={672}
               fetchPriority="high"
@@ -237,16 +237,16 @@ function EduwisataPage() {
 
           <div data-reveal="clip" className="grid grid-cols-2 gap-3">
             <img
-              src={classImg}
-              alt="Peserta belajar di ruang kelas Kampung IT Solo"
+              src={academyLabImg}
+              alt="Peserta menggunakan laptop di laboratorium komputer Kampung IT Solo"
               width={1280}
               height={960}
               loading="lazy"
               className="col-span-2 aspect-[16/9] w-full rounded-2xl object-cover"
             />
             <img
-              src={communityImg}
-              alt="Kegiatan bersama komunitas di Kampung IT Solo"
+              src={academyClassImg}
+              alt="Peserta mengikuti kegiatan belajar di ruang kelas Kampung IT Solo"
               width={992}
               height={672}
               loading="lazy"

@@ -142,7 +142,7 @@ function ProgramDetail() {
               <div className="relative overflow-hidden rounded-2xl shadow-card">
                 <img
                   src={program.image}
-                  alt={`Ilustrasi ${program.name}`}
+                  alt={program.imageAlt}
                   width={992}
                   height={672}
                   fetchPriority="high"
