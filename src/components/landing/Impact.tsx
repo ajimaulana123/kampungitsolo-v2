@@ -6,12 +6,14 @@ import { getProgram } from "@/data/programs";
 import { publishedStories } from "@/data/stories";
 import { SectionLabel } from "./SectionLabel";
 import { TestimonialSlider, type TestimonialItem } from "./TestimonialSlider";
-import seminar from "@/assets/impact-seminar.jpg";
+import academyClass from "@/assets/academy/academy-class.jpg";
+import heroBuilding from "@/assets/hero-building.jpg";
+import solarComponents from "@/assets/solar/solar-components.jpg";
+import solarPanels from "@/assets/solar/solar-panels.jpg";
+import systemHandover from "@/assets/system/system-handover.jpg";
 import umkm from "@/assets/impact-umkm.jpg";
 import team from "@/assets/impact-team.jpg";
-import city from "@/assets/impact-city.jpg";
 import classroom from "@/assets/about-class.jpg";
-import heroBuilding from "@/assets/hero-building.jpg";
 import avatar1 from "@/assets/avatar-1.jpg";
 import avatar2 from "@/assets/avatar-2.jpg";
 import avatar3 from "@/assets/avatar-3.jpg";
@@ -129,38 +131,69 @@ export function Impact() {
 
         <div className="relative lg:ml-4">
           <div className="pointer-events-none absolute -bottom-2 -left-10 hidden h-24 w-12 bg-dots lg:block" />
-          <div className="grid h-[300px] grid-cols-[1fr_1fr_0.9fr] grid-rows-2 gap-2">
+          <div className="grid h-[360px] grid-cols-2 grid-rows-3 gap-2 sm:h-[300px] sm:grid-cols-[1fr_1fr_0.9fr] sm:grid-rows-2">
+            <Photo src={heroBuilding} alt="Gedung Kampung IT Solo di Surakarta" w={1280} h={960} />
             <Photo
-              src={seminar}
-              alt="Seminar teknologi Kampung IT Solo di Surakarta"
-              w={992}
-              h={672}
-            />
-            <Photo
-              src={umkm}
-              alt="Pendampingan foto produk untuk UMKM Solo Raya"
-              w={992}
-              h={672}
+              src={systemHandover}
+              alt="Staf sekolah melihat perangkat bersama tim pendamping ELFAN System"
+              w={1200}
+              h={900}
               delay={120}
             />
             <div className="row-span-2">
-              <Photo src={city} alt="Balai Kota Surakarta" w={752} h={896} delay={240} />
+              <Photo
+                src={academyClass}
+                alt="Peserta ELFAN AI Academy belajar dengan laptop di kelas"
+                w={1200}
+                h={900}
+                delay={240}
+              />
             </div>
             <Photo
-              src={team}
-              alt="Kegiatan literasi digital bersama warga"
-              w={992}
-              h={672}
+              src={solarPanels}
+              alt="Panel surya pada atap bangunan"
+              w={1200}
+              h={900}
               delay={120}
             />
             <Photo
-              src={classroom}
-              alt="Kelas pemrograman untuk pelajar SMK"
-              w={1280}
-              h={768}
+              src={solarComponents}
+              alt="Inverter, proteksi, dan baterai penyimpanan di Open Lab Ufuk Hijau Energi"
+              w={1200}
+              h={900}
               delay={240}
             />
           </div>
+          <p className="mt-3 text-[0.68rem] leading-relaxed text-ink/70">
+            Dokumentasi:{" "}
+            <a
+              href="https://elfanaiacademy.com"
+              target="_blank"
+              rel="noreferrer"
+              className="font-semibold text-forest underline decoration-forest/30 underline-offset-2 hover:decoration-forest"
+            >
+              ELFAN
+            </a>
+            ,{" "}
+            <a
+              href="https://kampungitsolo.com"
+              target="_blank"
+              rel="noreferrer"
+              className="font-semibold text-forest underline decoration-forest/30 underline-offset-2 hover:decoration-forest"
+            >
+              Kampung IT Solo
+            </a>
+            , dan{" "}
+            <a
+              href="https://ufukhijau.com"
+              target="_blank"
+              rel="noreferrer"
+              className="font-semibold text-forest underline decoration-forest/30 underline-offset-2 hover:decoration-forest"
+            >
+              Ufuk Hijau Energi
+            </a>
+            .
+          </p>
         </div>
       </div>
 
