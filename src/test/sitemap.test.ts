@@ -19,8 +19,8 @@ describe("Sitemap", () => {
   });
 
   it("uses kampungitsolo.com as the public domain", () => {
-    expect(SITE_URL).toBe("https://kampungitsolo.com");
-    expect(locations).toContain("https://kampungitsolo.com/");
+    expect(SITE_URL).toBe("https://kampungitsolo-v2.lovable.app");
+    expect(locations).toContain("https://kampungitsolo-v2.lovable.app/");
   });
 
   it("uses absolute HTTPS URLs", () => {

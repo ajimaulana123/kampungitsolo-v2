@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://kampungitsolo.com/sitemap.xml
+Sitemap: https://kampungitsolo-v2.lovable.app/sitemap.xml

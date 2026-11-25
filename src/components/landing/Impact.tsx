@@ -210,7 +210,7 @@ export function Impact() {
             </a>
             ,{" "}
             <a
-              href="https://kampungitsolo.com"
+              href="https://kampungitsolo-v2.lovable.app"
               target="_blank"
               rel="noreferrer"
               className="font-semibold text-forest underline decoration-forest/30 underline-offset-2 hover:decoration-forest"
