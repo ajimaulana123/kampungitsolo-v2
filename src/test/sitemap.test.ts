@@ -18,6 +18,11 @@ describe("Sitemap", () => {
     expect(new Set(locations).size).toBe(locations.length);
   });
 
+  it("uses kampungitsolo.com as the public domain", () => {
+    expect(SITE_URL).toBe("https://kampungitsolo.com");
+    expect(locations).toContain("https://kampungitsolo.com/");
+  });
+
   it("uses absolute HTTPS URLs", () => {
     for (const location of locations) {
       expect(location.startsWith(SITE_URL)).toBe(true);
