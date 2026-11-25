@@ -11,13 +11,6 @@ import heroBuilding from "@/assets/hero-building.jpg";
 import solarComponents from "@/assets/solar/solar-components.jpg";
 import solarPanels from "@/assets/solar/solar-panels.jpg";
 import systemHandover from "@/assets/system/system-handover.jpg";
-import umkm from "@/assets/impact-umkm.jpg";
-import team from "@/assets/impact-team.jpg";
-import classroom from "@/assets/about-class.jpg";
-import avatar1 from "@/assets/avatar-1.jpg";
-import avatar2 from "@/assets/avatar-2.jpg";
-import avatar3 from "@/assets/avatar-3.jpg";
-import avatar4 from "@/assets/avatar-4.jpg";
 
 const cases = publishedStories.map((story, index) => ({
   no: String(index + 1).padStart(2, "0"),
@@ -31,48 +24,89 @@ const cases = publishedStories.map((story, index) => ({
 const TESTIMONIALS: TestimonialItem[] = [
   {
     quote:
-      "Santri tidak hanya belajar ilmu agama, tapi di sini dilatih memahami kecerdasan buatan (AI) dan teknologi terapan dengan adab yang tetap terjaga. Ini bekal kemandirian nyata untuk generasi santri.",
-    name: "Pembina Santri",
-    role: "Pengasuh & Instruktur",
-    organization: "IDBC & Elfan AI Academy",
-    client: "Pesantren Digital",
-    image: classroom,
-    imageAlt: "Santri dan pelajar mengikuti sesi teknologi di laboratorium Kampung IT Solo",
-    avatar: avatar1,
+      "Kampung IT Solo sambut tamu kehormatan dari Yaman, tingkatkan kerja sama internasional.",
+    summary:
+      "Delegasi dari Yaman meninjau langsung ekosistem Kampung IT Solo. Kunjungan ini membuka peluang kerja sama lintas negara di bidang pendidikan dan teknologi.",
+    name: "Delegasi Yaman",
+    role: "Kunjungan Kehormatan",
+    organization: "Kampung IT Solo",
+    client: "Kunjungan Internasional",
+    instagramUrl: "https://www.instagram.com/p/DA2LRnFS6pO/",
   },
   {
     quote:
-      "Dulu arsip dan pengumuman warga tersebar di berkas fisik dan grup chat. Setelah pendampingan dari tim Kampung IT Solo, alur kerja digital desa jadi tertata rapi dan layanan surat-menyurat warga jauh lebih cepat.",
-    name: "Perangkat Desa & Pegiat Komunitas",
-    role: "Mitra Pelatihan Desa Digital",
-    organization: "Sukoharjo",
-    client: "Pemerintah Desa",
-    image: team,
-    imageAlt: "Pendampingan kerja digital dan pengelolaan informasi bersama perangkat desa",
-    avatar: avatar2,
+      "Ekosistem Kampung IT adalah perwujudan Smart Village yang sesungguhnya, dengan pemanfaatan inovasi teknologi yang luar biasa dan menginspirasi.",
+    summary:
+      "Dekan Fakultas Teknologi UNISSULA menilai Kampung IT sebagai contoh Smart Village yang dibangun dari inovasi sederhana namun berdampak luas.",
+    name: "M. Qomaruddin, S.T., M.Sc., Ph.D.",
+    role: "Dekan Fakultas Teknologi",
+    organization: "UNISSULA",
+    client: "Smart Village",
+    instagramUrl: "https://www.instagram.com/p/DZ3vGacSDYT/",
   },
   {
     quote:
-      "Tempat belajar teknologi yang sangat inspiratif di Solo Raya. Fasilitas lab dan perpustakaan digitalnya lengkap, suasananya nyaman, dan mentor membimbing langkah demi langkah dengan ramah.",
-    name: "Pengunjung Studi Banding & Eduwisata",
-    role: "Ulasan Terverifikasi",
-    organization: "Google Maps",
-    client: "Eduwisata Solo Raya",
-    rating: 5,
-    image: heroBuilding,
-    imageAlt: "Gedung pusat eduwisata IT dan laboratorium peradaban Kampung IT Solo",
-    avatar: avatar3,
+      "Kampung IT dapat menjadi role model dalam integrasi teknologi kecerdasan buatan dan energi terbarukan.",
+    summary:
+      "Rektor UICI melihat model Kampung IT sebagai rujukan integrasi AI dan energi terbarukan untuk pengembangan kampus dan pesantren.",
+    name: "Prof. Dr. Ir. Asep Saefuddin, M.Sc.",
+    role: "Rektor",
+    organization: "UICI",
+    client: "Pendidikan Tinggi",
+    instagramUrl: "https://www.instagram.com/p/DZwGnXgSMHi/",
   },
   {
     quote:
-      "Sebelumnya foto katalog kami gelap dan kurang meyakinkan di marketplace. Setelah ikut workshop, kami bisa foto dan buat video produk yang bersih hanya bermodal kamera ponsel sendiri.",
-    name: "Pelaku Usaha Batik",
-    role: "Peserta Workshop UMKM",
-    organization: "Solo Raya",
-    client: "UMKM Solo Raya",
-    image: umkm,
-    imageAlt: "Praktik pengambilan foto dan video produk UMKM menggunakan smartphone",
-    avatar: avatar4,
+      "Kampung IT bukan sekadar tempat belajar programming, melainkan wadah untuk menciptakan sistem lintas platform yang komprehensif.",
+    summary:
+      "Alumni DPRD Jawa Barat menyoroti pentingnya kesiapan SDM dan sistem lintas platform dalam membangun peradaban teknologi.",
+    name: "Ir. H. Abdul Hadi Wijaya, M.Sc.",
+    role: "Alumni DPRD Jawa Barat",
+    client: "Transformasi Digital",
+    instagramUrl: "https://www.instagram.com/p/DZtgV7sSeZ7/",
+  },
+  {
+    quote:
+      "Kampung IT adalah bukti nyata kedaulatan energi: memanfaatkan matahari, menyimpannya, dan menggunakannya untuk kemaslahatan serta pendidikan masyarakat.",
+    summary:
+      "Dekan Fakultas Ekologi Manusia IPB University menyebut lima gedung Kampung IT sudah mandiri memanfaatkan energi matahari.",
+    name: "Prof. Dr. Sofyan Sjaf, S.Pt., M.Si.",
+    role: "Dekan Fakultas Ekologi Manusia",
+    organization: "IPB University",
+    client: "Kedaulatan Energi",
+    instagramUrl: "https://www.instagram.com/p/DZrDR4vSKt1/",
+  },
+  {
+    quote: "Tempat belajar terbaik untuk memahami dunia yang akan datang.",
+    summary:
+      "Kaprodi Fakultas Teknik UNISSULA menekankan pembelajaran praktis agar anak didik adaptif terhadap teknologi masa depan.",
+    name: "Dr. Gunawan, S.T., M.T.",
+    role: "Kaprodi Fakultas Teknik",
+    organization: "UNISSULA",
+    client: "Pendidikan Teknologi",
+    instagramUrl: "https://www.instagram.com/p/DZ6YVgNyiT6/",
+  },
+  {
+    quote:
+      "Kompetensi setara S1 tidak harus memakan waktu 4 tahun. Cukup 6 bulan pembelajaran konkret, santri sudah bisa menguasai teknologi dan aplikasinya.",
+    summary:
+      "Ketua Umum DDII menyoroti percepatan kompetensi santri melalui pembelajaran teknologi yang konkret dan aplikatif.",
+    name: "Dr. Adian Husaini, SKH, M.Si., Ph.D.",
+    role: "Ketua Umum",
+    organization: "Dewan Dakwah Islamiyah Indonesia",
+    client: "Pendidikan Alternatif",
+    instagramUrl: "https://www.instagram.com/p/DZymoUCyZ-O/",
+  },
+  {
+    quote:
+      "Jazakumullah dengan sinerginya. Semoga inovasi Kampung IT bisa dikembangkan di masjid pantai Bali.",
+    summary:
+      "Catatan ini menyampaikan harapan agar inovasi Kampung IT dapat dikembangkan di masjid pantai Bali.",
+    name: "Masjid Pantai Bali",
+    role: "Sinergi Inovasi",
+    organization: "Kampung IT Solo",
+    client: "Sinergi Wilayah",
+    instagramUrl: "https://www.instagram.com/p/DBh_r7BSoqt/",
   },
 ];
 
