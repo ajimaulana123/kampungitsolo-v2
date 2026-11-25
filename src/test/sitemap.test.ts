@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { siteRoutes } from "@/data/routes";
 import { renderSitemap } from "@/lib/sitemap";
+import { SITE_URL } from "@/lib/site";
 
 const xml = renderSitemap(siteRoutes);
 const locations = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1] ?? "");
@@ -19,7 +20,7 @@ describe("Sitemap", () => {
 
   it("uses absolute HTTPS URLs", () => {
     for (const location of locations) {
-      expect(location.startsWith("https://kampungitsolo.com")).toBe(true);
+      expect(location.startsWith(SITE_URL)).toBe(true);
     }
   });
 
