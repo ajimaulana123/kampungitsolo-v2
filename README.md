@@ -4,7 +4,7 @@ Buatkan website landingpage yang harus mirip sekali dengan gambar yang saya kiri
 
 This project was built with [Lovable](https://lovable.dev).
 
-**Live app**: https://kampungitsolo-v2.lovable.app
+**Live app**: https://kampungitsolo.com
 
 ## Build with Lovable
 
