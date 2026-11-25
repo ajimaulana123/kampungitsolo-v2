@@ -28,6 +28,7 @@ export const Route = createFileRoute("/untuk/$slug")({
       title: audience ? `${audience.name} | Kampung IT Solo` : "Solusi | Kampung IT Solo",
       description: audience ? audience.summary : "Solusi digital Kampung IT Solo.",
       path: audience ? `/untuk/${audience.slug}` : "/untuk",
+      ...(audience ? { image: audience.image } : {}),
     });
   },
   component: AudienceDetail,

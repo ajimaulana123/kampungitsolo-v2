@@ -97,6 +97,7 @@ export const Route = createFileRoute("/eduwisata")({
       description:
         "Eduwisata IT untuk sekolah, pesantren, dan komunitas di Cemani, Grogol, Sukoharjo. Kenali program, produk, dan cara belajar Kampung IT Solo.",
       path: "/eduwisata",
+      image: academyLabImg,
     }),
   component: EduwisataPage,
 });

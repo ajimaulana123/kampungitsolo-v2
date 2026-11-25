@@ -81,6 +81,7 @@ export const Route = createFileRoute("/program/$slug")({
           )
         : "Program pelatihan digital Kampung IT Solo untuk lembaga, UMKM, dan komunitas.",
       path: program ? `/program/${program.slug}` : "/program",
+      ...(program ? { image: program.image } : {}),
     });
   },
   component: ProgramDetail,

@@ -29,6 +29,7 @@ export const Route = createFileRoute("/cerita/$slug")({
         ? fitDescription(story.summary, "Baca cerita lengkapnya di Kampung IT Solo.")
         : "Cerita dan studi kasus Kampung IT Solo.",
       path: story ? `/cerita/${story.slug}` : "/cerita",
+      ...(story?.images[0]?.src ? { image: story.images[0].src } : {}),
       type: "article",
     });
   },

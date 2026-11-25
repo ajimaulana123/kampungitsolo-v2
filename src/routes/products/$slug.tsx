@@ -38,6 +38,7 @@ export const Route = createFileRoute("/products/$slug")({
         ? productDescription(product.summary)
         : "Produk dan layanan Kampung IT Solo, bagian dari Bin Alfan Group.",
       path: product ? `/products/${product.slug}` : "/products",
+      ...(product ? { image: product.image } : {}),
     });
   },
   component: ProductDetail,
